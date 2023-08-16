@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Octopus Brain
+* source:	https://sketchfab.com/3d-models/the-octopus-brain-833b2497dc1342eea3c2b95cf1518b04
+* author:	University of Dundee, CAHID (https://sketchfab.com/anatomy_dundee)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Octopus Brain" (https://sketchfab.com/3d-models/the-octopus-brain-833b2497dc1342eea3c2b95cf1518b04) by University of Dundee, CAHID (https://sketchfab.com/anatomy_dundee) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
