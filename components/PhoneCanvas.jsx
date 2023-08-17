@@ -15,29 +15,12 @@ const Phone = ({ isMobile }) => {
 
       <hemisphereLight intensity={0.15} groundColor="black" />
 
-      <directionalLight
-        color={0x4066ff}
-        intensity={8.8}
-        position={[-1, 1, 1]}
-      />
-
-      <spotLight
-        color={0xffb978}
-        intensity={6.8}
-        position={[10, -10, 5]}
-        angle={Math.PI / 4}
-        penumbra={0.5}
-        decay={2}
-        distance={100}
-        castShadow
-        shadow-mapSize={1024}
-      />
 
       <primitive
         rotation={[0, 0, 0]}
         object={phone.scene}
-        scale={70}
-        position={[-20, 0, 0]}
+        scale={10}
+        position={[-10, 0, 0]}
       />
     </mesh>
   );
@@ -71,12 +54,12 @@ const PhoneCanvas = () => {
       style={{ height: "100%", position: "absolute", width: "100%", top: 0 }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
+        {/* <OrbitControls
           enableZoom={false}
           // enablePan={false}
           // maxPolarAngle={Math.PI / 2}
           // minPolarAngle={Math.PI / 2}
-        />
+        /> */}
         <Phone isMobile={isMobile} />
       </Suspense>
 

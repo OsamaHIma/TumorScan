@@ -61,14 +61,14 @@ const Hero = () => {
           </div>
 
           <div className="hero-desc flexColStart">
-            <span className="text-light-gray rtl:text-stone-50 rtl:text-stone-50">
+            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-stone-50">
             <Translate>Advanced Technology for Precise</Translate>
             </span>
-            <span className="text-light-gray rtl:text-stone-50 rtl:text-stone-50"><Translate>Diagnosis and Treatment</Translate></span>
+            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-stone-50"><Translate>Diagnosis and Treatment</Translate></span>
           </div>
           <div className="status flexCenter w-ful justify-between gap-8">
             <div className="flexColCenter stat !gap-2">
-              <User className="text-indigo-500 rtl:text-slate-300" />
+              <User className="text-orange-400 md:text-indigo-500 rtl:text-orange-400" />
               <span>
                 <CountUp
                   start={2}
@@ -78,11 +78,11 @@ const Hero = () => {
                 />
                 <span className="ml-2 text-3xl font-bold text-[orange]">+</span>
               </span>
-              <p className="text-light-gray rtl:text-stone-50"><Translate>Patients</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Patients</Translate></p>
             </div>
 
             <div className="flexColCenter stat !gap-2">
-              <Check className="text-indigo-500 rtl:text-slate-300" />
+              <Check className="text-orange-400 md:text-indigo-500 rtl:text-orange-400" />
               <span>
                 <CountUp
                   start={0}
@@ -97,11 +97,11 @@ const Hero = () => {
                   +
                 </span>
               </span>
-              <p className="text-light-gray rtl:text-stone-50"><Translate>Accurate Result</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Accurate Result</Translate></p>
             </div>
 
             <div className="flexColCenter stat !gap-2">
-              <Search className="text-indigo-500 rtl:text-slate-300" />
+              <Search className="text-orange-400 md:text-indigo-500 rtl:text-orange-400" />
               <span>
                 <CountUp
                   start={0}
@@ -113,7 +113,7 @@ const Hero = () => {
                   +
                 </span>
               </span>
-              <p className="text-light-gray rtl:text-stone-50"><Translate>Scans</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Scans</Translate></p>
             </div>
           </div>
         </div>
