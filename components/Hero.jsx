@@ -25,7 +25,7 @@ const Hero = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <header className="hero-wrapper relative z-10 pb-8 pt-32 text-stone-800 transition-all ease-in dark:text-stone-100">
+    <header className="hero-wrapper relative z-10 pb-8 pt-20 md:pt-32 text-stone-800 transition-all ease-in dark:text-stone-100">
       <div className="static-shape background-shape-main -z-1 absolute" />
 
       <div className="paddings innerWidth grid grid-cols-1 !items-end gap-11 md:grid-cols-2">
@@ -118,7 +118,7 @@ const Hero = () => {
           </div>
         </div>
         <motion.div
-          className="hero-right z-[5] order-first h-full w-full md:order-last"
+          className="hero-right min-h-[21rem] z-[5] order-first h-full w-full md:order-last"
           initial={{ x: "3rem", opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, type: "tween", delay: 0.5 }}

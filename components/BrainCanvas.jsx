@@ -1,44 +1,34 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./CanvasLoader";
 
-const Brain = ({ isMobile }) => {
+const Brain = () => {
   const brain = useGLTF("/models/tumors/scene.gltf");
+  console.log(brain.scenes[0].children[0].children[0].children[0])
   // Rotate the phone mesh every frame
   useFrame(({ clock }) => {
     brain.scene.rotation.y = clock.getElapsedTime() * 0.3; // Modify rotation speed here
   });
+  // useEffect(() => {
+  //   if (brain.scenes && brain.scenes[0]?.children[0]?.children[0]?.children[0]) {
+  //     const targetMesh = brain.scenes[0].children[0].children[0].children[0];
+  //     targetMesh.color = new Color("red");
+  //     targetMesh.transparent = true;
+  //     targetMesh.opacity = 0.5;
+  //   }
+  // }, [brain.scenes]);
+  
   return (
     <mesh>
       <ambientLight intensity={10} />
       <pointLight intensity={10} position={[10, 10, 10]} />
 
-      <hemisphereLight intensity={0.15} groundColor="black" />
-
-      <directionalLight
-        color={0x4066ff}
-        intensity={8.8}
-        position={[-1, 1, 1]}
-      />
-
-      <spotLight
-        color={0xffb978}
-        intensity={6.8}
-        position={[10, -10, 5]}
-        angle={Math.PI / 4}
-        penumbra={0.5}
-        decay={2}
-        distance={100}
-        castShadow
-        shadow-mapSize={1024}
-      />
-
       <primitive
         rotation={[0, 0, 0]}
         object={brain.scene}
-        scale={isMobile ? 0.1 : 0.2}
+        scale={0.2}
         position={[0, 3, 0]}
       />
     </mesh>
@@ -46,19 +36,19 @@ const Brain = ({ isMobile }) => {
 };
 
 const BrainCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
-    const handelChanges = (ev) => {
-      setIsMobile(ev.matches);
-    };
-    mediaQuery.addEventListener("change", handelChanges);
-    return () => {
-      mediaQuery.removeEventListener("change", handelChanges);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia("(max-width: 500px)");
+  //   setIsMobile(mediaQuery.matches);
+  //   const handelChanges = (ev) => {
+  //     setIsMobile(ev.matches);
+  //   };
+  //   mediaQuery.addEventListener("change", handelChanges);
+  //   return () => {
+  //     mediaQuery.removeEventListener("change", handelChanges);
+  //   };
+  // }, []);
 
   return (
     <Canvas
@@ -79,7 +69,8 @@ const BrainCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Brain isMobile={isMobile} />
+        {/* <Brain isMobile={isMobile} /> */}
+        <Brain  />
       </Suspense>
 
       <Preload all />
