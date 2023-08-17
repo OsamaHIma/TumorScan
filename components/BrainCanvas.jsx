@@ -6,7 +6,7 @@ import CanvasLoader from "./CanvasLoader";
 
 const Brain = () => {
   const brain = useGLTF("/models/tumors/scene.gltf");
-  console.log(brain.scenes[0].children[0].children[0].children[0])
+  // console.log(brain.scenes[0].children[0].children[0].children[0])
   // Rotate the phone mesh every frame
   useFrame(({ clock }) => {
     brain.scene.rotation.y = clock.getElapsedTime() * 0.3; // Modify rotation speed here
