@@ -71,7 +71,7 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-3">
           <Link href="/">
-            <img src="/logo.svg" className="w-[300px]" alt="logo" />
+            <img src="/logo.svg" className="w-32 md:w-[300px]" alt="logo" />
           </Link>
         </div>
         <section className="flexCenter relative">
@@ -143,7 +143,7 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <Link href="/auth/signup" className="btn w-[5rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>Sign Up</Translate></Link>
+            <Link href="/auth/signup" className="btn min-w-[5rem] max-w-[7rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>Sign Up</Translate></Link>
           </ul>
         </section>
       </motion.div>

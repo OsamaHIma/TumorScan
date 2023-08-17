@@ -38,7 +38,7 @@ const Brain = ({ isMobile }) => {
       <primitive
         rotation={[0, 0, 0]}
         object={brain.scene}
-        scale={isMobile ? 0.07 : 0.2}
+        scale={isMobile ? 0.1 : 0.2}
         position={[0, 3, 0]}
       />
     </mesh>
