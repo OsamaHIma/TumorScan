@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import { Translate } from "translate-easy";
-import { motion } from "framer-motion";
 
 
 // Helper function to check if local storage is supported
@@ -43,10 +42,7 @@ const DevelopmentNotification = () => {
     return (
         <>
             {showNotification && (
-                <motion.div initial={{ y: "-6rem", opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ type: "spring", duration: 1, delay: 0.9 }}
-                    viewport={{ once: true }} className="fixed inset-x-0 top-12 md:top-20 z-20 p-4 bg-yellow-500">
+                <div className="fixed inset-x-0 top-12 md:top-20 z-20 p-4 bg-yellow-500">
                     <div className="max-w-screen-lg mx-auto">
                         <div className="flex flex-wrap gap-3 md:gap-0 justify-between items-center">
                             <div className="text-white">
@@ -71,8 +67,7 @@ const DevelopmentNotification = () => {
                             </div>
                         </div>
                     </div>
-
-                </motion.div>
+                </div>
             )}
         </>
     );
