@@ -61,10 +61,10 @@ const Hero = () => {
           </div>
 
           <div className="hero-desc flexColStart">
-            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-stone-50">
+            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right rtl:text-stone-50">
             <Translate>Advanced Technology for Precise</Translate>
             </span>
-            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-stone-50"><Translate>Diagnosis and Treatment</Translate></span>
+            <span className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right rtl:text-stone-50"><Translate>Diagnosis and Treatment</Translate></span>
           </div>
           <div className="status flexCenter w-ful justify-between gap-8">
             <div className="flexColCenter stat !gap-2">
@@ -74,11 +74,11 @@ const Hero = () => {
                   start={2}
                   end={600}
                   duration={4}
-                  className="text-4xl font-semibold text-stone-700 dark:text-gray-100"
+                  className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
                 />
                 <span className="ml-2 text-3xl font-bold text-[orange]">+</span>
               </span>
-              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Patients</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right"><Translate>Patients</Translate></p>
             </div>
 
             <div className="flexColCenter stat !gap-2">
@@ -88,16 +88,16 @@ const Hero = () => {
                   start={0}
                   end={97}
                   duration={4}
-                  className="text-4xl font-semibold text-stone-700 dark:text-gray-100"
+                  className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
                 />
-                <span className="text-4xl font-semibold text-stone-700 dark:text-gray-100">
+                <span className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100">
                   %
                 </span>
                 <span className="ml-2 text-3xl font-bold text-dark-orange">
                   +
                 </span>
               </span>
-              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Accurate Result</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right"><Translate>Accurate Result</Translate></p>
             </div>
 
             <div className="flexColCenter stat !gap-2">
@@ -107,13 +107,13 @@ const Hero = () => {
                   start={0}
                   end={340}
                   duration={4}
-                  className="text-4xl font-semibold text-stone-700 dark:text-gray-100"
+                  className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
                 />
                 <span className="ml-2 text-3xl font-bold text-dark-orange">
                   +
                 </span>
               </span>
-              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200"><Translate>Scans</Translate></p>
+              <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right"><Translate>Scans</Translate></p>
             </div>
           </div>
         </div>

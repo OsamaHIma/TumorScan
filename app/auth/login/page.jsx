@@ -6,6 +6,7 @@ import { signIn } from "next-auth/react";
 import { loginUserSchema } from "@/schema/userSchema";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { Translate } from "translate-easy";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -68,21 +69,21 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div className="px-4 flex flex-col mt-32 gap-8">
+    <div className="px-4 flex flex-col mt-32 gap-8 rtl:text-right">
       <div className="">
         <h1 className="text-3xl font-bold mb-4 ">
-          Welcome Back!
+        <Translate>Welcome Back!</Translate>
           {/* <WavingHandIcon className="text-yellow-500 mx-2 text-3xl" /> */}
         </h1>
         <h3 className="text-gray-500 text-sm mt-4">
-          Empowering Cancer Detection and Tumor Analysis.
+        <Translate>Empowering Cancer Detection and Tumor Analysis</Translate>.
         </h3>
       </div>
 
       <form className="flex flex-col gap-8" autoComplete="on">
         <div className="flex flex-col">
           <label htmlFor="email" className="mb-4 text-md font-bold ">
-            Email
+          <Translate>Email</Translate>
           </label>
           <input
             type="email"
@@ -96,7 +97,7 @@ const LoginPage = () => {
         </div>
         <div className="flex flex-col">
           <label htmlFor="password" className="mb-4 text-md font-bold">
-            Password
+          <Translate>Password</Translate>
           </label>
           <div className="relative w-full">
             <input
@@ -129,10 +130,10 @@ const LoginPage = () => {
             })}
           </div>
         )}
-        <div className="flex justify-between items-center w-full  h-full">
+        <div className="flex justify-between items-center w-full h-full">
           <div className="flex justify-center items-center gap-1">
             <label htmlFor="remember-me" className=" text-gray-400 text-xs ">
-              Remember me
+            <Translate>Remember me</Translate>
             </label>
             <div className="relative flex items-center ">
               <input
@@ -150,7 +151,7 @@ const LoginPage = () => {
             className="text-indigo-400 font-bold text-sm"
             href="/auth/forgot-password"
           >
-            Forgot password?
+            <Translate>Forgot password?</Translate>
           </Link>
 
         </div>
@@ -161,7 +162,7 @@ const LoginPage = () => {
             type="submit"
             onClick={handleLogin}
           >
-            {loading ? "Loading..." : "Login"}
+            <Translate>{loading ? "Loading..." : "Login"}</Translate>
           </button>
 
           <p className="text-xl">OR</p>
@@ -178,14 +179,14 @@ const LoginPage = () => {
             onClick={handleGoogleLogin}
 
           >
-            {loading ? "Loading..." : "Sign with Google"}
+            {loading ? (<Translate>Loading...</Translate>) : (<Translate translations={{ar:"سجل الدخول عن طريق Google"}}>Sign in with Google</Translate>)}
           </button>
         </div>
       </form>
       <p className="text-gray-400 relative bottom-0 text-center">
-        You do not have an account?{" "}
+      <Translate>You do not have an account?</Translate>{" "}
         <Link className="text-indigo-400 font-bold text-sm" href="/auth/signup">
-          Sign Up Now!
+        <Translate>Sign Up Now!</Translate>
         </Link>
       </p>
     </div>

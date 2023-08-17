@@ -1,12 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import { MailIcon, Phone, MapPin } from "lucide-react";
+import { MailIcon, Phone, MapPin, ArrowLeftCircleIcon } from "lucide-react";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Footer from "@/components/Footer";
 import Tilt from "react-parallax-tilt";
 import { Translate } from "translate-easy";
+import Link from "next/link";
 
 const ContactForm = () => {
   const formRef = useRef();
@@ -86,7 +87,10 @@ const ContactForm = () => {
 
   return (
     <>
-      <div className="container overflow-hidden relative mx-auto my-24 md:px-6">
+      <div className="container  relative mx-auto my-24 md:px-6">
+        <Link href="/" className="p-3 absolute -top-14 z-20 left-20 rounded-full bg-indigo-500 text-slate-100">
+          <ArrowLeftCircleIcon size={32} />
+        </Link>
         <motion.div
           className="absolute left-[50%] top-[40%] h-16 w-16 md:w-32 md:h-32 rounded-full border-8 border-indigo-500/10"
           initial={{ opacity: 0, scale: 0 }}
@@ -106,7 +110,7 @@ const ContactForm = () => {
                     className="relative z-[1] block rounded-lg bg-[#e9e9e9] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-12 lg:-mr-14"
                   >
                     <h3 className="mx-auto text-3xl text-stone-400 dark:text-stone-50 ">
-                      <Translate>Contact Us</Translate>T.
+                      <Translate>Contact Us</Translate>.
                     </h3>
                     <form
                       ref={formRef}
@@ -189,7 +193,8 @@ const ContactForm = () => {
                         data-te-ripple-color="light"
                         className="inline-block w-full rounded bg-indigo-800 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-stone-100 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-indigo-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:mb-0"
                       >
-                        {loading ? "Sending..." : "Send"}
+                        {/* <Translate>{loading ? "Sending..." : "Send"}</Translate> */}
+                        {loading ? (<Translate>Sending...</Translate>) : (<Translate translations={{ ar: "أرسل" }} >Send</Translate>)}
                       </button>
                     </form>
                   </motion.div>
@@ -229,7 +234,7 @@ const ContactForm = () => {
                       <Phone />
                     </div>
                     <div>
-                      <h3 className="text left text-stone-100">Phone</h3>
+                      <h3 className="text left text-stone-100"><Translate>Phone</Translate></h3>
                       <a href="tel:+201050533006" className="text-gray-300">+2010123456</a>
                     </div>
                   </Tilt>
@@ -251,7 +256,7 @@ const ContactForm = () => {
                       <MailIcon />
                     </div>
                     <div>
-                      <h3 className="text left text-stone-100">Mail</h3>
+                      <h3 className="text left text-stone-100"><Translate>Mail</Translate></h3>
                       <a href="mailto:info@refilex.com" className="text-gray-300">
                         tumorscan@gmail.com
                       </a>

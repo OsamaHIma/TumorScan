@@ -1,6 +1,8 @@
 "use client";
 import Footer from "@/components/Footer";
+import { ArrowLeftCircleIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
@@ -62,7 +64,10 @@ const UploadPage = () => {
         acceptedFiles.splice(0, acceptedFiles.length);
     };
     return (
-        <section className="min-h-screen flex flex-col justify-between pt-16">
+        <section className="min-h-screen relative flex flex-col justify-between pt-16">
+            <Link href="/" className="p-3 absolute top-10 z-20 left-20 rounded-full bg-indigo-500 text-slate-100">
+                <ArrowLeftCircleIcon size={32} />
+            </Link>
             <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center"><Translate>Upload an image</Translate></h1>
             <div className="text-center max-w-sm min-h-44 mx-auto py-16">
                 <div

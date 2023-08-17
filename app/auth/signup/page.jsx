@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { signUpSchema } from "@/schema/userSchema";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { Translate } from "translate-easy";
 
 const SignUpPage = () => {
 
@@ -81,21 +82,21 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="px-4 flex flex-col mt-24 gap-8 ">
+    <div className="px-4 flex flex-col mt-24 gap-8 rtl:text-right">
       <div>
         <h1 className="text-3xl font-bold mb-4">
-          Welcome to Tumor Scan!
+          <Translate>Welcome to</Translate> Tumor Scan!
           {/* <MdWavingHand className="text-yellow-500 mx-2 text-3xl" /> */}
         </h1>
         <h3 className="text-gray-500 text-sm mt-4">
-          Empowering Cancer Detection and Tumor Analysis.
+          <Translate>Empowering Cancer Detection and Tumor Analysis</Translate>.
         </h3>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
         <div className="flex flex-col">
           <label htmlFor="name" className="mb-4 text-md font-bold">
-            Name
+            <Translate>Name</Translate>
           </label>
           <input
             type="text"
@@ -111,7 +112,7 @@ const SignUpPage = () => {
 
         <div className="flex flex-col">
           <label htmlFor="email" className="mb-4 text-md font-bold">
-            Email
+            <Translate>Email</Translate>
           </label>
           <input
             type="email"
@@ -127,7 +128,7 @@ const SignUpPage = () => {
 
         <div className="flex flex-col">
           <label htmlFor="password" className="mb-4 text-md font-bold">
-            Password
+            <Translate>Password</Translate>
           </label>
           <div className="relative w-full">
             <input
@@ -138,7 +139,7 @@ const SignUpPage = () => {
               value={formData.password}
               onChange={handleInputChange}
               className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-            }`}
+                }`}
             />
             {passwordIcon ? (
               <EyeIcon
@@ -159,7 +160,7 @@ const SignUpPage = () => {
             htmlFor="password_confirmation"
             className="mb-4 text-md font-bold"
           >
-            Confirm Password
+            <Translate>Confirm Password</Translate>
           </label>
           <div className="relative w-full">
             <input
@@ -170,7 +171,7 @@ const SignUpPage = () => {
               value={formData.password_confirmation}
               onChange={handleInputChange}
               className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-            }`}
+                }`}
             />
 
           </div>
@@ -187,13 +188,13 @@ const SignUpPage = () => {
           type="submit"
 
         >
-          {loading ? "Loading..." : "Sign Up"}
+          <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
         </button>
       </form>
       <p className="text-gray-400 relative bottom-4 text-center">
-        You have an account?{" "}
+        <Translate>You have an account</Translate>?{" "}
         <Link className="text-indigo-400 font-bold text-sm" href="/auth/login">
-          Login
+        <Translate>Login</Translate>
         </Link>
       </p>
     </div>

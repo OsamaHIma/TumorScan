@@ -36,13 +36,13 @@ const Step = ({ title, description, image, index }) => {
         />
 
         <div className="text-center md:text-left">
-          <h3 className={`text-2xl font-bold text-indigo-500`}>
+          <h3 className={`text-2xl font-bold text-indigo-500 rtl:text-right`}>
             <span className="text-3xl font-bold text-orange-400">
               {index + 1}.{" "}
             </span>
             <Translate>{title}</Translate>
           </h3>
-          <p className="text-lg text-gray-700 dark:text-gray-400"><Translate>{description}</Translate></p>
+          <p className="text-lg text-gray-700 dark:text-gray-400 rtl:text-right"><Translate>{description}</Translate></p>
         </div>
       </Tilt>
     </motion.div>

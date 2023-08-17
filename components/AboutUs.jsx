@@ -39,7 +39,7 @@ const ServiceCard = ({ index, title, icon, image, description }) => {
         </motion.h3>
 
         <motion.p
-          className="mb-4 text-center text-[16px] md:text-left"
+          className="mb-4 text-center text-[16px] md:text-left rtl:text-right" 
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, type: "spring", delay: 0.7 }}
