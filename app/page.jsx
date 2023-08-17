@@ -5,12 +5,14 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import AboutUs from "@/components/AboutUs";
+import DevelopmentNotification from "@/components/DevelopmentNotification";
 
 const Home = () => {
   return (
     <main className="relative overflow-x-clip">
       <section className="relative bg-stone-200 pb-8 transition-all ease-in dark:bg-primary-black">
         <div className="gradient absolute left-[100px] h-80 w-80 bg-black/20 blur-[100px] dark:bg-white/10" />
+        <DevelopmentNotification/>
         <Navbar />
         <Hero />
         <Sponsors />

@@ -30,7 +30,7 @@ const LanguageSelector = () => {
       </button>
       {isOpen && (
         <ul
-          className={`LanguageSelectorMenu absolute ltr:right-0 rtl:left-0 max-h-48 overflow-scroll md:right-0 z-10 mt-2 w-48 rounded-md shadow-xl bg-stone-200 dark:bg-stone-900`}
+          className={`LanguageSelectorMenu absolute ltr:right-0 rtl:left-0 max-h-48 overflow-scroll md:right-0 z-30 mt-2 w-48 rounded-md shadow-xl bg-stone-200 dark:bg-stone-900`}
           dir="ltr"
         >
           {languages.length &&
