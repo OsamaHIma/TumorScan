@@ -55,29 +55,29 @@ const SignUpPage = () => {
       setError(error.errors);
       return;
     }
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Error registering user.");
-      }
-      setLoading(false);
-      toast.success("registered successfully.");
-      router.push("/dashboard");
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-      toast.error(error.message);
-    }
+    // try {
+    //   setLoading(true);
+    //   const response = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/register`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(formData),
+    //     }
+    //   );
+    //   if (!response.ok) {
+    //     throw new Error("Error registering user.");
+    //   }
+    //   setLoading(false);
+    //   toast.success("registered successfully.");
+    //   router.push("/dashboard");
+    // } catch (error) {
+    //   setLoading(false);
+    //   console.error(error);
+    //   toast.error(error.message);
+    // }
   };
 
   return (

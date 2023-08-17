@@ -54,15 +54,15 @@ export const authOptions = {
 };
 
 const SignIn = async (email, password) => {
-  try {
-    const { data } = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens`,
-      { email, password }
-    );
-    return data;
-  } catch (resp) {
-    return resp.response.data.message;
-  }
+  // try {
+  //   const { data } = await axios.post(
+  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens`,
+  //     { email, password }
+  //   );
+  //   return data;
+  // } catch (resp) {
+  //   return resp.response.data.message;
+  // }
 };
 
 const handler = NextAuth(authOptions);

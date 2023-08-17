@@ -5,7 +5,7 @@ import axios from "axios";
 export async function POST(req, { params }) {
   const { token } = await getToken({
     req,
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: NEXTAUTH_SECRET,
   });
   const request = await req.json();
 

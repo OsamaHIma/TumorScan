@@ -14,34 +14,34 @@ const ForgotPasswordPage = () => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
-      const data = await response.json();
-      if (
-        response.ok &&
-        data.massege !== "We cant find a user with that email address"
-      ) {
-        setSuccess(true);
-        toast.success(data.massege);
-        console.log(data.massege);
-      } else {
-        setError(data.massege);
-        toast.error(data.massege);
-      }
-    } catch (error) {
-      setError(error.massege);
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   const response = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({ email }),
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   if (
+    //     response.ok &&
+    //     data.massege !== "We cant find a user with that email address"
+    //   ) {
+    //     setSuccess(true);
+    //     toast.success(data.massege);
+    //     console.log(data.massege);
+    //   } else {
+    //     setError(data.massege);
+    //     toast.error(data.massege);
+    //   }
+    // } catch (error) {
+    //   setError(error.massege);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (

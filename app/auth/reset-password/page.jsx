@@ -1,17 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const ResetPasswordPage = () => {
-  const { data: session } = useSession();
-  const [token, setToken] = useState("");
+  // const { data: session } = useSession();
+  // const [token, setToken] = useState("");
 
-  useEffect(() => {
-    if (session) {
-      setToken(session.user.token);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     setToken(session.user.token);
+  //   }
+  // }, [session]);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -27,30 +27,30 @@ const ResetPasswordPage = () => {
     }
     setError(null);
     setIsLoading(true);
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            //   Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(confirmPassword),
-        }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        setSuccess(true);
-        toast.success(data.message);
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   const response = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         //   Authorization: `Bearer ${token}`,
+    //       },
+    //       body: JSON.stringify(confirmPassword),
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     setSuccess(true);
+    //     toast.success(data.message);
+    //   } else {
+    //     setError(data.message);
+    //   }
+    // } catch (error) {
+    //   setError(error.message);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
