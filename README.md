@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tumor Scan
 
-## Getting Started
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/OsamaHIma/TumorScan/blob/master/license.txt)
+[![Contributors](https://img.shields.io/badge/contributors-2-orange.svg)](#contributors)
 
-First, run the development server:
+![Website Preview](https://ibb.co/YfBWj2m)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Description
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tumor Scan is a cutting-edge platform that utilizes advanced imaging technology and artificial intelligence algorithms to provide accurate and efficient diagnosis of various types of cancer. Our innovative solutions enable early detection, personalized treatment plans, and enhanced patient care. Experience the future of cancer detection and sign up now for personalized tumor analysis.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Table of Contents
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.js`.
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Testimonials](#testimonials)
+- [Contributors](#contributors)
+- [License](#license)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+### Advanced Imaging Technology
 
-To learn more about Next.js, take a look at the following resources:
+Our platform leverages the latest imaging techniques, including X-ray, MRI, and CT scans, to capture detailed medical images for precise tumor analysis.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### AI-Powered Tumor Detection
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Using intelligent algorithms and machine learning models, our system analyzes medical images to accurately identify cancerous regions and tumors.
 
-## Deploy on Vercel
+### Interactive 3D Visualization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Experience an immersive 3D representation of affected areas, enabling a comprehensive understanding of tumor location and size.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## How It Works
+
+1. Upload Your Medical Image: Provide your medical image, such as an X-ray or MRI scan, securely through our user-friendly interface.
+
+2. Tumor Analysis and Detection: Our advanced algorithms analyze the image, precisely detecting cancerous regions and identifying tumor characteristics.
+
+3. Receive Detailed Reports: Get comprehensive reports with valuable insights about tumor location, size, and recommended treatment options.
+
+## Testimonials
+
+- "I was amazed by the accuracy and speed of the tumor detection service. It provided me with crucial information for my treatment plan." - Customer Testimonial #1
+- "The interactive 3D visualization helped me understand my diagnosis better. It made the complex information more accessible and less overwhelming." - Customer Testimonial #2
+
+## Contributors
+
+- Omar Abdelhamid - AI development and Back-end development - [LinkedIn Profile](https://www.linkedin.com/in/omar-abdelhamid-204b0618a) - [GitHub Profile](https://github.com/OmarAbdelhamidAly?tab=repositories)
+- Osama Ibrahim - Front-end and Back-end development - [Portfolio](https://osama-ibrahim-portfolio.vercel.app) - [LinkedIn Profile](https://www.linkedin.com/in/osama-ibrahim2002/) - [GitHub Profile](https://github.com/OsamaHIma/)
+
+## License
+
+This project is licensed under the terms of the MIT license. You can find the license file [here](https://github.com/OsamaHIma/TumorScan/blob/master/license.txt).
