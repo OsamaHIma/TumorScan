@@ -88,7 +88,7 @@ const ContactForm = () => {
   return (
     <>
       <div className="container  relative mx-auto my-24 md:px-6">
-        <Link href="/" className="p-3 absolute -top-14 z-20 left-20 rounded-full bg-indigo-500 text-slate-100">
+        <Link href="/" className="p-3 absolute -top-14 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100">
           <ArrowLeftCircleIcon size={32} />
         </Link>
         <motion.div
