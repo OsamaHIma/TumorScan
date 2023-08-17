@@ -2,12 +2,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { Translate } from "translate-easy";
 
 const images = [
   // Replace these with your own images
-  "https://i.imgur.com/9XOJWqN.png",
-  "https://i.imgur.com/6fZjQ2R.png",
-  "https://i.imgur.com/7w4Xq3o.png",
+  "/x-ray.jpg",
+  "pc.jpg",
+  "/brain.jpeg",
 ];
 
 // Define a custom component for each step
@@ -39,9 +40,9 @@ const Step = ({ title, description, image, index }) => {
             <span className="text-3xl font-bold text-orange-400">
               {index + 1}.{" "}
             </span>
-            {title}
+            <Translate>{title}</Translate>
           </h3>
-          <p className="text-lg text-gray-700">{description}</p>
+          <p className="text-lg text-gray-700 dark:text-gray-400"><Translate>{description}</Translate></p>
         </div>
       </Tilt>
     </motion.div>
@@ -70,11 +71,11 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="container px-4 py-16">
+    <div className="container px-4 py-16" id="how-it-works">
       <h1
         className={`xs:text-[40px] text-center text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
       >
-        How It Works
+        <Translate>How It Works</Translate>
       </h1>
       <motion.div
         className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3"

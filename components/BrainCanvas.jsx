@@ -1,13 +1,15 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Suspense, useEffect, useState, useMemo } from "react";
-import { OrbitControls, Preload, useGLTF, useTexture } from "@react-three/drei";
-import { RepeatWrapping, Vector2 } from "three";
+import React, { Suspense, useEffect, useState } from "react";
+import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "./CanvasLoader";
 
 const Brain = ({ isMobile }) => {
   const brain = useGLTF("/models/tumors/scene.gltf");
-
+  // Rotate the phone mesh every frame
+  useFrame(({ clock }) => {
+    brain.scene.rotation.y = clock.getElapsedTime() * 0.3; // Modify rotation speed here
+  });
   return (
     <mesh>
       <ambientLight intensity={10} />
@@ -36,7 +38,7 @@ const Brain = ({ isMobile }) => {
       <primitive
         rotation={[0, 0, 0]}
         object={brain.scene}
-        scale={0.2}
+        scale={isMobile ? 0.07 : 0.2}
         position={[0, 3, 0]}
       />
     </mesh>
@@ -60,7 +62,7 @@ const BrainCanvas = () => {
 
   return (
     <Canvas
-      frameloop="demand"
+      // frameloop="demand"
       dpr={[1, 2]}
       camera={{ position: [0, 0, 80], fov: 25, rotation: [0, 0, 0] }}
       gl={{ preserveDrawingBuffer: true }}
@@ -68,7 +70,7 @@ const BrainCanvas = () => {
       onError={(error) => {
         console.error("err", error);
       }}
-      style={{ height: "100%", width: "100%"}}
+      style={{ height: "100%", width: "100%" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls

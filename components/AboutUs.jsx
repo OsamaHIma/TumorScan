@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { aboutUsCards } from "@/constants";
+import { Translate } from "translate-easy";
 
 const ServiceCard = ({ index, title, icon, image, description }) => {
   const isEven = index % 2 === 0;
@@ -34,17 +35,17 @@ const ServiceCard = ({ index, title, icon, image, description }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, type: "spring" }}
         >
-          {title}
+          <Translate>{title}</Translate>
         </motion.h3>
 
         <motion.p
-          className="mb-4 mt-2 text-center text-[16px] md:text-left"
+          className="mb-4 text-center text-[16px] md:text-left"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, type: "spring", delay: 0.7 }}
           viewport={{ once: true }}
         >
-          {description}
+          <Translate>{description}</Translate>
         </motion.p>
       </div>
     </motion.div>
@@ -71,7 +72,7 @@ const AboutUs = () => {
           <h1
             className={`xs:text-[40px] text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
           >
-            About Us
+            <Translate translations={{ar:"نبذه عنا"}}>About Us</Translate>
           </h1>
         </motion.div>
 
@@ -82,10 +83,10 @@ const AboutUs = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          Welcome to{" "}
+          <Translate>Welcome to</Translate>{" "}
           <span className="font-semibold text-orange-400">Tumor scanner</span>,
-          a cutting-edge platform dedicated to cancer detection and tumor
-          analysis.
+          <Translate>a cutting-edge platform dedicated to cancer detection and tumor
+          analysis</Translate>.
         </motion.p>
         <div className="grid grid-cols-1">
           {aboutUsCards.map((service, index) => (

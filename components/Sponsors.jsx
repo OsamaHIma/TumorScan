@@ -4,8 +4,9 @@ import SwiperCore, { Autoplay } from "swiper";
 import { companiesSliderSittings } from "@/constants";
 import Image from "next/image";
 import "swiper/swiper.css";
+import { Translate } from "translate-easy";
 
-const Companies = () => {
+const Sponsors = () => {
   const images = [
     "/Artboard-4.png",
     "/365sportat.png",
@@ -21,8 +22,8 @@ const Companies = () => {
   SwiperCore.use([Autoplay]);
 
   return (
-    <section className="py-16">
-      <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">OUR HAPPY CLIENTS</h1>
+    <section className="py-16" dir="ltr">
+      <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center"><Translate>OUR SPONSORS</Translate></h1>
       <div className="relative">
         <Swiper
           className="pt-8"
@@ -48,4 +49,4 @@ const Companies = () => {
   );
 };
 
-export default Companies;
+export default Sponsors;

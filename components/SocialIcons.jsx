@@ -23,7 +23,7 @@ const SocialIcons = () => {
         {socialIcons.map(({ name, icon, url }) => (
           <li key={name} title={name} className="flexCenter">
             <Link
-              href={url}
+              href="#"
               className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
               target="_blank"
             >
@@ -31,7 +31,7 @@ const SocialIcons = () => {
             </Link>
           </li>
         ))}
-        <li title="WhatsApp" className="flexCenter">
+        {/* <li title="WhatsApp" className="flexCenter">
             <button
               className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
               onClick={openWhatsapp}
@@ -56,7 +56,7 @@ const SocialIcons = () => {
 </svg>
               </div>
             </button>
-          </li>
+          </li> */}
       </ul>
     </motion.div>
   );

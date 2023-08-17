@@ -6,6 +6,7 @@ import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Footer from "@/components/Footer";
 import Tilt from "react-parallax-tilt";
+import { Translate } from "translate-easy";
 
 const ContactForm = () => {
   const formRef = useRef();
@@ -52,10 +53,10 @@ const ContactForm = () => {
           setLoading(false);
           toast.success(
             <p>
-              Thank you
+              <Translate>Thank you</Translate>
               <span className="font-extrabold text-[#52ee4d]">{Form.name}</span>
-              !, we&apos;ve got your message and we&apos;ll reach out to you
-              soon.
+              !, <Translate>we&apos;ve got your message and we&apos;ll reach out to you
+                soon</Translate>.
             </p>,
             {
               position: "top-right",
@@ -73,9 +74,9 @@ const ContactForm = () => {
           setLoading(false);
           toast.error(
             <p>
-              Sorry{" "}
+              <Translate>Sorry</Translate>{" "}
               <span className="font-extrabold text-[#ee524d]">{Form.name}</span>
-              something went wrong.
+              <Translate>something went wrong</Translate>.
             </p>
           );
           console.error(err);
@@ -105,7 +106,7 @@ const ContactForm = () => {
                     className="relative z-[1] block rounded-lg bg-[#e9e9e9] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-12 lg:-mr-14"
                   >
                     <h3 className="mx-auto text-3xl text-stone-400 dark:text-stone-50 ">
-                      Contact Us.
+                      <Translate>Contact Us</Translate>T.
                     </h3>
                     <form
                       ref={formRef}
@@ -114,8 +115,8 @@ const ContactForm = () => {
                       noValidate
                     >
                       <label className="flex flex-col">
-                        <div className="mb-4 text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span>Name:</span>
+                        <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
+                          <span><Translate>Name</Translate>:</span>
                         </div>
                         <div className="relative">
                           <input
@@ -132,8 +133,8 @@ const ContactForm = () => {
                         </div>
                       </label>
                       <label className="flex flex-col">
-                        <div className="mb-4 text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span>Email:</span>
+                        <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
+                          <span><Translate>Email</Translate>:</span>
                         </div>
                         <div className="relative">
                           <input
@@ -149,8 +150,8 @@ const ContactForm = () => {
                         </div>
                       </label>
                       <label className="flex flex-col">
-                        <div className="mb-4 text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span>Phone:</span>
+                        <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
+                          <span><Translate >Phone</Translate>:</span>
                         </div>
                         <div className="relative">
                           <input
@@ -165,8 +166,8 @@ const ContactForm = () => {
                         </div>
                       </label>
                       <label className="flex flex-col justify-start">
-                        <div className="mb-4 text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span>Message:</span>{" "}
+                        <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
+                          <span><Translate translations={{ ar: "الرسالة" }}>Message</Translate>:</span>{" "}
                         </div>
                         <div className="relative">
                           <textarea
@@ -186,7 +187,7 @@ const ContactForm = () => {
                         type="submit"
                         data-te-ripple-init
                         data-te-ripple-color="light"
-                        className="inline-block w-full rounded bg-indigo-800 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-stone-400 dark:text-stone-100 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-indigo-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:mb-0"
+                        className="inline-block w-full rounded bg-indigo-800 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-stone-100 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-indigo-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:mb-0"
                       >
                         {loading ? "Sending..." : "Send"}
                       </button>
@@ -202,7 +203,7 @@ const ContactForm = () => {
                 >
                   <div className="relative h-[700px] rounded-lg shadow-lg dark:shadow-black/20">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d27628.289924184166!2d31.202757!3d30.050160000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841ba1c3aee99%3A0x934bdde63765848d!2sRefilex!5e0!3m2!1sen!2sus!4v1690568399604!5m2!1sen!2sus"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.0088687153616!2d31.131624310760866!3d29.97917512155643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584587ac8f291b%3A0x810c2f3fa2a52424!2sThe%20Great%20Pyramid%20of%20Giza!5e0!3m2!1sen!2sus!4v1692276240518!5m2!1sen!2sus"
                       className="absolute left-0 top-0 h-full w-full rounded-lg"
                       frameborder="0"
                       allowfullscreen
@@ -216,7 +217,7 @@ const ContactForm = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.5, type: "tween" }}
                   viewport={{ once: true }}
-                  // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
+                // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
                 >
                   <Tilt
                     className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
@@ -229,7 +230,7 @@ const ContactForm = () => {
                     </div>
                     <div>
                       <h3 className="text left text-stone-100">Phone</h3>
-                      <a href="tel:+201050533006" className="text-gray-300">+201050533006</a>
+                      <a href="tel:+201050533006" className="text-gray-300">+2010123456</a>
                     </div>
                   </Tilt>
                 </motion.div>
@@ -238,7 +239,7 @@ const ContactForm = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.7, type: "tween" }}
                   viewport={{ once: true }}
-                  // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
+                // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
                 >
                   <Tilt
                     className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
@@ -252,12 +253,12 @@ const ContactForm = () => {
                     <div>
                       <h3 className="text left text-stone-100">Mail</h3>
                       <a href="mailto:info@refilex.com" className="text-gray-300">
-                        info@refilex.com
+                        tumorscan@gmail.com
                       </a>
                     </div>
                   </Tilt>
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: -50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.9, type: "tween" }}
@@ -279,7 +280,7 @@ const ContactForm = () => {
                       <a href="https://www.google.com/maps?ll=30.05016,31.202757&z=14&t=m&hl=en-US&gl=US&mapclient=embed&cid=3975772482927079619" target="_blank" className="text-gray-300">21 Fawakeh,Ad Doqi,Giza</a>
                     </div>
                   </Tilt>
-                </motion.div>
+                </motion.div> */}
               </div>
             </div>
           </div>

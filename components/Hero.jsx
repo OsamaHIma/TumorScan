@@ -6,6 +6,7 @@ import BrainCanvas from "./BrainCanvas";
 import { Search, User, Users, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
+import { Translate } from "translate-easy";
 
 const Hero = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -52,22 +53,22 @@ const Hero = () => {
               initial={{ y: "2rem", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, type: "spring" }}
-              className="text-[3.8rem] font-semibold leading-[4rem] "
+              className="text-[3.8rem] rtl:text-stone-50 font-semibold leading-[4rem] "
               color=""
             >
-              Empowering Cancer Detection and Tumor Analysis
+              <Translate>Empowering Cancer Detection and Tumor Analysis</Translate>
             </motion.h1>
           </div>
 
           <div className="hero-desc flexColStart">
-            <span className="text-light-gray">
-              Advanced Technology for Precise
+            <span className="text-light-gray rtl:text-stone-50 rtl:text-stone-50">
+            <Translate>Advanced Technology for Precise</Translate>
             </span>
-            <span className="text-light-gray">Diagnosis and Treatment</span>
+            <span className="text-light-gray rtl:text-stone-50 rtl:text-stone-50"><Translate>Diagnosis and Treatment</Translate></span>
           </div>
           <div className="status flexCenter w-ful justify-between gap-8">
             <div className="flexColCenter stat !gap-2">
-              <User className="text-indigo-500" />
+              <User className="text-indigo-500 rtl:text-slate-300" />
               <span>
                 <CountUp
                   start={2}
@@ -77,27 +78,11 @@ const Hero = () => {
                 />
                 <span className="ml-2 text-3xl font-bold text-[orange]">+</span>
               </span>
-              <p className="text-light-gray">Patients</p>
+              <p className="text-light-gray rtl:text-stone-50"><Translate>Patients</Translate></p>
             </div>
-            {/* 
-            <div className="flexColCenter stat !gap-2">
-              <Users className="text-indigo-500" />
-              <span>
-                <CountUp
-                  start={0}
-                  end={40}
-                  duration={4}
-                  className="text-4xl font-semibold text-stone-700 dark:text-gray-100"
-                />
-                <span className="ml-2 text-3xl font-bold text-[#ffaa49]">
-                  +
-                </span>
-              </span>
-              <p className="text-light-gray">Team Members</p>
-            </div> */}
 
             <div className="flexColCenter stat !gap-2">
-              <Check className="text-indigo-500" />
+              <Check className="text-indigo-500 rtl:text-slate-300" />
               <span>
                 <CountUp
                   start={0}
@@ -112,11 +97,11 @@ const Hero = () => {
                   +
                 </span>
               </span>
-              <p className="text-light-gray">Accurate Result</p>
+              <p className="text-light-gray rtl:text-stone-50"><Translate>Accurate Result</Translate></p>
             </div>
 
             <div className="flexColCenter stat !gap-2">
-              <Search className="text-indigo-500" />
+              <Search className="text-indigo-500 rtl:text-slate-300" />
               <span>
                 <CountUp
                   start={0}
@@ -128,7 +113,7 @@ const Hero = () => {
                   +
                 </span>
               </span>
-              <p className="text-light-gray">Scans</p>
+              <p className="text-light-gray rtl:text-stone-50"><Translate>Scans</Translate></p>
             </div>
           </div>
         </div>
