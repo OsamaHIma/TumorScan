@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/OsamaHIma/TumorScan/blob/master/license.txt)
 [![Contributors](https://img.shields.io/badge/contributors-2-orange.svg)](#contributors)
 
-![Website Preview](https://ibb.co/YfBWj2m)
+![Website Preview](https://i.ibb.co/0YyXJqT/opengraph-image.png)
 
 ## Description
 
