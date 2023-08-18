@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const SocialIcons = () => {
   const openWhatsapp = () => {
-    const phone = '01050533006';
+    const phone = '01090885749';
     const message = 'Hello! how can we help you?';
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  
+
     window.open(url, '_blank');
   }
   return (
@@ -20,8 +20,8 @@ const SocialIcons = () => {
       className="social-icons left-4 md:left-6 mt-4"
     >
       <ul className="flex items-center flex-wrap gap-6">
-        {socialIcons.map(({ name, icon, url }) => (
-          <li key={name} title={name} className="flexCenter">
+        {socialIcons.map(({ name, icon, url }, index) => (
+          <li key={index} title={name} className="flexCenter">
             <Link
               href="#"
               className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
@@ -31,17 +31,17 @@ const SocialIcons = () => {
             </Link>
           </li>
         ))}
-        {/* <li title="WhatsApp" className="flexCenter">
-            <button
-              className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
-              onClick={openWhatsapp}
-            >
-             <div className="w-[1.7rem] dark:fill-stone-50 fill-indigo-600">
-              <svg  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
-	  viewBox="0 0 30.667 30.667"
-	 xmlSpace="preserve">
-<g>
-	<path d="M30.667,14.939c0,8.25-6.74,14.938-15.056,14.938c-2.639,0-5.118-0.675-7.276-1.857L0,30.667l2.717-8.017
+        <li title="WhatsApp" className="flexCenter">
+          <button
+            className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
+            onClick={openWhatsapp}
+          >
+            <div className="w-[1.7rem] dark:fill-stone-50 fill-indigo-600">
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 30.667 30.667"
+                xmlSpace="preserve">
+                <g>
+                  <path d="M30.667,14.939c0,8.25-6.74,14.938-15.056,14.938c-2.639,0-5.118-0.675-7.276-1.857L0,30.667l2.717-8.017
 		c-1.37-2.25-2.159-4.892-2.159-7.712C0.559,6.688,7.297,0,15.613,0C23.928,0.002,30.667,6.689,30.667,14.939z M15.61,2.382
 		c-6.979,0-12.656,5.634-12.656,12.56c0,2.748,0.896,5.292,2.411,7.362l-1.58,4.663l4.862-1.545c2,1.312,4.393,2.076,6.963,2.076
 		c6.979,0,12.658-5.633,12.658-12.559C28.27,8.016,22.59,2.382,15.61,2.382z M23.214,18.38c-0.094-0.151-0.34-0.243-0.708-0.427
@@ -52,11 +52,11 @@ const SocialIcons = () => {
 		c-0.215,0-0.461-0.03-0.707-0.03S9.897,8.215,9.56,8.582s-1.291,1.252-1.291,3.054c0,1.804,1.321,3.543,1.506,3.787
 		c0.186,0.243,2.554,4.062,6.305,5.528c3.753,1.465,3.753,0.976,4.429,0.914c0.678-0.062,2.184-0.885,2.49-1.739
 		C23.307,19.268,23.307,18.533,23.214,18.38z"/>
-</g>
-</svg>
-              </div>
-            </button>
-          </li> */}
+                </g>
+              </svg>
+            </div>
+          </button>
+        </li>
       </ul>
     </motion.div>
   );

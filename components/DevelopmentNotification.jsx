@@ -16,7 +16,7 @@ function isLocalStorageSupported() {
 }
 
 const DevelopmentNotification = () => {
-    const [showNotification, setShowNotification] = useState(true);
+    const [showNotification, setShowNotification] = useState(false);
     const [hideFutureNotifications, setHideFutureNotifications] = useState(false);
 
     useEffect(() => {
@@ -26,6 +26,8 @@ const DevelopmentNotification = () => {
             if (hideNotifications) {
                 setShowNotification(hideNotifications === "false" ? true : false);
                 setHideFutureNotifications(hideNotifications === "false" ? false : true);
+            } else {
+                setShowNotification(true)
             }
         }
     }, []);

@@ -38,25 +38,26 @@ const ContactForm = () => {
     setValidated("validated");
     emailjs
       .send(
-        "service_5fpbwl8",
+        "service_eflfu3e",
         "template_9rfs3ie",
         {
-          from_name: Form.name,
           to_name: "Osama",
-          from_email: Form.email,
-          to_email: "info@refilex.com",
+          user_name: Form.name,
+          user_email: Form.email,
+          user_phone: Form.phone,
+          website_name: "Tumor Scan",
           message: Form.message,
         },
-        `${process.env.EMAIL_JS_SECRET}`
+        "6vrrdolbRvNzcJ0Xp"
       )
       .then(
         () => {
           setLoading(false);
           toast.success(
             <p>
-              <Translate>Thank you</Translate>
-              <span className="font-extrabold text-[#52ee4d]">{Form.name}</span>
-              !, <Translate>we&apos;ve got your message and we&apos;ll reach out to you
+              <Translate>Thank you</Translate>{" "}
+              <span className="font-bold text-orange-400">{Form.name}</span>
+              !,{" "}<Translate>we&apos;ve got your message and we&apos;ll reach out to you
                 soon</Translate>.
             </p>,
             {
@@ -65,11 +66,7 @@ const ContactForm = () => {
             }
           );
           setValidated("");
-          setForm({ name: "", email: "", message: "" });
-          document
-            .querySelectorAll("input")
-            .forEach((input) => (input.value = ""));
-          document.querySelector("textarea").value = "";
+          setForm({ name: "", email: "", message: "", phone: "" });;
         },
         (err) => {
           setLoading(false);
@@ -77,7 +74,7 @@ const ContactForm = () => {
             <p>
               <Translate>Sorry</Translate>{" "}
               <span className="font-extrabold text-[#ee524d]">{Form.name}</span>
-              <Translate>something went wrong</Translate>.
+              <Translate> something went wrong</Translate>.
             </p>
           );
           console.error(err);
@@ -126,9 +123,10 @@ const ContactForm = () => {
                           <input
                             type="text"
                             name="name"
+                            value={Form.name}
                             autoComplete="on"
                             required
-                            minLength={4}
+                            // minLength={4}
                             onChange={handelChange}
                             placeholder="Your first and last name"
                             className="placeholder:text-secondary w-full rounded-lg border-none px-6 py-4 font-medium text-stone-400 dark:text-stone-100 outline-none"
@@ -144,6 +142,7 @@ const ContactForm = () => {
                           <input
                             type="email"
                             name="email"
+                            value={Form.email}
                             required
                             autoComplete="on"
                             onChange={handelChange}
@@ -155,12 +154,13 @@ const ContactForm = () => {
                       </label>
                       <label className="flex flex-col">
                         <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span><Translate >Phone</Translate>:</span>
+                          <span><Translate >Phone (optional)</Translate>:</span>
                         </div>
                         <div className="relative">
                           <input
                             type="tel"
                             name="phone"
+                            value={Form.phone}
                             autoComplete="on"
                             onChange={handelChange}
                             placeholder="Whats's your phone number?"
@@ -177,9 +177,10 @@ const ContactForm = () => {
                           <textarea
                             rows="7"
                             name="message"
+                            value={Form.message}
                             required
                             onChange={handelChange}
-                            minLength={6}
+                            // minLength={6}
                             placeholder="Finally What do you wanna say?"
                             className="placeholder:text-secondary w-full rounded-lg border-none px-6 py-4 font-medium text-stone-400 dark:text-stone-100 outline-none"
                           />
@@ -220,28 +221,6 @@ const ContactForm = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.5, type: "tween" }}
-                  viewport={{ once: true }}
-                // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
-                >
-                  <Tilt
-                    className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
-                    glareEnable={true}
-                    glareBorderRadius="20px"
-                    glareColor="#5d56e0"
-                  >
-                    <div className="rounded-full bg-stone-200 p-3 text-indigo-600 shadow-xl outline-indigo-500 transition-all ease-in">
-                      <Phone />
-                    </div>
-                    <div>
-                      <h3 className="text left text-stone-100"><Translate>Phone</Translate></h3>
-                      <a href="tel:+201050533006" className="text-gray-300">+2010123456</a>
-                    </div>
-                  </Tilt>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: -50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.7, type: "tween" }}
                   viewport={{ once: true }}
                 // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
@@ -263,29 +242,6 @@ const ContactForm = () => {
                     </div>
                   </Tilt>
                 </motion.div>
-                {/* <motion.div
-                  initial={{ opacity: 0, y: -50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.9, type: "tween" }}
-                  viewport={{ once: true }}
-                  // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
-                >
-                  <Tilt
-                    className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
-                    glareEnable={true}
-                    glareBorderRadius="20px"
-                    glareColor="#5d56e0"
-                  >
-                    <div className="rounded-full bg-stone-200 p-3 text-indigo-600 shadow-xl outline-indigo-500 transition-all ease-in">
-                      <MapPin />
-                    </div>
-
-                    <div>
-                      <h3 className="text left text-stone-100">Address</h3>
-                      <a href="https://www.google.com/maps?ll=30.05016,31.202757&z=14&t=m&hl=en-US&gl=US&mapclient=embed&cid=3975772482927079619" target="_blank" className="text-gray-300">21 Fawakeh,Ad Doqi,Giza</a>
-                    </div>
-                  </Tilt>
-                </motion.div> */}
               </div>
             </div>
           </div>
