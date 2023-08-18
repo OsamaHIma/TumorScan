@@ -236,7 +236,7 @@ const ContactForm = () => {
                     </div>
                     <div>
                       <h3 className="text left text-stone-100"><Translate>Mail</Translate></h3>
-                      <a href="mailto:info@refilex.com" className="text-gray-300">
+                      <a href="mailto:tumorscan@gmail.com" className="text-gray-300">
                         tumorscan@gmail.com
                       </a>
                     </div>
