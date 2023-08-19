@@ -90,7 +90,7 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div className="px-4 flex flex-col mt-10 md:mt-20 gap-8 rtl:text-right">
+    <div className="px-4 flex flex-col mt-10 md:mt-20 gap-8 rtl:text-right w-[80%]">
       <div className="">
         <h1 className="text-3xl font-bold mb-4 ">
           <Translate>Welcome Back!</Translate>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Moon, Sun, Laptop } from "lucide-react";
 import {  useState } from "react";
 import { useTheme } from "next-themes";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Layout = ({ children }) => {
   const { setTheme } = useTheme();
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
               <Link href="/" className="rounded-full bg-indigo-600 px-3 py-2 dark:bg-transparent">
                 <Image src="/logo.svg" alt="logo" width={183} height={183} />
               </Link>
+              <LanguageSelector/>
               <div>
                 <button className="mr-5" onClick={openThemeMenu}>
                   <Moon className="hidden rotate-90 transition-all dark:block dark:rotate-0 dark:text-stone-100 dark:saturate-100 dark:hover:text-blue-300" />

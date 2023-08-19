@@ -44,7 +44,7 @@ const ForgotPasswordPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-              }`}
+                }`}
             required
           />
           {error && (<div className="text-red-500 text-sm"><Translate>{error}</Translate></div>)}

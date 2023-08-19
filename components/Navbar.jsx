@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Translate } from "translate-easy";
-import LanguageSelector from "./LangugeSelector";
+import LanguageSelector from "./LanguageSelector";
 import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import {

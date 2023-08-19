@@ -74,7 +74,7 @@ const SignUpPage = () => {
 
       const res = await createUserDocument(user, { name: formData.name, password: formData.password });
       // setValidated("");
-      // restFormFields();
+      router.push(`/auth/login`);
 
       toast.success("Singed Up successfully");
     } catch (err) {

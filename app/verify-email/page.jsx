@@ -1,14 +1,23 @@
 "use client"
 import { motion } from 'framer-motion';
-import { MailCheckIcon } from 'lucide-react';
+import { MailCheckIcon,Mail } from 'lucide-react';
 import Footer from "@/components/Footer";
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { verifyEmail } from "@/lib/firebase";
 
 const EmailVerificationPage = () => {
-  const [isVerified, setIsVerified] = useState(true);
+  const searchParams = useSearchParams();
+  const oobCode = searchParams.get('oobCode');
+  const [isVerified, setIsVerified] = useState(false);
 
-  const handleVerifyEmail = () => {
-    setIsVerified(true);
+  const handleVerifyEmail = async () => {
+    try{
+      const res = await verifyEmail(oobCode)
+      setIsVerified(true);
+    }catch (error) {
+console.error(error)
+    }
   };
 
   return (
@@ -19,29 +28,22 @@ const EmailVerificationPage = () => {
         animate={{ opacity: 1, translateY: 0 }}
         className="bg-white shadow-md rounded p-8 max-w-xs"
       >
-        {/* {isVerified ? (
-          <>
-            <BadgeCheck  className="text-green-500 w-12 h-12 mx-auto" />
-            <h2 className="text-2xl font-bold text-center">Email Verified!</h2>
-            <p className="text-gray-600 text-center">
-              Thank you for verifying your email.
-            </p>
-          </>
-        ) : (
-          <>
+        {!isVerified && (
+          
+          <div className="text-center">
             <Mail className="text-indigo-500 w-12 h-12 mx-auto" />
-            <h2 className="text-2xl font-bold text-center">Verify Email</h2>
-            <p className="text-gray-600 text-center">
+            <h2 className="text-2xl font-bold">Verify Email</h2>
+            <p className="text-gray-600 ">
               Click the button below to verify your email address.
             </p>
             <button
               onClick={handleVerifyEmail}
-              className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300"
+              className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300"
             >
               Verify Email
             </button>
-          </>
-        )} */}
+          </div>
+        )}
         {isVerified && (
           <motion.div
             initial={{ opacity: 0 }}
