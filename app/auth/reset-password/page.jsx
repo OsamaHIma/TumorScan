@@ -1,18 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-// import { useSession } from "next-auth/react";
+import { useSearchParams } from 'next/navigation';
+import { resetPassword } from "@/lib/firebase";
 
 const ResetPasswordPage = () => {
-  // const { data: session } = useSession();
-  // const [token, setToken] = useState("");
-
-  // useEffect(() => {
-  //   if (session) {
-  //     setToken(session.user.token);
-  //   }
-  // }, [session]);
-
+  const searchParams = useSearchParams();
+  const oobCode = searchParams.get('oobCode');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,35 +21,19 @@ const ResetPasswordPage = () => {
     }
     setError(null);
     setIsLoading(true);
-    // try {
-    //   const response = await fetch(
-    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         //   Authorization: `Bearer ${token}`,
-    //       },
-    //       body: JSON.stringify(confirmPassword),
-    //     }
-    //   );
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     setSuccess(true);
-    //     toast.success(data.message);
-    //   } else {
-    //     setError(data.message);
-    //   }
-    // } catch (error) {
-    //   setError(error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const res = await resetPassword(password)
+      setSuccess(true);
+    } catch (error) {
+      setError(error.code);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center mt-10 md:mt-20">
-      <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-200 to-blue-700 text-transparent bg-clip-text">
+      <h1 className="text-3xl font-bold mb-4">
         Reset your password
       </h1>
       {!success ? (
@@ -87,12 +65,8 @@ const ResetPasswordPage = () => {
               }`}
           />
           {error && <div className="text-red-500 text-sm">{error}</div>}
-          {/* <Button
-            type="submit"
-            content={isLoading ? "Loading..." : "Reset password"}
-          /> */}
           <button type="submit" className="btn bg-orange-400">
-            Reset password
+          {isLoading ? "Loading..." : "Reset password"}
           </button>
         </form>
       ) : (
