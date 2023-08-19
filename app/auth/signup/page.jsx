@@ -6,7 +6,11 @@ import { signUpSchema } from "@/schema/userSchema";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Translate } from "translate-easy";
-
+import {
+  addUserWithEmailAndPassword,
+  createUserDocument,
+  signWithGoogle,
+} from "@/lib/firebase";
 const SignUpPage = () => {
 
   const router = useRouter();
@@ -14,7 +18,6 @@ const SignUpPage = () => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
-    Company_Name: "",
     email: "",
     password: "",
     password_confirmation: "",
@@ -32,19 +35,23 @@ const SignUpPage = () => {
       [name]: value,
     }));
   };
+  const signInWithGoogle = async () => {
+    try {
+      const data = await signWithGoogle();
+      console.log(data.user.email)
 
+      toast.success("Singed in successfully");
+    } catch (error) {
+      toast.error(error.message || error);
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.password !== formData.password_confirmation) {
-      toast.error("Passwords do not match.");
-      return;
-    }
     setError(null);
     try {
       signUpSchema.validateSync(
         {
           name: formData.name,
-          Company_Name: formData.Company_Name,
           email: formData.email,
           password: formData.password,
           password: formData.password_confirmation,
@@ -56,33 +63,29 @@ const SignUpPage = () => {
       setError(error.errors);
       return;
     }
-    // try {
-    //   setLoading(true);
-    //   const response = await fetch(
-    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/register`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(formData),
-    //     }
-    //   );
-    //   if (!response.ok) {
-    //     throw new Error("Error registering user.");
-    //   }
-    //   setLoading(false);
-    //   toast.success("registered successfully.");
-    //   router.push("/dashboard");
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.error(error);
-    //   toast.error(error.message);
-    // }
+    if (formData.password !== formData.password_confirmation) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    setLoading(true)
+    try {
+      const { user } = await addUserWithEmailAndPassword(formData.email, formData.password);
+      // console.log(user)
+
+      const res = await createUserDocument(user, { name: formData.name, password: formData.password });
+      // setValidated("");
+      // restFormFields();
+
+      toast.success("Singed Up successfully");
+    } catch (err) {
+      toast.error('Something went wrong '+err.code || err.message || err);
+    }
+    setLoading(false)
+
   };
 
   return (
-    <div className="px-4 flex flex-col mt-24 gap-8 rtl:text-right">
+    <div className="px-4 flex flex-col mt-10 md:mt-20 gap-8 rtl:text-right w-[80%]">
       <div>
         <h1 className="text-3xl font-bold mb-4">
           <Translate>Welcome to</Translate> Tumor Scan!
@@ -177,9 +180,9 @@ const SignUpPage = () => {
           </div>
         </div>
         {error && (
-          <div className="text-xs  flex flex-col text-red-500 mx-4">
+          <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
-              return <p key={key}>*{err}</p>;
+              return <p key={key}>*<Translate>{error}</Translate></p>;
             })}
           </div>
         )}
@@ -190,11 +193,14 @@ const SignUpPage = () => {
         >
           <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
         </button>
+        <button onClick={signInWithGoogle}>
+          Google
+        </button>
       </form>
       <p className="text-gray-400 relative bottom-4 text-center">
         <Translate>You have an account</Translate>?{" "}
         <Link className="text-indigo-400 font-bold text-sm" href="/auth/login">
-        <Translate>Login</Translate>
+          <Translate>Login</Translate>
         </Link>
       </p>
     </div>

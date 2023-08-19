@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+// Color Variables
 $primary: #1f3e72;
 $secondary: rgba(255, 255, 255, 0.78);
 $black: #131110;
@@ -11,6 +12,7 @@ $blue: #4066ff;
 $lightBlue: #eeeeff;
 $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
 
+// Global Styles
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +20,7 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   scroll-behavior: smooth !important;
 }
 
+// Scrollbar Styles
 ::-webkit-scrollbar {
   width: 13px;
   background-color: transparent;
@@ -29,27 +32,33 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   border-radius: 10px;
 }
 
+// Button Styles
 .btn {
   @apply py-3 px-5 rounded-lg text-white hover:text-stone-200 hover:scale-110 font-semibold;
   transition: 0.3s all ease-in-out;
 }
+
+// Background Styles
 .bg-blue-gradient {
   background-image: $blue-gradient !important;
 }
+
 .bg-orange-gradient {
   background-image: $orange-gradient !important;
 }
+
+// Swiper Card Styles
 .swiper-card:hover {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(136, 160, 255, 0.46) 217.91%) !important;
   box-shadow: 0px 72px 49px -51px rgba(136, 160, 255, 0.21);
 }
+
+// Swiper Styles
 .swiper-horizontal {
   overflow: visible !important;
 }
-// .glow {
-//   clip-path: polygon(0px 0px, 100% 0px, 300.75% 82.27%, -10px 98.66%);
-// }
 
+// Custom Shape Divider Styles
 .custom-shape-divider-bottom-1690286822 {
   position: absolute;
   top: 5rem;
@@ -61,11 +70,28 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   z-index: 1;
   transform: rotate(180deg);
 }
+
+// Form Validation Styles
+.validated .needs-validation,
+.validated textarea {
+  outline: #22c55e !important;
+  @apply border border-green-500;
+}
+
+.not-validated .needs-validation,
+.not-validated textarea {
+  outline: #ce0000 !important;
+  @apply border border-red-500;
+}
+
+// Swiper Wrapper Styles
 .swiper-wrapper {
   display: flex !important;
   flex-wrap: nowrap;
   align-items: center !important;
 }
+
+// Custom Shape Divider SVG Styles
 .custom-shape-divider-bottom-1690286822 svg {
   position: relative;
   display: block;
@@ -77,28 +103,39 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   @apply fill-stone-50 dark:fill-[#201d1b];
 }
 
+// Accordion Styles
 .accordion-shadow {
   box-shadow: $shadow !important;
   border-radius: 6px;
 }
+
+// Image Styles
 img {
   user-select: none !important;
 }
+
+// Transition Styles
 .menuTransition {
   transition: 0.4s all ease-in-out;
 }
+
+// Link Styles
 a {
   color: inherit;
   text-decoration: none;
 }
+
+// Padding Styles
 .paddings {
   padding: 1.5rem;
 }
 
+// Width Styles
 .innerWidth {
   width: 100%;
 }
 
+// Flexbox Styles
 .flexCenter {
   display: flex;
   row-gap: 2rem;
@@ -106,6 +143,7 @@ a {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .flexStart {
   display: flex;
   justify-content: flex-start;
@@ -124,21 +162,22 @@ a {
   align-items: center;
   flex-direction: column;
 }
+
 .flexColStart {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
+
 .flexColEnd {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
-// .circle{
-//   border-radius: 16% 84% 70% 30% / 53% 45% 55% 47% ;
-// }
+
+// Text Styles
 .primaryText {
   color: #1f3e72;
   font-weight: bold;
@@ -149,19 +188,19 @@ a {
   color: rgb(140 139 139);
   font-size: 0.9rem;
 }
+
 .orangeText {
   color: orange;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
+// Background Shape Styles
 .background-shape-main {
   top: 0;
-  // @apply ltr:right-0 rtl:left-0;
   width: 100%;
   height: 100%;
   border-radius: 100px;
-  // transform: translate(80%, -30%) rotate(-35deg);
   background-image: linear-gradient(45deg, #53f 40%, #506690 100%);
 }
 
@@ -174,7 +213,7 @@ a {
   z-index: -2;
 }
 
-/* media queries */
+// Media Queries
 @media (min-width: 1536px) {
   .innerWidth {
     max-width: 1280px;
@@ -201,9 +240,6 @@ a {
   .orangeText {
     font-size: 1.2rem;
   }
-  // .glow {
-  //   clip-path: polygon(0px 0px, 100% 0px, 700.75% 82.27%, -10px 98.66%);
-  // }
 }
 
 @media (min-width: 1200px) {

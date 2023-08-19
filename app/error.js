@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { Translate } from "translate-easy";
 
 function Error({ errorMessage }) {
   // "use server";
@@ -9,7 +10,7 @@ function Error({ errorMessage }) {
 
   return (
     <section className="relative">
-        <div className="gradient absolute top-10 right-[100px] h-80 w-80 bg-indigo-600/30 blur-[100px]" />
+      <div className="gradient absolute right-[100px] top-10 h-80 w-80 bg-indigo-600/30 blur-[100px]" />
 
       <div className="container mx-auto min-h-screen px-6 py-12 lg:flex lg:items-center lg:gap-12">
         <div className="wf-ull lg:w-1/2">
@@ -20,13 +21,16 @@ function Error({ errorMessage }) {
             {errorMessage}
           </h1>
           <p className="mt-4 text-gray-500 dark:text-gray-400">
-            We&apos;re sorry, but something went wrong. Please try again later.
+            <Translate>
+              We&apos;re sorry, but something went wrong. Please try again later
+            </Translate>
+            .
           </p>
 
           <div className="mt-6 flex items-center gap-x-3">
             <button
               onClick={handleGoBack}
-              className="flex w-1/2 items-center justify-center gap-x-2 rounded-lg border bg-transaprent px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+              className="bg-transaprent flex w-1/2 items-center justify-center gap-x-2 rounded-lg border px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,9 +52,9 @@ function Error({ errorMessage }) {
 
             <Link
               href="/"
-              className="w-1/2 shrink-0 rounded-lg bg-blue-gradient px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:opacity-80 sm:w-auto"
+              className="bg-blue-gradient w-1/2 shrink-0 rounded-lg px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:opacity-80 sm:w-auto"
             >
-              Take me home
+              <Translate>Take me home</Translate>
             </Link>
           </div>
         </div>

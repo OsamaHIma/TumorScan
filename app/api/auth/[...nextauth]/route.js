@@ -1,25 +1,21 @@
+import { signInUserWithEmailAndPassword } from "@/lib/firebase";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import axios from "axios";
 
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
       async authorize(credentials) {
         const email = credentials.email;
         const password = credentials.password;
-        const data = await SignIn(email, password);
-        if (!data.token) {
-          throw new Error(data);
+
+        const { user } = await signInUserWithEmailAndPassword(email, password);
+        if (!user) {
+          throw new Error("No user provided for sing in");
         }
-        return { token: data.token, ...data };
+        return { token: user.accessToken, user };
       },
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
 
@@ -51,18 +47,6 @@ export const authOptions = {
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
   },
-};
-
-const SignIn = async (email, password) => {
-  // try {
-  //   const { data } = await axios.post(
-  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens`,
-  //     { email, password }
-  //   );
-  //   return data;
-  // } catch (resp) {
-  //   return resp.response.data.message;
-  // }
 };
 
 const handler = NextAuth(authOptions);

@@ -19,16 +19,16 @@ const Layout = ({ children }) => {
     }
   };
   return (
-    <div className=" max-w-[1400px] mx-auto min-h-[100vh] " dir="ltr">
+    <div className="max-w-[1400px] mx-auto min-h-[100vh] " dir="ltr">
       <div className="flex   min-h-[100vh] ">
         <div className="w-full pt-4 mt-12">
-          <main className="w-full h-auto  flex flex-col justify-center items-center">
-            <div className="flex gap-4 px-8 relative left-0 justify-between itmes-center">
+          <div className="w-full h-auto flex flex-col justify-center items-center">
+            <div className="flex gap-4 px-8 relative left-0 justify-between items-center">
 
               <Link href="/" className="rounded-full bg-indigo-600 px-3 py-2 dark:bg-transparent">
                 <Image src="/logo.svg" alt="logo" width={183} height={183} />
               </Link>
-              <div className="mt-2">
+              <div>
                 <button className="mr-5" onClick={openThemeMenu}>
                   <Moon className="hidden rotate-90 transition-all dark:block dark:rotate-0 dark:text-stone-100 dark:saturate-100 dark:hover:text-blue-300" />
                   <Sun className="block rotate-0 transition-all hover:text-orange-300 dark:hidden dark:rotate-90 dark:text-stone-100" />
@@ -63,9 +63,9 @@ const Layout = ({ children }) => {
               </div>
             </div>
             {children}
-          </main>
+          </div>
         </div>
-        <div className="hidden lg:flex min-h-[100vh]  relative   justify-end items-end  w-full  bg-indigo-500 ">
+        <div className="hidden lg:flex min-h-[100vh] relative justify-end items-end w-full bg-indigo-500 ">
           {/* Image here when provided */}
           <Image
             src="/bg-auth.png"

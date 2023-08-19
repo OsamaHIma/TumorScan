@@ -28,10 +28,6 @@ export const navLinks = [
     name: "How It Works",
   },
   {
-    id: "/upload",
-    name: "Upload",
-  },
-  {
     id: "/contact",
     name: "Contact Us",
   },

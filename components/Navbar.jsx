@@ -8,13 +8,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Translate } from "translate-easy";
 import LanguageSelector from "./LangugeSelector";
+import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
+import {
+  SignOutUser
+} from "@/lib/firebase";
 
-// h- stands for header-
 const Navbar = () => {
+  const router = useRouter()
   const { setTheme } = useTheme();
   const [showThemeMenu, setThemeMenu] = useState("-top-[400px]");
   const [showMenu, setMenu] = useState("ltr:-right-[400px] rtl:-left-[400px]");
   const [scrolled, setScrolled] = useState(false);
+  const { token } = useUser();
 
 
   // theme Menu toggler button
@@ -57,6 +63,14 @@ const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handelSignButton = () => {
+    if (token) {
+      SignOutUser()
+    } else {
+      router.push(`/auth/login`);
+    }
+  }
   return (
     <nav
       className={` ${scrolled && " bg-gray-400/50 backdrop-blur-md"
@@ -117,7 +131,12 @@ const Navbar = () => {
                   <Link href={`${link.id}`}><Translate>{link.name}</Translate></Link>
                 </li>
               ))}
-              <Link href="/auth/signup" className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>Sign Up</Translate></Link>
+              {
+                token && <li>
+                  <Link href="/upload"><Translate>Upload</Translate></Link>
+                </li>
+              }
+              <button onClick={handelSignButton} className="btn  translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700 w-fit "><Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate></button>
             </ul>
           </div>
 
@@ -143,7 +162,12 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <Link href="/auth/signup" className="btn min-w-[5rem] max-w-[7rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>Sign Up</Translate></Link>
+            {
+              token && <li>
+                <Link href="/upload"><Translate>Upload</Translate></Link>
+              </li>
+            }
+            <button onClick={handelSignButton} className="btn min-w-[5rem] max-w-[7rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate></button>
           </ul>
         </section>
       </motion.div>

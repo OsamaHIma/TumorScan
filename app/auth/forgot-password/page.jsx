@@ -1,53 +1,33 @@
 "use client";
+import { sendPasswordResetEmailToUser } from "@/lib/firebase";
 import { useState } from "react";
-
-import { toast } from "react-toastify";
+import { Translate } from "translate-easy";
 
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
-    // try {
-    //   const response = await fetch(
-    //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/access-tokens/forgotpassword`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({ email }),
-    //     }
-    //   );
-    //   const data = await response.json();
-    //   if (
-    //     response.ok &&
-    //     data.massege !== "We cant find a user with that email address"
-    //   ) {
-    //     setSuccess(true);
-    //     toast.success(data.massege);
-    //     console.log(data.massege);
-    //   } else {
-    //     setError(data.massege);
-    //     toast.error(data.massege);
-    //   }
-    // } catch (error) {
-    //   setError(error.massege);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const res = await sendPasswordResetEmailToUser(email)
+      setSuccess(true);
+    } catch (error) {
+      setError(error.code);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-300 to-blue-700 text-transparent bg-clip-text">
-        Forgot your password?
+    <div className="flex flex-col items-center justify-center mt-10 md:mt-20">
+      <h1 className="text-3xl font-bold mb-4">
+        <Translate>{success ? "Password reset link sent" : "Forgot your password?"}</Translate>
       </h1>
       {!success ? (
         <form
@@ -55,7 +35,7 @@ const ForgotPasswordPage = () => {
           onSubmit={handleResetPassword}
         >
           <label htmlFor="email" className="text-lg font-semibold">
-            Enter your email address:
+            <Translate>Enter your email address</Translate> :
           </label>
           <input
             type="email"
@@ -64,21 +44,17 @@ const ForgotPasswordPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-          }`}
+              }`}
             required
           />
-          {error && <div className="text-red-500 text-sm">{error}</div>}
-          {/* <Button
-            type="submit"
-            content={isLoading ? <LoadingComponent /> : ""}
-          /> */}
+          {error && (<div className="text-red-500 text-sm"><Translate>{error}</Translate></div>)}
           <button type="submit" className="btn bg-orange-400">
-            Reset password
+            <Translate>{isLoading? "Loading...":"Reset password"}</Translate>
           </button>
         </form>
       ) : (
-        <div className="text-lg font-semibold dark:text-slate-50">
-          A password reset link has been sent to your email address.
+        <div className="text-lg w-full max-w-lg mt-3 font-semibold dark:text-slate-50">
+          <Translate>If the email address exist in our database, A password reset link will be sent to your email address</Translate> .
         </div>
       )}
     </div>

@@ -1,12 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import { MailIcon, Phone, MapPin, ArrowLeftCircleIcon } from "lucide-react";
+import { MailIcon, ArrowLeftCircleIcon } from "lucide-react";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Footer from "@/components/Footer";
 import Tilt from "react-parallax-tilt";
 import { Translate } from "translate-easy";
+import { contactSchema } from "@/schema/userSchema";
 import Link from "next/link";
 
 const ContactForm = () => {
@@ -19,19 +20,33 @@ const ContactForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState("");
+  const [error, setError] = useState(null);
+
   const handelChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...Form, [name]: value });
   };
   const handelSubmit = (e) => {
+
     e.preventDefault();
     setLoading(true);
-    if (!e.target.checkValidity()) {
-      e.preventDefault();
-      e.stopPropagation();
-      setValidated("not-validated");
-      toast.error("Please fill in all fields or enter a valid email address.");
+    setError(null);
+
+    try {
+      contactSchema.validateSync(
+        {
+          name: Form.name,
+          email: Form.email,
+          // phone: Form.phone,
+          message: Form.message,
+        },
+
+        { abortEarly: false }
+      );
+    } catch (error) {
       setLoading(false);
+      setError(error.errors);
+      setValidated("not-validated");
       return;
     }
 
@@ -44,7 +59,7 @@ const ContactForm = () => {
           to_name: "Osama",
           user_name: Form.name,
           user_email: Form.email,
-          user_phone: Form.phone,
+          user_phone: Form.phone ? Form.phone : "User didn't provide a phone number",
           website_name: "Tumor Scan",
           message: Form.message,
         },
@@ -56,7 +71,7 @@ const ContactForm = () => {
           toast.success(
             <p>
               <Translate>Thank you</Translate>{" "}
-              <span className="font-bold text-orange-400">{Form.name}</span>
+              <span className="font-bold text-green-500">{Form.name}</span>
               !,{" "}<Translate>we&apos;ve got your message and we&apos;ll reach out to you
                 soon</Translate>.
             </p>,
@@ -74,7 +89,7 @@ const ContactForm = () => {
             <p>
               <Translate>Sorry</Translate>{" "}
               <span className="font-extrabold text-[#ee524d]">{Form.name}</span>
-              <Translate> something went wrong</Translate>.
+              <Translate> something went wrong while submitting the form error:{err}</Translate>.
             </p>
           );
           console.error(err);
@@ -187,7 +202,13 @@ const ContactForm = () => {
                           {/* <MessagesSquare className="text-theme-color absolute top-4 right-3" /> */}
                         </div>
                       </label>
-
+                      {error && (
+                        <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
+                          {error.map((err, key) => {
+                            return <p key={key}>*<Translate>{err}</Translate></p>;
+                          })}
+                        </div>
+                      )}
                       <button
                         type="submit"
                         data-te-ripple-init
@@ -195,7 +216,7 @@ const ContactForm = () => {
                         className="inline-block w-full rounded bg-indigo-800 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-stone-100 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-indigo-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:mb-0"
                       >
                         {/* <Translate>{loading ? "Sending..." : "Send"}</Translate> */}
-                        {loading ? (<Translate>Sending...</Translate>) : (<Translate translations={{ ar: "أرسل" }} >Send</Translate>)}
+                        {loading ? (<Translate translations={{ar:"...جاري الإرسال"}}>Sending...</Translate>) : (<Translate translations={{ ar: "أرسل" }} >Send</Translate>)}
                       </button>
                     </form>
                   </motion.div>
@@ -211,8 +232,8 @@ const ContactForm = () => {
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.0088687153616!2d31.131624310760866!3d29.97917512155643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584587ac8f291b%3A0x810c2f3fa2a52424!2sThe%20Great%20Pyramid%20of%20Giza!5e0!3m2!1sen!2sus!4v1692276240518!5m2!1sen!2sus"
                       className="absolute left-0 top-0 h-full w-full rounded-lg"
-                      frameborder="0"
-                      allowfullscreen
+                      frameBorder="0"
+                      allowFullScreen
                     ></iframe>
                   </div>
                 </motion.div>

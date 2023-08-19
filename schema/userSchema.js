@@ -1,16 +1,52 @@
 import { object, string, number, date, InferType } from "yup";
 
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
 export const loginUserSchema = object().shape({
-  email: string().email().required("Please Enter Email"),
+  email: string()
+    .email("Please enter a valid email address.")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address."
+    ),
   password: string()
     .required("No password provided.")
-    .min(6, "Password is too short - should be 6 chars minimum."),
+    .matches(
+      passwordRegex,
+      "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number."
+    ),
 });
+
+export const contactSchema = object().shape({
+  name: string().matches(
+    /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+    "Please enter a valid name."
+  ),
+  email: string()
+    .email("Please enter a valid email address.")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address."
+    ),
+  message: string().required("Please enter a message."),
+  // phone: string().matches(/^\d{10}$/, "Please enter a valid phone number.").optional(),
+});
+
 export const signUpSchema = object().shape({
-  name:string().required("Please Enter Your Name"),
-  Company_Name:string().required("Please Enter Your Company Name"),
-  email: string().email().required("Please Enter Email"),
+  name: string().matches(
+    /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+    "Please enter a valid name."
+  ),
+  email: string()
+    .email("Please enter a valid email address.")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address."
+    ),
   password: string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum."),
+    .required("Please enter a password.")
+    .matches(
+      passwordRegex,
+      "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number."
+    ),
 });

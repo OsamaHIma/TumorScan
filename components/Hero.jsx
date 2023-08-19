@@ -1,7 +1,6 @@
 "use client";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import PhoneCanvas from "./PhoneCanvas";
 import BrainCanvas from "./BrainCanvas";
 import { Search, User, Users, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -127,7 +126,7 @@ const Hero = () => {
           <BrainCanvas />
         </motion.div>
       </div>
-      {/* <PhoneCanvas /> */}
+
     </header>
   );
 };
