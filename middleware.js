@@ -33,13 +33,16 @@ export async function middleware(req) {
     }
   }
   if (session) {
-    if (session.user.user.emailVerified) {
-      if (pathname.includes("/auth")) {
-        return NextResponse.redirect(new URL("/upload", req.url));
+    if (session.user.user.emailVerified === false) {
+      if (pathname === "/upload" ) {
+        toast.error(
+          "Your email is not verified, please verify it to upload images"
+        );
+        return NextResponse.redirect(new URL("/", req.url));
       }
     } else {
-      toast.error("Your email is not verified, please verify it to upload images");
-      return NextResponse.redirect(new URL("/", req.url));
+    console.log(session.user.user.emailVerified)
+    return NextResponse.next();
     }
 
     return NextResponse.next();
