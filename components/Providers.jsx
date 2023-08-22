@@ -7,29 +7,25 @@ import { SessionProvider } from "next-auth/react";
 import { UserProvider } from "@/context/UserContext";
 
 const Providers = ({ children }) => {
-
   return (
-
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <SessionProvider>
-        <UserProvider>
-          <LanguageProvider>
-            <ToastContainer
-              closeOnClick
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              limit={1}
-              toastClassName="dark:bg-stone-800 dark:text-green-100"
-            />
+          <UserProvider>
+            <LanguageProvider>
+              <ToastContainer
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                limit={1}
+                toastClassName="dark:bg-[#252220] dark:text-indigo-100"
+              />
 
-            {children}
-          </LanguageProvider>
-        </UserProvider>
+              {children}
+            </LanguageProvider>
+          </UserProvider>
       </SessionProvider>
-
     </ThemeProvider>
-
   );
 };
 export default Providers;

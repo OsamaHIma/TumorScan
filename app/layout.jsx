@@ -33,7 +33,7 @@ const RootLayout = ({ children }) => {
           href="/logoTab.svg"
         />
       </head>
-      <body className={`${poppins.className} transition-all ease-in`}>
+      <body className={`${poppins.className} bg-stone-200 pb-8 transition-all ease-in-out dark:bg-primary-black`}>
         <Providers>{children}</Providers>
       </body>
     </html>

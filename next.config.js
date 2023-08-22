@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  // presets: ["next/babel"],
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

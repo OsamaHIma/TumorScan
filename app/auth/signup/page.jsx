@@ -12,7 +12,6 @@ import {
   signWithGoogle,
 } from "@/lib/firebase";
 const SignUpPage = () => {
-
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,7 +37,7 @@ const SignUpPage = () => {
   const signInWithGoogle = async () => {
     try {
       const data = await signWithGoogle();
-      console.log(data.user.email)
+      console.log(data.user.email);
 
       toast.success("Singed in successfully");
     } catch (error) {
@@ -67,21 +66,26 @@ const SignUpPage = () => {
       toast.error("Passwords do not match.");
       return;
     }
-    setLoading(true)
+    setLoading(true);
     try {
-      const { user } = await addUserWithEmailAndPassword(formData.email, formData.password);
-      // console.log(user)
+      const { user } = await addUserWithEmailAndPassword(
+        formData.email,
+        formData.password
+      );
 
-      const res = await createUserDocument(user, { name: formData.name, password: formData.password });
-      // setValidated("");
-      router.push(`/auth/login`);
+      const res = await createUserDocument(user, {
+        name: formData.name,
+        password: formData.password,
+      });
 
-      toast.success("Singed Up successfully");
+      toast.success(
+        `Email verification link has sent to your email: ${formData.email}`
+      );
+      router.push(`/verify`);
     } catch (err) {
-      toast.error('Something went wrong '+err.code || err.message || err);
+      toast.error("Something went wrong " + err.code || err.message || err);
     }
-    setLoading(false)
-
+    setLoading(false);
   };
 
   return (
@@ -108,8 +112,9 @@ const SignUpPage = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-              }`}
+            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+              error && "border-red-500"
+            }`}
           />
         </div>
 
@@ -124,8 +129,9 @@ const SignUpPage = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-              }`}
+            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+              error && "border-red-500"
+            }`}
           />
         </div>
 
@@ -141,8 +147,9 @@ const SignUpPage = () => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-                }`}
+              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+                error && "border-red-500"
+              }`}
             />
             {passwordIcon ? (
               <EyeIcon
@@ -173,29 +180,53 @@ const SignUpPage = () => {
               name="password_confirmation"
               value={formData.password_confirmation}
               onChange={handleInputChange}
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-                }`}
+              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+                error && "border-red-500"
+              }`}
             />
-
           </div>
         </div>
         {error && (
           <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
-              return <p key={key}>*<Translate>{error}</Translate></p>;
+              return (
+                <p key={key}>
+                  *<Translate>{error}</Translate>
+                </p>
+              );
             })}
           </div>
         )}
-        <button
-          className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
-          type="submit"
 
-        >
-          <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
-        </button>
-        <button onClick={signInWithGoogle}>
-          Google
-        </button>
+        <div className="flex flex-col text-center gap-5">
+          <button
+            className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
+            type="submit"
+          >
+            <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
+          </button>
+
+          <p className="text-xl">OR</p>
+
+          <button
+            className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
+            type="button"
+            onClick={signInWithGoogle}
+          >
+            {loading ? (
+              <Translate>Loading...</Translate>
+            ) : (
+              <Translate translations={{ ar: "انشئي حساب عن طريق Google" }}>
+                Sign up with Google
+              </Translate>
+            )}
+            <img
+              src="/google.png"
+              className="w-7 object-contain"
+              alt="google logo"
+            />
+          </button>
+        </div>
       </form>
       <p className="text-gray-400 relative bottom-4 text-center">
         <Translate>You have an account</Translate>?{" "}
@@ -205,6 +236,6 @@ const SignUpPage = () => {
       </p>
     </div>
   );
-}
+};
 
-export default SignUpPage
+export default SignUpPage;

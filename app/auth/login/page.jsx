@@ -7,9 +7,7 @@ import { loginUserSchema } from "@/schema/userSchema";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Translate } from "translate-easy";
-import {
-  signWithGoogle,
-} from "@/lib/firebase";
+import { signWithGoogle } from "@/lib/firebase";
 import { toast } from "react-toastify";
 
 const LoginPage = () => {
@@ -22,19 +20,27 @@ const LoginPage = () => {
   const router = useRouter();
 
   const signInWithGoogle = async () => {
+    
     try {
-      const { user } = await signWithGoogle();
-      console.log(user)
-      toast.success("Singed in successfully");
-      // router.push(`/upload`);
-    } catch (error) {
-      toast.error(error.message || error);
+      const user = await signIn("firebase");
+
+      if (!user.error) {
+        handleRememberUser();
+        router.push(`/upload`);
+        toast.success("Singed in successfully");
+      } else {
+        setError([user.error]);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      toast.error(err.code || err.message || err);
+      console.log("error sing in user" + err);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     setError(null);
 
     try {
@@ -66,10 +72,9 @@ const LoginPage = () => {
         setError([user.error]);
         setIsLoading(false);
       }
-
     } catch (err) {
       toast.error(err.code || err.message || err);
-      console.log("error sing in user" + err)
+      console.log("error sing in user" + err);
     }
     setIsLoading(false);
   };
@@ -112,8 +117,9 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Your Email"
             id="email"
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-              }`}
+            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+              error && "border-red-500"
+            }`}
           />
         </div>
         <div className="flex flex-col">
@@ -128,8 +134,9 @@ const LoginPage = () => {
               placeholder="Enter Your Password"
               id="password"
               autoComplete="current-password"
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-                }`}
+              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
+                error && "border-red-500"
+              }`}
             />
             {!isShowPassword ? (
               <EyeIcon
@@ -147,7 +154,11 @@ const LoginPage = () => {
         {error && (
           <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
-              return <p key={key}>*<Translate>{err}</Translate></p>;
+              return (
+                <p key={key}>
+                  *<Translate>{err}</Translate>
+                </p>
+              );
             })}
           </div>
         )}
@@ -174,7 +185,6 @@ const LoginPage = () => {
           >
             <Translate>Forgot password?</Translate>
           </Link>
-
         </div>
 
         <div className="flex flex-col text-center gap-5">
@@ -189,12 +199,23 @@ const LoginPage = () => {
           <p className="text-xl">OR</p>
 
           <button
-            className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
+            className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
             type="button"
             onClick={signInWithGoogle}
-
           >
-            {loading ? (<Translate>Loading...</Translate>) : (<Translate translations={{ ar: "سجل الدخول عن طريق Google" }}>Sign in with Google</Translate>)}
+            {loading ? (
+              <Translate>Loading...</Translate>
+            ) : (
+              <Translate translations={{ ar: "سجل الدخول عن طريق Google" }}>
+                Sign in with Google
+              </Translate>
+            )}
+
+            <img
+              src="/google.png"
+              className="w-7 object-contain"
+              alt="google logo"
+            />
           </button>
         </div>
       </form>
