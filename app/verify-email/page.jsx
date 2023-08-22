@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { verifyEmail } from "@/lib/firebase";
 import { toast } from "react-toastify";
+import { playFireWorks } from "@/lib/fireWorks";
 
 const EmailVerificationPage = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const EmailVerificationPage = () => {
       const res = await verifyEmail(oobCode);
       console.log('verifyEmail',res)
       setIsVerified(true);
+      playFireWorks();
       router.push("/auth/login")
     } catch (error) {
       toast.error(error.code);

@@ -22,8 +22,8 @@ const Home = () => {
         <HowItWorks />
 
         <GetStarted />
-        <div className="gradient absolute top-[50%] -z-1 left-[40%] h-80 w-80 bg-orange-400/30 blur-[100px]" />
-        <div className="gradient absolute bottom-0 -z-1 left-0 h-80 w-80 bg-indigo-500/30 blur-[100px]" />
+        <div className="gradient absolute top-[40%] -z-[2] left-[40%] h-96 w-96 bg-orange-400/30 blur-[100px]" />
+        <div className="gradient absolute bottom-0 -z-[2] left-0 h-80 w-80 bg-indigo-500/30 blur-[100px]" />
 
         <footer>
           <Footer />

@@ -21,7 +21,7 @@ const Step = ({ title, description, image, index }) => {
       viewport={{ once: true }}
     >
       <Tilt
-        className="bg-stone-150 flex flex-col  items-center justify-center rounded-[20px] p-8 shadow-lg"
+        className="bg-stone-150 flex flex-col  items-center justify-center rounded-[20px] p-8 shadow-lg dark:shadow-slate-600/5"
         glareEnable={true}
         glareBorderRadius="20px"
         glareColor="#5d56e0"
