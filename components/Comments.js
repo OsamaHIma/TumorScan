@@ -114,14 +114,14 @@ const Comments = () => {
                           size={16}
                           className="text-gray-600 dark:text-gray-300"
                         />
-                        <p className="text-gray-600 dark:text-gray-300/50 text-sm">
+                        <p className="text-gray-600 dark:text-gray-300/50 text-sm \">
                           {formatDate(comment.timestamp)}
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <p className="text-white my-2 bg-gray-400 px-4 py-2 rounded-md">
+                <p className="text-white !w-fit my-2 bg-gray-400 px-4 py-2 rounded-md">
                   {comment.text}
                 </p>
               </div>
