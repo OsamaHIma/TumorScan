@@ -41,7 +41,6 @@ export async function middleware(req) {
         return NextResponse.redirect(new URL("/", req.url));
       }
     } else {
-    console.log(session.user.user.emailVerified)
     return NextResponse.next();
     }
 

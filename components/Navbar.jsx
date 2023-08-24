@@ -3,25 +3,45 @@ import { navLinks } from "@/constants";
 import { motion } from "framer-motion";
 import { Moon, Sun, Laptop, MenuIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Translate } from "translate-easy";
 import LanguageSelector from "./LanguageSelector";
 import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
-import {
-  SignOutUser
-} from "@/lib/firebase";
+import { SignOutUser } from "@/lib/firebase";
 
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
   const { setTheme } = useTheme();
   const [showThemeMenu, setThemeMenu] = useState("-top-[400px]");
   const [showMenu, setMenu] = useState("ltr:-right-[400px] rtl:-left-[400px]");
   const [scrolled, setScrolled] = useState(false);
   const { token } = useUser();
+  const containerRef = useRef(null);
 
+  useEffect(() => {
+    // Event listener to handle clicks outside the container
+    const handleOutsideClick = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        // Logic to close the component
+        setThemeMenu("-top-[400px]");
+        setMenu("ltr:-right-[400px] rtl:-left-[400px]");
+      }
+    };
+
+    // Attach the event listener when the component mounts
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   // theme Menu toggler button
   const openThemeMenu = () => {
@@ -66,15 +86,16 @@ const Navbar = () => {
 
   const handelSignButton = () => {
     if (token) {
-      SignOutUser()
+      SignOutUser();
     } else {
       router.push(`/auth/login`);
     }
-  }
+  };
   return (
     <nav
-      className={` ${scrolled && " bg-gray-400/50 backdrop-blur-md"
-        } h-wrapper fixed top-0 z-20 w-full text-stone-100 transition-all ease-in`}
+      className={` ${
+        scrolled && " bg-gray-400/50 backdrop-blur-md"
+      } h-wrapper fixed top-0 z-20 w-full text-stone-100 transition-all ease-in`}
     >
       <motion.div
         initial={{ y: "-2rem", opacity: 0 }}
@@ -98,6 +119,7 @@ const Navbar = () => {
           <ul
             className={`${showThemeMenu} menuTransition absolute z-10 m-8 flex w-[9rem] select-none flex-col shadow-lg ltr:right-0 rtl:left-0 ltr:md:right-[80%] rtl:md:left-[80%]`}
             dir="ltr"
+            // ref={containerRef}
           >
             <li
               className="cursor-pointer rounded-t-md px-8 pb-2 pt-4 text-stone-900 bg-stone-200 dark:text-stone-100 transition-all ease-in-out hover:!bg-indigo-600 dark:bg-stone-900 hover:text-gray-300 active:!bg-indigo-500"
@@ -128,21 +150,30 @@ const Navbar = () => {
               <LanguageSelector />
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <Link href={`${link.id}`}><Translate>{link.name}</Translate></Link>
+                  <Link href={`${link.id}`}>
+                    <Translate>{link.name}</Translate>
+                  </Link>
                 </li>
               ))}
-              {
-                token && <li>
-                  <Link href="/upload"><Translate>Upload</Translate></Link>
+              {token && (
+                <li>
+                  <Link href="/upload">
+                    <Translate>Upload</Translate>
+                  </Link>
                 </li>
-              }
-              <button onClick={handelSignButton} className="btn  translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700 w-fit "><Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate></button>
+              )}
+              <button
+                onClick={handelSignButton}
+                className="btn  translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700 w-fit "
+              >
+                <Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate>
+              </button>
             </ul>
           </div>
 
           {/* Menu for medium and small screens */}
           <button className="mx-4 block lg:hidden" onClick={openMenu}>
-            <MenuIcon className="hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
+            <MenuIcon className="hover:text-slate-400 transition ease-in-out  dark:text-slate-400 dark:hover:text-slate-100" />
             <span className="sr-only">
               <Translate>Toggle menu</Translate>
             </span>
@@ -150,6 +181,7 @@ const Navbar = () => {
 
           <ul
             className={`flex lg:hidden !text-white font-medium menuTransition ${showMenu} absolute bg-slate-200 dark:bg-slate-900 py-8 px-11 rounded-lg w-[15rem] top-[27%] z-10 flex-col m-8 shadow-lg`}
+            // ref={containerRef}
           >
             <LanguageSelector />
             {navLinks.map((link, index) => (
@@ -162,12 +194,22 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            {
-              token && <li>
-                <Link href="/upload"><Translate>Upload</Translate></Link>
+            {token && (
+              <li className="my-3">
+                <Link
+                  href="/upload"
+                  className="text-stone-900 dark:text-stone-100"
+                >
+                  <Translate>Upload</Translate>
+                </Link>
               </li>
-            }
-            <button onClick={handelSignButton} className="btn min-w-[5rem] max-w-[7rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"><Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate></button>
+            )}
+            <button
+              onClick={handelSignButton}
+              className="btn min-w-[5rem] max-w-[7rem] translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
+            >
+              <Translate>{token ? "Sign Out" : "Sign Up / In"}</Translate>
+            </button>
           </ul>
         </section>
       </motion.div>

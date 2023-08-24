@@ -8,6 +8,7 @@ import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
 
 import axios from "axios";
+import Breadcrumb from "@/components/Breadcrumb";
 
 // Function to send an image for prediction
 const sendImageForPrediction = async (imageFile) => {
@@ -58,7 +59,14 @@ const UploadPage = () => {
     isFocused,
     isDragAccept,
     isDragReject,
-  } = useDropzone({ accept: { "image/*": [] } });
+  } = useDropzone({
+    accept: {
+      "image/jpeg": [],
+      "image/jpg": [],
+      "image/jfif": [],
+      "image/png": [],
+    },
+  });
 
   const style = useMemo(
     () => ({
@@ -101,6 +109,7 @@ const UploadPage = () => {
       <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">
         <Translate>Upload an image</Translate>
       </h1>
+      {/* <Breadcrumb /> */}
       <div className="text-center max-w-sm min-h-44 mx-auto py-16">
         <div
           {...getRootProps({ className: "dropzone", style })}
@@ -122,7 +131,9 @@ const UploadPage = () => {
           </p>
         </div>
         <p className="text-gray-400 mt-2">
-          <Translate>Attach an image</Translate>
+          <Translate>
+            (Only *.jpeg, *.jpg, *.jfif and *.png images will be accepted)
+          </Translate>
         </p>
         <aside>
           {files.length > 0 && (

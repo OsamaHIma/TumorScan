@@ -1,18 +1,17 @@
-'use client'
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Moon, Sun, Laptop } from "lucide-react";
-import {  useState } from "react";
+import { useState } from "react";
 import { useTheme } from "next-themes";
 import LanguageSelector from "@/components/LanguageSelector";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Layout = ({ children }) => {
   const { setTheme } = useTheme();
   const [showThemeMenu, setThemeMenu] = useState("-top-[400px]");
   // theme Menu toggler button
   const openThemeMenu = () => {
-
-
     if (showThemeMenu === "top-[17%]") {
       setThemeMenu("-top-[400px]");
     } else {
@@ -25,11 +24,13 @@ const Layout = ({ children }) => {
         <div className="w-full pt-4 mt-12">
           <div className="w-full h-auto flex flex-col justify-center items-center">
             <div className="flex gap-4 px-8 relative left-0 justify-between items-center">
-
-              <Link href="/" className="rounded-full bg-indigo-600 px-3 py-2 dark:bg-transparent">
+              <Link
+                href="/"
+                className="rounded-full bg-indigo-600 px-3 py-2 dark:bg-transparent"
+              >
                 <Image src="/logo.svg" alt="logo" width={183} height={183} />
               </Link>
-              <LanguageSelector/>
+              <LanguageSelector />
               <div>
                 <button className="mr-5" onClick={openThemeMenu}>
                   <Moon className="hidden rotate-90 transition-all dark:block dark:rotate-0 dark:text-stone-100 dark:saturate-100 dark:hover:text-blue-300" />
@@ -64,6 +65,8 @@ const Layout = ({ children }) => {
                 </ul>
               </div>
             </div>
+            <Breadcrumb className="mt-3" />
+
             {children}
           </div>
         </div>

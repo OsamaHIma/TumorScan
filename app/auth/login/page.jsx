@@ -20,7 +20,6 @@ const LoginPage = () => {
   const router = useRouter();
 
   const signInWithGoogle = async () => {
-    
     try {
       const user = await signIn("firebase");
 
@@ -34,7 +33,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       toast.error(err.code || err.message || err);
-      console.log("error sing in user" + err);
+      console.error("error sing in user" + err);
     }
   };
 
@@ -74,7 +73,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       toast.error(err.code || err.message || err);
-      console.log("error sing in user" + err);
+      console.error("error sing in user" + err);
     }
     setIsLoading(false);
   };
@@ -152,30 +151,30 @@ const LoginPage = () => {
           </div>
         </div>
         {error && (
-          <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
+          <ol className="flex list-decimal flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
               return (
-                <p key={key}>
+                <li key={key} className="my-3">
                   *<Translate>{err}</Translate>
-                </p>
+                </li>
               );
             })}
-          </div>
+          </ol>
         )}
         <div className="flex justify-between items-center w-full h-full">
           <div className="flex justify-center items-center gap-1">
-            <label htmlFor="remember-me" className=" text-gray-400 text-xs ">
-              <Translate>Remember me</Translate>
-            </label>
-            <div className="relative flex items-center ">
+            <div className="relative flex items-center rtl:flex-row-reverse">
               <input
                 onChange={(e) => setIsRememberedUser(e.target.checked)}
                 type="checkbox"
                 checked={isRememberedUser}
                 value={isRememberedUser || ""}
                 id="remember-me"
-                className="relative w-full border-none outline-none"
+                className="w-4 h-4 border relative border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
               />
+              <label htmlFor="remember-me" className=" text-gray-400 ltr:ml-2 rtl:mr-2">
+                <Translate>Remember me</Translate>
+              </label>
             </div>
           </div>
 

@@ -17,7 +17,6 @@ const EmailVerificationPage = () => {
   const handleVerifyEmail = async () => {
     try {
       const res = await verifyEmail(oobCode);
-      console.log('verifyEmail',res)
       setIsVerified(true);
       playFireWorks();
       router.push("/auth/login")

@@ -1,6 +1,6 @@
 "use client";
 import { ChevronDownIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Translate, useLanguage } from "translate-easy";
 
 const LanguageSelector = () => {
@@ -10,7 +10,25 @@ const LanguageSelector = () => {
   const handleLanguageClick = (languageCode) => {
     handleChangeLanguage(languageCode);
   };
+  const containerRef = useRef(null);
 
+  useEffect(() => {
+    // Event listener to handle clicks outside the container
+    const handleOutsideClick = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        // Logic to close the component
+        setIsOpen(false)
+      }
+    };
+
+    // Attach the event listener when the component mounts
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
   return (
     <div className={`relative inline-block mx-2`}>
       <button
@@ -32,6 +50,7 @@ const LanguageSelector = () => {
         <ul
           className={`LanguageSelectorMenu absolute ltr:right-0 rtl:left-0 max-h-48 overflow-scroll md:right-0 z-30 mt-2 w-48 rounded-md shadow-xl bg-stone-200 dark:bg-stone-900`}
           dir="ltr"
+          // ref={containerRef}
         >
           {languages.length &&
             languages.map((language, index) => (

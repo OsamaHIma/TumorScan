@@ -24,7 +24,9 @@ const Hero = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
+    <section className=" bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
     <header className="hero-wrapper relative z-10 pb-8 pt-20 md:pt-32 text-stone-800 transition-all ease-in dark:text-stone-100">
+      <div className="bg-gradient-to-t from-stone-200 to-transparent dark:from-primary-black w-full h-full absolute bottom-0 left-0 -z-10"></div>
       <div className="static-shape background-shape-main -z-1 absolute" />
 
       <div className="paddings innerWidth grid grid-cols-1 !items-end gap-11 md:grid-cols-2">
@@ -128,6 +130,7 @@ const Hero = () => {
       </div>
 
     </header>
+    </section>
   );
 };
 

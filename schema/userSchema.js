@@ -1,4 +1,4 @@
-import { object, string, number, date, InferType } from "yup";
+import { object, string, bool } from "yup";
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -49,4 +49,8 @@ export const signUpSchema = object().shape({
       passwordRegex,
       "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number."
     ),
+  termsCheckbox: bool().oneOf(
+    [true],
+    "You must accept the Terms and Conditions"
+  ),
 });

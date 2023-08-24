@@ -19,6 +19,7 @@ const Step = ({ title, description, image, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.3, delay: index * 0.7 }}
       viewport={{ once: true }}
+      className="relative"
     >
       <Tilt
         className="bg-stone-150 flex flex-col  items-center justify-center rounded-[20px] p-8 shadow-lg dark:shadow-slate-600/5"
