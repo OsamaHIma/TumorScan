@@ -65,12 +65,12 @@ const Comments = () => {
   return (
     <section className="paddings innerWidth">
       <h1
-        className={`xs:text-[40px] mb-6 text-center text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
+        className={`xs:text-[40px] mb-10 text-center text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
       >
         <Translate>Tell us what you think</Translate>
       </h1>
 
-      <form onSubmit={handleSubmit} className="flex items-center my-3">
+      <form onSubmit={handleSubmit} className="flex items-center my-4">
         <textarea
           placeholder="Write a comment, feedback , suggestions:"
           value={comment}
@@ -89,7 +89,7 @@ const Comments = () => {
         </button>
       </form>
 
-      <div className="bg-stone-100 dark:bg-zinc-900 p-4 rounded-lg h-80 overflow-y-scroll">
+      <div className="bg-stone-100 dark:bg-zinc-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
         <h2 className="text-2xl font-bold mb-4"><Translate translations={{ar:"التعليقات"}}>Comments</Translate></h2>
         <motion.div
           initial={{ opacity: 0, y: -20 }}

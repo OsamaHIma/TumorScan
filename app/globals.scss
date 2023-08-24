@@ -31,7 +31,9 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   @apply bg-indigo-600;
   border-radius: 10px;
 }
-
+.hide-scroll-bar::-webkit-scrollbar{
+  width: 0 !important;
+}
 // Button Styles
 .btn {
   @apply py-3 px-5 rounded-lg text-white hover:text-stone-200 hover:scale-110 font-semibold;

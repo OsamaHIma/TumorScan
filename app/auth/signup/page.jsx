@@ -51,7 +51,7 @@ const SignUpPage = () => {
   const signInWithGoogle = async () => {
     try {
       const data = await signWithGoogle();
-      console.log(data.user.email);
+      // console.log(data.user.email);
 
       toast.success("Singed in successfully");
     } catch (error) {
