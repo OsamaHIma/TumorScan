@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const UserContext = createContext();
 
@@ -12,15 +12,16 @@ export const UserProvider = ({ children }) => {
     if (session) {
       setToken(session.user.token);
       setUser(session.user.user);
-      // console.log(session.user.user)
+      console.log(session.user.user);
     }
   }, [session]);
-
-  return (
-    <UserContext.Provider value={{ token, user }}>
-      {children}
-    </UserContext.Provider>
-  );
+  const value = useMemo(() => {
+    return {
+      token,
+      user,
+    };
+  }, [token, user]);
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export function useUser() {

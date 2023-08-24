@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { MailIcon, ArrowLeftCircleIcon } from "lucide-react";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import Footer from "@/components/Footer";
+import Footer from "@/home/Footer";
 import Tilt from "react-parallax-tilt";
 import { Translate } from "translate-easy";
 import { contactSchema } from "@/schema/userSchema";

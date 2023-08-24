@@ -6,39 +6,24 @@ import { Translate } from "translate-easy";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { XIcon } from "lucide-react";
+import TermsModal from "../components/TermsModal";
 
 const Footer = () => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
   const handlePrivacyClick = () => {
     setShowPrivacyModal(true);
   };
   const closePrivacyModal = () => {
     setShowPrivacyModal(false);
   };
+  const handleTermsClick = () => {
+    setShowTermsModal(true);
+  };
+  const closeTermsModal = () => {
+    setShowTermsModal(false);
+  };
   return (
-    // <section>
-    //   <div className="paddings innerWidth flexCenter relative container md:!justify-between">
-    //   <div className="bg-gradient-to-t from-orange-400/30 to-transparent dark:from-indigo-600/30 w-full h-full absolute bottom-0 left-0 -z-10"></div>
-
-    //     <div className="flexColStart f-left !items-center gap-4 text-center md:!items-start md:!text-left">
-    //       <Link href="/" className="rounded-full bg-indigo-600 px-3 py-2 dark:bg-transparent">
-    //         <Image src="/logo.svg" alt="logo" width={153} height={153} />
-    //       </Link>
-    //       <h3 className="secondaryText rtl:text-right">
-    //     <Translate>We are always available around the clock to answer your questions</Translate>.
-    //       <br/>
-    //       <Translate>So, please feel free to contact us</Translate>.
-    //       </h3>
-    //     </div>
-    //     <div className="flexColStart f-right !items-center text-center">
-    //       <span className="primaryText dark:text-indigo-300">Information</span>
-    //       {/* <Link href="https://www.google.com/maps?ll=30.05016,31.202757&z=14&t=m&hl=en-US&gl=US&mapclient=embed&cid=3975772482927079619" target="_blank" className="secondaryText">21 Fawakeh Dokki, Cairo, Egypt</Link> */}
-    //       <p className="secondaryText"><Translate>Made with 💙 in Egypt</Translate></p>
-    //      <SocialIcons/>
-    //     </div>
-    //   </div>
-    // </section>
-
     <footer className="relative py-3 bg-indigo-200 dark:bg-stone-800">
       <div className="bg-gradient-to-b from-stone-200 to-transparent dark:from-primary-black w-full h-44 absolute -top-4 left-0"></div>
 
@@ -104,10 +89,11 @@ const Footer = () => {
                 >
                   <Translate>Privacy Policy</Translate>
                 </li>
-                <li>
-                  <Link href="#" className="hover:underline">
-                    <Translate>Terms &amp; Conditions</Translate>
-                  </Link>
+                <li
+                  onClick={handleTermsClick}
+                  className="mb-4 hover:underline cursor-pointer"
+                >
+                  <Translate>Terms &amp; Conditions</Translate>
                 </li>
               </ul>
             </div>
@@ -117,7 +103,7 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <Link href="https://flowbite.com/" className="hover:underline">
+            <Link href="#" className="hover:underline">
               Tumor Scan™
             </Link>
             . <Translate>All Rights Reserved</Translate>.
@@ -211,10 +197,10 @@ const Footer = () => {
             </h2>
             <p className="my-3">
               <Translate>
-                At &quot;Tumor Scan&quot;, we are committed to protecting your privacy and
-                ensuring the security of your personal information. This Privacy
-                Policy outlines how we collect, use, and safeguard the
-                information you provide to us through our website
+                At &quot;Tumor Scan&quot;, we are committed to protecting your
+                privacy and ensuring the security of your personal information.
+                This Privacy Policy outlines how we collect, use, and safeguard
+                the information you provide to us through our website
               </Translate>
               .
             </p>
@@ -294,9 +280,10 @@ const Footer = () => {
             </li>
             <p className="my-3">
               <Translate>
-                By using the &quot;Tumor Scan&quot; website and providing your personal
-                information, you consent to the collection, use, and disclosure
-                of your information as described in this Privacy Policy
+                By using the &quot;Tumor Scan&quot; website and providing your
+                personal information, you consent to the collection, use, and
+                disclosure of your information as described in this Privacy
+                Policy
               </Translate>
               .
             </p>
@@ -309,6 +296,7 @@ const Footer = () => {
           </ol>
         </motion.div>
       )}
+      {showTermsModal && <TermsModal closeTermsModal={closeTermsModal} />}
     </footer>
   );
 };

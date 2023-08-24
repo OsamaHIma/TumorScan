@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { MailCheckIcon, Mail } from "lucide-react";
-import Footer from "@/components/Footer";
+import Footer from "@/home/Footer";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { verifyEmail } from "@/lib/firebase";

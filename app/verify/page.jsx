@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import Footer from "@/components/Footer";
+import Footer from "@/home/Footer";
 
 const VerifyEmailPage = () => {
   useEffect(() => {

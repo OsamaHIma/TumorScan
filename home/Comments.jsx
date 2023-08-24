@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import { useUser } from "@/context/UserContext";
 import { Translate } from "translate-easy";
+import { toast } from "react-toastify";
 
 const Comments = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -72,8 +73,10 @@ const Comments = () => {
 
       <form onSubmit={handleSubmit} className="flex items-center my-4">
         <textarea
-          placeholder="Write a comment, feedback , suggestions:"
+          placeholder="Write a comment, feedback or suggestions:"
           value={comment}
+          // cols={4}
+          rows={1}
           onChange={(e) => setComment(e.target.value)}
           className="px-4 w-full rounded-md bg-indigo-300/70 mx-3 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2"
         />
@@ -129,11 +132,11 @@ const Comments = () => {
                 {user.email === comment.email && (
                   <>
                     {isDeleting ? (
-                      <Loader2Icon className="animate-spin text-red-400" />
+                      <Loader2Icon size={23} className="animate-spin text-red-400" />
                     ) : (
                       <TrashIcon
-                        size={24}
-                        className="text-red-500 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
+                        size={25}
+                        className="text-red-400 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
                         onClick={() => deleteThisComment(comment.id)}
                       />
                     )}

@@ -21,20 +21,15 @@ const LoginPage = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const user = await signIn("firebase");
+      await signWithGoogle();
 
-      if (!user.error) {
-        handleRememberUser();
-        router.push(`/upload`);
-        toast.success("Singed in successfully");
-      } else {
-        setError([user.error]);
-        setIsLoading(false);
-      }
+      router.push(`/upload`);
+      toast.success("Singed in successfully");
     } catch (err) {
       toast.error(err.code || err.message || err);
       console.error("error sing in user" + err);
     }
+    setIsLoading(false);
   };
 
   const handleLogin = async (e) => {
@@ -172,7 +167,10 @@ const LoginPage = () => {
                 id="remember-me"
                 className="w-4 h-4 border relative border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
               />
-              <label htmlFor="remember-me" className=" text-gray-400 ltr:ml-2 rtl:mr-2">
+              <label
+                htmlFor="remember-me"
+                className=" text-gray-400 ltr:ml-2 rtl:mr-2"
+              >
                 <Translate>Remember me</Translate>
               </label>
             </div>
