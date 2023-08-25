@@ -1,12 +1,12 @@
-import Sponsors from "@/home/Sponsors";
-import Footer from "@/home/Footer";
-import GetStarted from "@/home/GetStarted";
+import Sponsors from "@/components/Sponsors";
+import Footer from "@/components/Footer";
+import GetStarted from "@/components/GetStarted";
 import Navbar from "@/components/Navbar";
-import Hero from "@/home/Hero";
-import HowItWorks from "@/home/HowItWorks";
-import AboutUs from "@/home/AboutUs";
+import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
+import AboutUs from "@/components/AboutUs";
 import DevelopmentNotification from "@/components/DevelopmentNotification";
-import Comments from "@/home/Comments";
+import Comments from "@/components/Comments";
 
 const Home = () => {
   return (

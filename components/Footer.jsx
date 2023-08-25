@@ -6,7 +6,7 @@ import { Translate } from "translate-easy";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { XIcon } from "lucide-react";
-import TermsModal from "../components/TermsModal";
+import TermsModal from "./TermsModal";
 
 const Footer = () => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);

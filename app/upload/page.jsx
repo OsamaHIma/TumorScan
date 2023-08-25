@@ -1,5 +1,5 @@
 "use client";
-import Footer from "@/home/Footer";
+import Footer from "@/components/Footer";
 import { ArrowLeftCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

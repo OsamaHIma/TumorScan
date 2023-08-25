@@ -1,7 +1,7 @@
 "use client";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import BrainCanvas from "../components/BrainCanvas";
+import BrainCanvas from "./BrainCanvas";
 import { Search, User, Users, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
