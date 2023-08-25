@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import BrainCanvas from "./BrainCanvas";
 import { Search, User, Users, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import { TypeAnimation } from "react-type-animation";
+
 import { Translate } from "translate-easy";
 
 const Hero = () => {
