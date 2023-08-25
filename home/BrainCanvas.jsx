@@ -2,7 +2,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense } from "react";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import CanvasLoader from "./CanvasLoader";
+import CanvasLoader from "../components/CanvasLoader";
 
 const Brain = () => {
   const brain = useGLTF("/models/tumors/scene.gltf");
