@@ -21,7 +21,9 @@ const LoginPage = () => {
 
   const signInWithGoogle = async () => {
     try {
-      await signWithGoogle();
+     const res = await signIn("google");
+     console.log(res)
+      // await signWithGoogle();
 
       router.push(`/upload`);
       toast.success("Singed in successfully");
@@ -193,7 +195,7 @@ const LoginPage = () => {
             <Translate>{loading ? "Loading..." : "Login"}</Translate>
           </button>
 
-          <p className="text-xl">OR</p>
+          {/* <p className="text-xl">OR</p>
 
           <button
             className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
@@ -213,7 +215,7 @@ const LoginPage = () => {
               className="w-7 object-contain"
               alt="google logo"
             />
-          </button>
+          </button> */}
         </div>
       </form>
       <p className="text-gray-400 relative bottom-0 text-center">

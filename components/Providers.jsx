@@ -11,8 +11,8 @@ import { BreadcrumbProvider } from "@/context/BreadcrumbContext";
 const Providers = ({ children }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <ProSidebarProvider>
-        <BreadcrumbProvider>
+      <BreadcrumbProvider>
+        <ProSidebarProvider>
           <SessionProvider>
             <UserProvider>
               <LanguageProvider>
@@ -29,8 +29,8 @@ const Providers = ({ children }) => {
               </LanguageProvider>
             </UserProvider>
           </SessionProvider>
-        </BreadcrumbProvider>
-      </ProSidebarProvider>
+        </ProSidebarProvider>
+      </BreadcrumbProvider>
     </ThemeProvider>
   );
 };

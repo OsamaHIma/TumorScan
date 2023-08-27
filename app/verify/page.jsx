@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import Footer from "@/components/Footer";
+import { Translate } from "translate-easy";
 
 const VerifyEmailPage = () => {
   useEffect(() => {
@@ -21,10 +22,10 @@ const VerifyEmailPage = () => {
         transition={{ duration: 0.3 }}
         className="bg-white p-8 rounded shadow-md"
       >
-        <h1 className="text-2xl font-bold mb-4 text-indigo-500">Please Verify Your Email</h1>
+        <h1 className="text-2xl font-bold mb-4 text-indigo-500"><Translate>Please Verify Your Email</Translate></h1>
         <p className="text-gray-600 mb-4">
-          We have sent you an email with a verification link. Please click on
-          the link to verify your email address.
+        <Translate>We have sent you an email with a verification link. Please click on
+          the link to verify your email address</Translate>.
         </p>
       </motion.div>
     </div>

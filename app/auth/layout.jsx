@@ -5,7 +5,7 @@ import { Moon, Sun, Laptop } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import LanguageSelector from "@/components/LanguageSelector";
-import Breadcrumb from "@/components/Breadcrumb";
+// import Breadcrumb from "@/components/Breadcrumb";
 
 const Layout = ({ children }) => {
   const { setTheme } = useTheme();
@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
                 </ul>
               </div>
             </div>
-            <Breadcrumb className="mt-3" />
+            {/* <Breadcrumb className="mt-3" /> */}
 
             {children}
           </div>

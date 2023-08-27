@@ -12,6 +12,7 @@ import {
   signWithGoogle,
 } from "@/lib/firebase";
 import TermsModal from "@/components/TermsModal";
+import { signIn } from "next-auth/react";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -49,12 +50,26 @@ const SignUpPage = () => {
       [name]: value,
     }));
   };
+
   const signInWithGoogle = async () => {
     try {
-      await signWithGoogle();
-      // console.log(data.user.email);
+      const { user } = await signWithGoogle();
+      console.log("user", user);
+      const signInUser = await signIn("credentials", {
+        redirect: false,
+        email: user.email,
+        password: "123456",
+      });
 
-      toast.success("Singed in successfully");
+      if (!signInUser.error) {
+        handleRememberUser();
+        router.push(`/upload`);
+        toast.success("Singed in successfully");
+      } else {
+        setError([signInUser.error]);
+        // setLoading(false);
+      }
+      toast.success("Singed up successfully");
     } catch (error) {
       toast.error(error.message || error);
     }
@@ -95,11 +110,11 @@ const SignUpPage = () => {
       });
 
       toast.success(
-        `Email verification link has sent to your email: ${formData.email}`
+        `Email verification link has been sent to your email: ${formData.email}`
       );
       router.push(`/verify`);
     } catch (err) {
-      toast.error("Something went wrong " + err.code || err.message || err);
+      toast.error("Something went wrong: " + err.code || err.message || err);
     }
     setLoading(false);
   };
@@ -241,7 +256,7 @@ const SignUpPage = () => {
             <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
           </button>
 
-          <p className="text-xl">OR</p>
+          {/* <p className="text-xl">OR</p>
 
           <button
             className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
@@ -260,7 +275,7 @@ const SignUpPage = () => {
               className="w-7 object-contain"
               alt="google logo"
             />
-          </button>
+          </button> */}
         </div>
       </form>
       <p className="text-gray-400 relative bottom-4 text-center">
