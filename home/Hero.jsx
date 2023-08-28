@@ -2,7 +2,7 @@
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import BrainCanvas from "./BrainCanvas";
-import { Search, User, Users, Check, ArrowUp } from "lucide-react";
+import { Search, User, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Translate } from "translate-easy";
@@ -54,8 +54,7 @@ const Hero = () => {
                 initial={{ y: "2rem", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.7, type: "spring", delay: 0.1 }}
-                className="text-[3rem] whitespace-nowrap rtl:text-stone-50 font-semibold leading-[3rem] "
-                color=""
+                className="text-3xl md:text-5xl whitespace-nowrap text-white md:dark:text-gray-300 font-semibold leading-[3rem]"
               >
                 <Translate>Empowering Detection of</Translate>
               </motion.h1>
@@ -64,9 +63,14 @@ const Hero = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.7, type: "spring", delay: 0.7 }}
                 className="text-[4.8rem] rtl:text-stone-50 font-semibold leading-[4rem] mt-2"
-                color=""
               >
-                <Translate>Cancer and Tumor</Translate>
+                <span className="md:text-indigo-500 rtl:text-indigo-50">
+                  <Translate>Cancer</Translate>
+                </span>{" "}
+                <Translate>and</Translate>{" "}
+                <span className="text-orange-400">
+                  <Translate>Tumor</Translate>
+                </span>
               </motion.h1>
             </div>
 
@@ -88,7 +92,7 @@ const Hero = () => {
                 <Translate>Diagnosis and Treatment.</Translate>
               </motion.span>
             </div>
-            <div className="status flexCenter w-ful justify-between gap-8">
+            <div className="status flexCenter w-ful justify-between gap-5 md:gap-8 mx-auto md:mx-0">
               <div className="flexColCenter stat !gap-2">
                 <User className="text-orange-400 md:text-indigo-500 rtl:text-orange-400" />
                 <span>
@@ -96,7 +100,7 @@ const Hero = () => {
                     start={2}
                     end={600}
                     duration={4}
-                    className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
+                    className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
                   <span className="ml-2 text-3xl font-bold text-[orange]">
                     +
@@ -114,9 +118,9 @@ const Hero = () => {
                     start={0}
                     end={97}
                     duration={4}
-                    className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
+                    className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
-                  <span className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100">
+                  <span className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100">
                     %
                   </span>
                   <span className="ml-2 text-3xl font-bold text-dark-orange">
@@ -135,7 +139,7 @@ const Hero = () => {
                     start={0}
                     end={340}
                     duration={4}
-                    className="text-4xl font-semibold rtl:text-stone-800 text-stone-700 dark:text-gray-100"
+                    className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
                   <span className="ml-2 text-3xl font-bold text-dark-orange">
                     +

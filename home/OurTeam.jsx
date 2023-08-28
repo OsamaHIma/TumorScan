@@ -19,11 +19,7 @@ const TeamMember = ({ index, name, role, image, linkedin, facebook }) => {
     >
       <div className="relative overflow-hidden rounded-lg">
         <div className="overlay absolute z-10 w-full h-72 bg-indigo-600/40 hover:bg-transparent transition-all duration-700"></div>
-        <motion.img
-          src={image}
-          alt={name}
-          className="h-72 rounded-lg"
-        />
+        <motion.img src={image} alt={name} className="h-72 rounded-lg" />
       </div>
       <div className="flex flex-col items-center mt-4">
         <h3 className="text-lg font-bold">{name}</h3>
@@ -48,11 +44,9 @@ const JoinTeamCard = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
+      className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] mx-auto md:mx-0 px-4"
     >
-      <Link
-        href="/contact"
-        className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] px-4"
-      >
+      <Link href="/contact" className="flex flex-col items-center">
         <PlusIcon size={80} />
 
         <div className="flex flex-col items-center mt-4">
