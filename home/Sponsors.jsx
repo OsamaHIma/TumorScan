@@ -5,6 +5,9 @@ import { companiesSliderSittings } from "@/constants";
 import Image from "next/image";
 import "swiper/swiper.css";
 import { Translate } from "translate-easy";
+import { TypingText } from "@/components/TypingText";
+import { motion } from "framer-motion";
+import { staggerContainer } from "@/utils/motion";
 
 const Sponsors = () => {
   const images = [
@@ -22,7 +25,11 @@ const Sponsors = () => {
   SwiperCore.use([Autoplay]);
 
   return (
-    <section className="py-16" dir="ltr">
+    <motion.section variants={staggerContainer}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: false, amount: 0.25 }} className="py-16" dir="ltr">
+      <TypingText title="| SPONSORS" textStyles="text-center" />
       <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center"><Translate>OUR SPONSORS</Translate></h1>
       <div className="relative">
         <Swiper
@@ -45,7 +52,7 @@ const Sponsors = () => {
         </Swiper>
         {/* <SwiperButtons /> */}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,11 +1,16 @@
 import "./globals.scss";
-import { Cairo } from "next/font/google";
+import { Cairo,Poppins ,Tajawal} from "next/font/google";
 import Providers from "@/components/Providers";
 
-const poppins = Cairo({
+const tajawal = Tajawal({
+  subsets: ["latin","arabic"],
+  weight: ["400", "500", "700"],
+});
+const cairo = Cairo({
   subsets: ["latin", "arabic"],
   weight: ["400", "500", "600", "700"],
 });
+
 export const metadata = {
   title: "Tumor Scan | Tumor and cancer AI scanner",
   description: `Tumor Scan - Advanced Cancer Detection and Tumor Analysis
@@ -33,7 +38,7 @@ const RootLayout = ({ children }) => {
           href="/logoTab.svg"
         />
       </head>
-      <body className={`${poppins.className} bg-stone-200 transition-all ease-in-out dark:bg-primary-black`}>
+      <body className={`${tajawal.className} bg-stone-200 transition-all ease-in-out dark:bg-primary-black`}>
         <Providers>{children}</Providers>
       </body>
     </html>

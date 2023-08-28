@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { XIcon } from "lucide-react";
 import TermsModal from "./TermsModal";
+import { footerVariants } from "@/utils/motion";
 
 const Footer = () => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -24,7 +25,13 @@ const Footer = () => {
     setShowTermsModal(false);
   };
   return (
-    <footer className="relative py-3 bg-indigo-200 dark:bg-stone-800">
+    <motion.footer
+      variants={footerVariants}
+      whileInView="show"
+      initial="hidden"
+      viewport={{ once: true }}
+      className="relative py-3 bg-indigo-200 dark:bg-stone-800"
+    >
       <div className="bg-gradient-to-b from-stone-200 to-transparent dark:from-primary-black w-full h-44 absolute -top-4 left-0"></div>
 
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -297,7 +304,7 @@ const Footer = () => {
         </motion.div>
       )}
       {showTermsModal && <TermsModal closeTermsModal={closeTermsModal} />}
-    </footer>
+    </motion.footer>
   );
 };
 

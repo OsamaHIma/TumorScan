@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUser } from "@/context/UserContext";
-import { Translate } from "translate-easy";
+import { Translate, useLanguage } from "translate-easy";
 import { toast } from "react-toastify";
+import { slideIn, staggerContainer } from "@/utils/motion";
+import { TitleText, TypingText } from "@/components/TypingText";
 
 const Comments = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +21,7 @@ const Comments = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const { user } = useUser();
-
+  const { selectedLanguage } = useLanguage();
   const getAllComments = async () => {
     const res = await getComments();
     setComments(res);
@@ -64,12 +66,15 @@ const Comments = () => {
   };
 
   return (
-    <section className="paddings innerWidth">
-      <h1
-        className={`xs:text-[40px] mb-10 text-center text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
-      >
-        <Translate>Tell us what you think</Translate>
-      </h1>
+    <motion.section
+    variants={staggerContainer}
+    initial="hidden"
+    whileInView="show"
+  //   viewport={{ once: true }}
+    className="innerWidth paddings"
+  >
+      <TypingText title="| Your Opinion Matters" textStyles="text-center" />
+      <TitleText title="Tell Us What You Think" textStyles="text-center" />
 
       <form onSubmit={handleSubmit} className="flex items-center my-4">
         <textarea
@@ -82,7 +87,7 @@ const Comments = () => {
         />
         <button
           type="submit"
-          className="text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-md w-24"
+          className="text-white bg-indigo-500 transition-all ease-in-out duration-500 hover:bg-indigo-600 px-4 py-2 rounded-md w-24"
         >
           {isLoading ? (
             <Loader2Icon className="inline-block mx-2 animate-spin text-slate-50" />
@@ -93,15 +98,27 @@ const Comments = () => {
       </form>
 
       <div className="bg-stone-100 dark:bg-zinc-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
-        <h2 className="text-2xl font-bold mb-4"><Translate translations={{ar:"التعليقات"}}>Comments</Translate></h2>
+        <h2 className="text-2xl font-bold mb-4">
+          <Translate translations={{ ar: "التعليقات" }}>Comments</Translate>
+        </h2>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {comments.map((comment) => (
-            <div
+          {comments.map((comment, index) => (
+            <motion.div
               key={comment.id}
+              variants={slideIn(
+                "left",
+                "tween",
+                0.5 * index,
+                1.3,
+                selectedLanguage
+              )}
+              initial="hidden"
+              whileInView="show"
+              // viewport={{ once: false }}
               className="bg-white dark:bg-neutral-900 rounded-lg p-4 mb-4 shadow-md flex items-start"
             >
               <div className="ml-3 flex-grow">
@@ -124,7 +141,7 @@ const Comments = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-white !w-fit my-2 bg-gray-400 px-4 py-2 rounded-md">
+                <p className=" !w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
                   {comment.text}
                 </p>
               </div>
@@ -132,7 +149,10 @@ const Comments = () => {
                 {user.email === comment.email && (
                   <>
                     {isDeleting ? (
-                      <Loader2Icon size={23} className="animate-spin text-red-400" />
+                      <Loader2Icon
+                        size={23}
+                        className="animate-spin text-red-400"
+                      />
                     ) : (
                       <TrashIcon
                         size={25}
@@ -143,11 +163,11 @@ const Comments = () => {
                   </>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

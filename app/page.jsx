@@ -1,4 +1,4 @@
-import Sponsors from "@/components/Sponsors";
+import Sponsors from "@/home/Sponsors";
 import Footer from "@/components/Footer";
 import GetStarted from "@/home/GetStarted";
 import Navbar from "@/components/Navbar";
@@ -7,6 +7,7 @@ import HowItWorks from "@/home/HowItWorks";
 import AboutUs from "@/home/AboutUs";
 import DevelopmentNotification from "@/components/DevelopmentNotification";
 import Comments from "@/home/Comments";
+import OurTeam from "@/home/OurTeam";
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
 
         <GetStarted />
         <div className="gradient absolute top-[40%] -z-[2] left-[40%] h-96 w-96 bg-orange-400/30 blur-[100px]" />
-        {/* <div className="gradient absolute bottom-0 -z-[2] left-0 h-80 w-80 bg-indigo-500/30 blur-[100px]" /> */}
+        <OurTeam />
         <Comments />
         <footer>
           <Footer />

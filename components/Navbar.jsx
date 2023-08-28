@@ -11,6 +11,7 @@ import LanguageSelector from "./LanguageSelector";
 import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { SignOutUser } from "@/lib/firebase";
+import { navVariants } from "@/utils/motion";
 
 const Navbar = () => {
   const router = useRouter();
@@ -98,9 +99,9 @@ const Navbar = () => {
       } h-wrapper fixed top-0 z-20 w-full text-stone-100 transition-all ease-in`}
     >
       <motion.div
-        initial={{ y: "-2rem", opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", duration: 1 }}
+        variants={navVariants}
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true }}
         className="h-container flexCenter paddings innerWidth relative !justify-between border-b-[3px] border-stone-300 !py-2 dark:border-stone-700"
       >

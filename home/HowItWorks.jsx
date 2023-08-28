@@ -1,95 +1,76 @@
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
-import Tilt from "react-parallax-tilt";
-import { Translate } from "translate-easy";
+import {
+  fadeIn,
+  imageVariants,
+  slideIn,
+  staggerContainer,
+} from "@/utils/motion";
+import { TitleText, TypingText } from "@/components/TypingText";
+import { startingFeatures } from "@/constants";
+import { Translate, useLanguage } from "translate-easy";
 
-const images = [
-  // Replace these with your own images
-  "/x-ray.jpg",
-  "pc.jpg",
-  "/brain.jpeg",
-];
-
-// Define a custom component for each step
-const Step = ({ title, description, image, index }) => {
-  return (
+const HowItWorks = () => {
+  const { selectedLanguage } = useLanguage();
+  const StartSteps = ({ number, feature }) => (
     <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.3, delay: index * 0.7 }}
+      variants={slideIn("right", "spring", 0.5 * number, 1.3, selectedLanguage)}
+      initial="hidden"
+      whileInView="show"
       viewport={{ once: true }}
-      className="relative"
     >
-      <Tilt
-        className="bg-stone-150 flex flex-col  items-center justify-center rounded-[20px] p-8 shadow-lg dark:shadow-slate-600/5"
-        glareEnable={true}
-        glareBorderRadius="20px"
-        glareColor="#5d56e0"
-      >
-        <motion.img
-          src={image}
-          alt={title}
-          className="mb-4 h-full w-full rounded-lg object-cover"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, type: "spring" }}
-        />
-
-        <div className="text-center md:text-left">
-          <h3 className={`text-2xl font-bold text-indigo-500 rtl:text-right`}>
-            <span className="text-3xl font-bold text-orange-400">
-              {index + 1}.{" "}
-            </span>
-            <Translate>{title}</Translate>
-          </h3>
-          <p className="text-lg text-gray-700 dark:text-gray-400 rtl:text-right"><Translate>{description}</Translate></p>
+      <div className={`flex items-center justify-center flex-row `}>
+        <div
+          className={`flex items-center justify-center w-[70px] h-[70px] rounded-[24px] bg-indigo-900`}
+        >
+          <p className="text-white text-[20px] font-bold ">0{number}</p>
         </div>
-      </Tilt>
+        <p className="flex-1 ltr:ml-8 rtl:mr-8 font-semibold text-xl text-gray-500 dark:text-gray-400 leading-[32px] ">
+          <Translate>{feature.title}</Translate>
+        </p>
+      </div>
+      <p className="text-gray-400 leading-[27px] mt-3">
+        <Translate>{feature.text}</Translate>
+      </p>
     </motion.div>
   );
-};
-
-// Define the main component for the section
-const HowItWorks = () => {
-  // Define an array of objects for each step
-  const steps = [
-    {
-      title: "Upload Your Medical Image",
-      description:
-        "Provide your medical image, such as an X-ray or MRI scan, securely through our user-friendly interface.",
-    },
-    {
-      title: "Tumor Analysis and Detection",
-      description:
-        "Our advanced algorithms analyze the image, precisely detecting cancerous regions and identifying tumor characteristics.",
-    },
-    {
-      title: "Receive Detailed Reports",
-      description:
-        "Get comprehensive reports with valuable insights about tumor location, size, and recommended treatment options.",
-    },
-  ];
 
   return (
-    <div className="container px-4 py-16" id="how-it-works">
-      <h1
-        className={`xs:text-[40px] text-center text-[30px] font-black text-stone-500 dark:text-white sm:text-[50px] md:text-[60px]`}
-      >
-        <Translate>How It Works</Translate>
-      </h1>
+    <section className={`paddings innerWidth z-10`} id="how-it-works">
       <motion.div
-        className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3"
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.3 }}
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true }}
+        className={` mx-auto flex lg:flex-row flex-col gap-8`}
       >
-        {steps.map((step, index) => (
-          <Step key={index} {...step} image={images[index]} index={index} />
-        ))}
+        <motion.div
+          variants={imageVariants("left",selectedLanguage)}
+          
+          className={`flex-1 flex items-center justify-center`}
+        >
+          <img
+            src="/how-it-works.svg"
+            alt="how it works"
+            className="w-[90%] h-[90%] object-contain "
+          />
+        </motion.div>
+        <motion.div
+          variants={fadeIn("right", "tween", 0.2, 1, selectedLanguage)}
+          className="flex-[0.75] flex justify-center flex-col "
+          viewport={{ once: true }}
+        >
+          <TypingText title="| How it works" />
+          <TitleText title="Get started with a few clicks" />
+          <div className="flex flex-col max-w-[371px] mt-[31px] gap-6 ">
+            {startingFeatures.map((feature, indx) => (
+              <StartSteps key={feature} number={indx + 1} feature={feature} />
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

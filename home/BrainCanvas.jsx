@@ -1,16 +1,16 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "@/components/CanvasLoader";
 
-const Brain = () => {
+const Brain = ({ isMobile }) => {
   const brain = useGLTF("/models/tumors/scene.gltf");
 
   useFrame(({ clock }) => {
     brain.scene.rotation.y = clock.getElapsedTime() * 0.3; // Modify rotation speed here
   });
-  
+
   return (
     <mesh>
       <ambientLight intensity={10} />
@@ -27,19 +27,19 @@ const Brain = () => {
 };
 
 const BrainCanvas = () => {
-  // const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // useEffect(() => {
-  //   const mediaQuery = window.matchMedia("(max-width: 500px)");
-  //   setIsMobile(mediaQuery.matches);
-  //   const handelChanges = (ev) => {
-  //     setIsMobile(ev.matches);
-  //   };
-  //   mediaQuery.addEventListener("change", handelChanges);
-  //   return () => {
-  //     mediaQuery.removeEventListener("change", handelChanges);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mediaQuery.matches);
+    const handelChanges = (ev) => {
+      setIsMobile(ev.matches);
+    };
+    mediaQuery.addEventListener("change", handelChanges);
+    return () => {
+      mediaQuery.removeEventListener("change", handelChanges);
+    };
+  }, []);
 
   return (
     <Canvas
@@ -59,8 +59,8 @@ const BrainCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        {/* <Brain isMobile={isMobile} /> */}
-        <Brain  />
+        <Brain isMobile={isMobile} />
+        {/* <Brain  /> */}
       </Suspense>
 
       <Preload all />
