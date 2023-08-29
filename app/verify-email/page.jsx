@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { verifyEmail } from "@/lib/firebase";
 import { toast } from "react-toastify";
 import { playFireWorks } from "@/lib/fireWorks";
+import Image from "next/image";
 
 const EmailVerificationPage = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const EmailVerificationPage = () => {
       const res = await verifyEmail(oobCode);
       setIsVerified(true);
       playFireWorks();
-      router.push("/auth/login")
+      router.push("/auth/login");
     } catch (error) {
       toast.error(error.code);
       console.error(error);
@@ -56,7 +57,10 @@ const EmailVerificationPage = () => {
               transition={{ delay: 0.5 }}
               className="flex flex-col gap-3 w-full mt-4"
             >
-              <img
+              <Image
+                width={200}
+                height={150}
+                priority
                 src="/emailVerified.png"
                 alt="Email Verified"
                 className="max-w-[17rem] object-contain"

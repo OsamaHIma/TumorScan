@@ -10,6 +10,7 @@ import {
 import { TitleText, TypingText } from "@/components/TypingText";
 import { startingFeatures } from "@/constants";
 import { Translate, useLanguage } from "translate-easy";
+import Image from "next/image";
 
 const HowItWorks = () => {
   const { selectedLanguage } = useLanguage();
@@ -50,10 +51,12 @@ const HowItWorks = () => {
           
           className={`flex-1 flex items-center justify-center`}
         >
-          <img
+          <Image
             src="/how-it-works.svg"
             alt="how it works"
-            className="w-[90%] h-[90%] object-contain "
+            width={300}
+            height={300}
+            className="w-[90%] h-[90%] object-contain"
           />
         </motion.div>
         <motion.div

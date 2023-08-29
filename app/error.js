@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { Translate } from "translate-easy";
 
@@ -54,14 +55,19 @@ function Error({ errorMessage }) {
               href="/"
               className="bg-blue-gradient w-1/2 shrink-0 rounded-lg px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:opacity-80 sm:w-auto"
             >
-              <Translate translations={{ar:"عد للصفحة الرئيسية"}}>Take me home</Translate>
+              <Translate translations={{ ar: "عد للصفحة الرئيسية" }}>
+                Take me home
+              </Translate>
             </Link>
           </div>
         </div>
 
         <div className="relative mt-12 w-full lg:mt-0 lg:w-1/2">
-          <img
+          <Image
             className="w-full max-w-lg lg:mx-auto"
+            width={300}
+            height={300}
+            priority
             src="/serverError.svg"
             alt="505"
           />

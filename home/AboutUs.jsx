@@ -3,6 +3,7 @@
 import { TitleText, TypingText } from "@/components/TypingText";
 import { fadeIn, imageVariants, staggerContainer } from "@/utils/motion";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Translate, useLanguage } from "translate-easy";
 
 const WhatsNew = () => {
@@ -35,8 +36,10 @@ const WhatsNew = () => {
           variants={imageVariants("right", selectedLanguage)}
           className={`flex-1 flex justify-center items-center`}
         >
-          <img
+          <Image
             src="/about-us.svg"
+            width={300}
+            height={300}
             alt="whats-new"
             className="w-full object-cover "
           />

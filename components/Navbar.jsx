@@ -107,7 +107,7 @@ const Navbar = () => {
       >
         <div className="flex items-center gap-3">
           <Link href="/">
-            <img src="/logo.svg" className="w-32 md:w-[300px]" alt="logo" />
+            <Image src="/logo.svg" width={300} height={300} priority className="w-32 md:w-[300px]" alt="logo" />
           </Link>
         </div>
         <section className="flexCenter relative">

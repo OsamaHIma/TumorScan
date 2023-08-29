@@ -121,6 +121,7 @@ const UploadPage = () => {
             className="inline"
             width={19}
             height={19}
+            priority
             alt="image icon"
           />
           <p className="text-gray-400">
