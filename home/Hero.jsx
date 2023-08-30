@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BrainCanvas from "./BrainCanvas";
 import { Search, User, Check, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@material-tailwind/react";
 
 import { Translate } from "translate-easy";
 import { textVariant } from "@/utils/motion";
@@ -41,12 +42,12 @@ const Hero = () => {
                   transition={{ duration: 1, type: "tween" }}
                   viewport={{ once: true }}
                 >
-                  <button
+                  <Button
                     className="rounded-full bg-indigo-500 p-2 text-white shadow-md transition-all duration-300 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     onClick={handleScrollToTop}
                   >
                     <ArrowUp size={28} />
-                  </button>
+                  </Button>
                 </motion.div>
               )}
 
@@ -79,7 +80,7 @@ const Hero = () => {
                 variants={textVariant()}
                 initial="hidden"
                 whileInView="show"
-                className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right "
+                className="text-stone-300 md:text-gray-400 rtl:text-stone-200 rtl:text-right "
               >
                 <Translate>Advanced Technology for Precise</Translate>
               </motion.span>
@@ -87,7 +88,7 @@ const Hero = () => {
                 variants={textVariant(0.5)}
                 initial="hidden"
                 whileInView="show"
-                className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right "
+                className="text-stone-300 md:text-gray-400 rtl:text-stone-200 rtl:text-right "
               >
                 <Translate>Diagnosis and Treatment.</Translate>
               </motion.span>
@@ -106,7 +107,7 @@ const Hero = () => {
                     +
                   </span>
                 </span>
-                <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right">
+                <p className="text-stone-300 md:text-gray-400 rtl:text-stone-200 rtl:text-right">
                   <Translate>Patients</Translate>
                 </p>
               </div>
@@ -123,11 +124,11 @@ const Hero = () => {
                   <span className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100">
                     %
                   </span>
-                  <span className="ml-2 text-3xl font-bold text-dark-orange">
+                  <span className="ml-2 text-3xl font-bold text-orange-500">
                     +
                   </span>
                 </span>
-                <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right">
+                <p className="text-stone-300 md:text-gray-400 rtl:text-stone-200 rtl:text-right">
                   <Translate>Accurate Result</Translate>
                 </p>
               </div>
@@ -141,11 +142,11 @@ const Hero = () => {
                     duration={4}
                     className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
-                  <span className="ml-2 text-3xl font-bold text-dark-orange">
+                  <span className="ml-2 text-3xl font-bold text-orange-500">
                     +
                   </span>
                 </span>
-                <p className="text-stone-300 md:text-light-gray rtl:text-stone-200 rtl:text-right">
+                <p className="text-stone-300 md:text-gray-400 rtl:text-stone-200 rtl:text-right">
                   <Translate>Scans</Translate>
                 </p>
               </div>

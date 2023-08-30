@@ -8,6 +8,7 @@ import { verifyEmail } from "@/lib/firebase";
 import { toast } from "react-toastify";
 import { playFireWorks } from "@/lib/fireWorks";
 import Image from "next/image";
+import { Button } from "@material-tailwind/react";
 
 const EmailVerificationPage = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const EmailVerificationPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-screen  ">
         <motion.div
           initial={{ opacity: 0, translateY: "2rem" }}
           animate={{ opacity: 1, translateY: 0 }}
@@ -42,12 +43,12 @@ const EmailVerificationPage = () => {
               <p className="text-gray-600 ">
                 Click the button below to verify your email address.
               </p>
-              <button
+              <Button
                 onClick={handleVerifyEmail}
-                className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300"
+                className="bg-orange-500 hover:bg-orange-700 text-white py-4 mt-4"
               >
                 Verify Email
-              </button>
+              </Button>
             </div>
           )}
           {isVerified && (

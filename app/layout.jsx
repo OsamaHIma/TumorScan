@@ -1,9 +1,9 @@
 import "./globals.scss";
-import { Cairo,Poppins ,Tajawal} from "next/font/google";
+import { Cairo, Poppins, Tajawal } from "next/font/google";
 import Providers from "@/components/Providers";
 
 const tajawal = Tajawal({
-  subsets: ["latin","arabic"],
+  subsets: ["latin", "arabic"],
   weight: ["400", "500", "700"],
 });
 const cairo = Cairo({
@@ -32,13 +32,11 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <head>
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="/logoTab.svg"
-        />
+        <link rel="icon" type="image/x-icon" href="/logoTab.svg" />
       </head>
-      <body className={`${tajawal.className} bg-stone-200 transition-all ease-in-out dark:bg-primary-black`}>
+      <body
+        className={`${cairo.className}  bg-stone-200 dark:bg-primary-black text-stone-800 dark:text-stone-200 transition-all ease-in-out`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

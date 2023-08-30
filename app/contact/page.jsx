@@ -209,7 +209,7 @@ const ContactForm = () => {
                           })}
                         </div>
                       )}
-                      <button
+                      <Button
                         type="submit"
                         data-te-ripple-init
                         data-te-ripple-color="light"
@@ -217,7 +217,7 @@ const ContactForm = () => {
                       >
                         {/* <Translate>{loading ? "Sending..." : "Send"}</Translate> */}
                         {loading ? (<Translate translations={{ar:"...جاري الإرسال"}}>Sending...</Translate>) : (<Translate translations={{ ar: "أرسل" }} >Send</Translate>)}
-                      </button>
+                      </Button>
                     </form>
                   </motion.div>
                 </div>

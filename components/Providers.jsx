@@ -22,7 +22,7 @@ const Providers = ({ children }) => {
                   draggable
                   pauseOnHover
                   limit={1}
-                  toastClassName="dark:bg-[#252220] dark:text-indigo-100"
+                  toastClassName="dark:bg-stone-900 dark:text-indigo-100"
                 />
 
                 {children}

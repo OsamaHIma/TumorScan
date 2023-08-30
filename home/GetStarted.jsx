@@ -1,4 +1,5 @@
-'use client'
+"use client";
+import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 import { Translate } from "translate-easy";
 
@@ -10,11 +11,15 @@ const GetStarted = () => {
           <Translate>Get started with</Translate> Tumor scanner
         </h1>
         <p className="text-gray-300">
-          <Translate>Efficient diagnosis of various types of cancer for free</Translate>.
-        </p>
-
-        <Link href="/upload" type="button" className="btn border-2 border-gray-50 bg-white/20 font-normal">
-          <Translate>Give it a try</Translate>!
+          <Translate>
+            Efficient diagnosis of various types of cancer for free
+          </Translate>
+          .
+        </p>{" "}
+        <Link href="/upload">
+          <Button variant="outlined" className="border-gray-300 text-stone-200 py-4" >
+            <Translate>Give it a try</Translate>!
+          </Button>
         </Link>
       </div>
     </section>

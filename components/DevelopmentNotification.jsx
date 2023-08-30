@@ -70,12 +70,12 @@ const DevelopmentNotification = () => {
         //         <label htmlFor="hide" className="text-white text-sm">
         //           <Translate>Don&apos;t show this next time</Translate>
         //         </label>
-        //         <button
+        //         <Button
         //           onClick={handleClose}
         //           className="bg-white px-3 py-1 rounded shadow text-yellow-500 font-semibold hover:bg-gray-100"
         //         >
         //           <Translate>Close</Translate>
-        //         </button>
+        //         </Button>
         //       </div>
         //     </div>
         //   </div>
@@ -120,7 +120,7 @@ const DevelopmentNotification = () => {
                 <Translate>Don&apos;t show this next time</Translate>
               </label>
             </div>
-            <button
+            <Button
               onClick={handleClose}
               type="button"
               className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -141,7 +141,7 @@ const DevelopmentNotification = () => {
                 />
               </svg>
               <span className="sr-only">Close banner</span>
-            </button>
+            </Button>
           </div>
         </div>
       )}

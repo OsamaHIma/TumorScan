@@ -84,12 +84,12 @@ const DragAndDrop = () => {
           <>
             <h4>Files</h4>
             <ul>{files}</ul>
-            <button
+            <Button
               onClick={handleRemoveFiles}
               className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
             >
               Remove Files
-            </button>
+            </Button>
           </>
         )}
       </aside>

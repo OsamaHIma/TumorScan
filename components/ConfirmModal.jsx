@@ -5,18 +5,18 @@ const ConfirmModal = ({ message, onConfirm, onCancel }) => {
         {message}
       </div>
       <div className="flex justify-end">
-        <button
+        <Button
           className="mr-4 rounded bg-gray-200 px-4 py-2 hover:bg-gray-300"
           onClick={onCancel}
         >
           Cancel
-        </button>
-        <button
+        </Button>
+        <Button
           className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
           onClick={onConfirm}
         >
           Confirm
-        </button>
+        </Button>
       </div>
     </div>
   );

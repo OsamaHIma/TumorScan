@@ -1,15 +1,17 @@
 "use client";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 import { resetPassword } from "@/lib/firebase";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { CheckCircle2, CheckIcon, EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";
 import { loginUserSchema } from "@/schema/userSchema";
+import { Button, Input, Spinner } from "@material-tailwind/react";
+import { Translate } from "translate-easy";
 
 const ResetPasswordPage = () => {
   const searchParams = useSearchParams();
-  const oobCode = searchParams.get('oobCode');
+  const oobCode = searchParams.get("oobCode");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,17 +33,16 @@ const ResetPasswordPage = () => {
       setError(error.errors);
       return;
     }
-    
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match.");
       return;
     }
 
-
     setError(null);
     setIsLoading(true);
     try {
-      const res = await resetPassword(oobCode,password)
+      const res = await resetPassword(oobCode, password);
       setSuccess(true);
     } catch (error) {
       setError(error.code);
@@ -55,75 +56,86 @@ const ResetPasswordPage = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-10 md:mt-20">
       <h1 className="text-3xl font-bold mb-4">
-        Reset your password
+        <Translate>Reset your password</Translate>
       </h1>
 
       {!success ? (
-        <form className="flex flex-col gap-4 w-full max-w-md" onSubmit={handleResetPassword}>
-          <p className="text-gray-500 dark:text-gray-300">
-          Password must contain at least 8 characters, one uppercase letter,<br/> one lowercase letter, and one number.
+        <form
+          className="flex flex-col gap-4 w-full max-w-md"
+          onSubmit={handleResetPassword}
+        >
+          <p className="text-gray-500 dark:text-gray-300 rtl:text-right">
+            <Translate>
+              Password must contain at least 8 characters, one uppercase letter,
+            </Translate>
+            <br /> <Translate>one lowercase letter, and one number</Translate>.
           </p>
-           <label htmlFor="password" className="text-lg font-semibold">
-            New password:
-          </label>
-          <div className="relative w-full">
-            <input
-              type={passwordIcon ? "text" : "password"}
-              placeholder="Enter Your Password"
-              id="password"
-              name="password"
-              value={password}
-              minLength={8}
-              onChange={(e) => setPassword(e.target.value)}
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-                }`}
-            />
-            {passwordIcon ? (
-              <EyeIcon
-                className="cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-400"
-                onClick={togglePasswordIcon}
-              />
-            ) : (
-              <EyeOffIcon
-                className="cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-400"
-                onClick={togglePasswordIcon}
-              />
-            )}
-            </div>
-          {/* <label htmlFor="password" className="text-lg font-semibold">
-            New password:
-          </label>
-          <input
-            type="password"
+
+          <Input
+            label={
+              <div className="dark:text-gray-300">
+                <Translate>New password:</Translate>
+              </div>
+            }
+            type={passwordIcon ? "text" : "password"}
             id="password"
-            placeholder="Your Password at least 8 characters"
+            name="password"
             value={password}
             minLength={8}
             onChange={(e) => setPassword(e.target.value)}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-              }`}
-          /> */}
-          <label htmlFor="confirmPassword" className="text-lg font-semibold">
-            Confirm new password:
-          </label>
-          <input
-           type={passwordIcon ? "text" : "password"}
+            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+              error && "border-red-500"
+            }`}
+            icon={
+              passwordIcon ? (
+                <EyeIcon
+                  className="cursor-pointer"
+                  onClick={togglePasswordIcon}
+                />
+              ) : (
+                <EyeOffIcon
+                  className="cursor-pointer"
+                  onClick={togglePasswordIcon}
+                />
+              )
+            }
+          />
+          <Input
+            label={
+              <div className="dark:text-gray-300">
+                <Translate>Confirm new password:</Translate>
+              </div>
+            }
+            size="lg"
+            type={passwordIcon ? "text" : "password"}
             id="confirmPassword"
-            minLength={8}
-            placeholder="Confirm Your Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${error && "border-red-500"
-                }`}
+            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+              error && "border-red-500"
+            }`}
           />
           {error && <div className="text-red-500 text-sm">{error}</div>}
-          <button type="submit" className="btn bg-orange-400">
-          {isLoading ? "Loading..." : "Reset password"}
-          </button>
+          <Button type="submit" className=" bg-orange-400">
+            {isLoading ? (
+              <Spinner color="green" className="mx-auto" />
+            ) : (
+              <Translate>Reset Password</Translate>
+            )}
+          </Button>
         </form>
       ) : (
-        <div className="text-lg font-semibold dark:text-slate-50">
-          Your password has been reset successfully, you can now <Link href="/auth/login" className="text-indigo-500 font-semibold">Sign in</Link>.
+        <div className="flex flex-col items-center gap-3">
+          <CheckCircle2 className="text-green-500" size={75} />
+          <h1 className="text-lg rtl:text-right font-semibold dark:text-slate-50">
+          <Translate>
+            Your password has been reset successfully, 
+          </Translate>{" "}
+          <Link href="/auth/login" className="text-indigo-500 font-semibold">
+            <Translate>Sign in</Translate>
+          </Link>
+          .
+        </h1>
         </div>
       )}
     </div>

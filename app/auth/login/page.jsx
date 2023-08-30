@@ -9,6 +9,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Translate } from "translate-easy";
 import { signWithGoogle } from "@/lib/firebase";
 import { toast } from "react-toastify";
+import { Button, Checkbox, Input, Spinner } from "@material-tailwind/react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -21,8 +22,8 @@ const LoginPage = () => {
 
   const signInWithGoogle = async () => {
     try {
-     const res = await signIn("google");
-     console.log(res)
+      const res = await signIn("google");
+      console.log(res);
       // await signWithGoogle();
 
       router.push(`/upload`);
@@ -36,7 +37,6 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     setError(null);
 
     try {
@@ -52,6 +52,7 @@ const LoginPage = () => {
       setError(error.errors);
       return;
     }
+    setIsLoading(true);
 
     try {
       const user = await signIn("credentials", {
@@ -103,50 +104,49 @@ const LoginPage = () => {
       </div>
 
       <form className="flex flex-col gap-8" autoComplete="on">
-        <div className="flex flex-col">
-          <label htmlFor="email" className="mb-4 text-md font-bold ">
-            <Translate>Email</Translate>
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Your Email"
-            id="email"
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-              error && "border-red-500"
-            }`}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="password" className="mb-4 text-md font-bold">
-            <Translate>Password</Translate>
-          </label>
-          <div className="relative w-full">
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              type={isShowPassword ? "text" : "password"}
-              value={password}
-              placeholder="Enter Your Password"
-              id="password"
-              autoComplete="current-password"
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-                error && "border-red-500"
-              }`}
-            />
-            {!isShowPassword ? (
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Email</Translate>
+            </div>
+          }
+          size="lg"
+          type="email"
+          value={email}
+          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Password</Translate>
+            </div>
+          }
+          icon={
+            !isShowPassword ? (
               <EyeIcon
                 onClick={() => setIsShowPassword(true)}
-                className="rounded-md cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-50"
+                className="rounded-md cursor-pointer "
               />
             ) : (
               <EyeOffIcon
                 onClick={() => setIsShowPassword(false)}
-                className="rounded-md cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-50"
+                className="rounded-md cursor-pointer "
               />
-            )}
-          </div>
-        </div>
+            )
+          }
+          size="lg"
+          onChange={(e) => setPassword(e.target.value)}
+          type={isShowPassword ? "text" : "password"}
+          value={password}
+          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+        />
+
         {error && (
           <ol className="flex list-decimal flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
@@ -159,25 +159,17 @@ const LoginPage = () => {
           </ol>
         )}
         <div className="flex justify-between items-center w-full h-full">
-          <div className="flex justify-center items-center gap-1">
-            <div className="relative flex items-center rtl:flex-row-reverse">
-              <input
-                onChange={(e) => setIsRememberedUser(e.target.checked)}
-                type="checkbox"
-                checked={isRememberedUser}
-                value={isRememberedUser || ""}
-                id="remember-me"
-                className="w-4 h-4 border relative border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-              />
-              <label
-                htmlFor="remember-me"
-                className=" text-gray-400 ltr:ml-2 rtl:mr-2"
-              >
-                <Translate>Remember me</Translate>
-              </label>
-            </div>
-          </div>
-
+          <Checkbox
+            label={
+              <div className="dark:text-gray-300">
+                <Translate>Remember Me</Translate>
+              </div>
+            }
+            onChange={(e) => setIsRememberedUser(e.target.checked)}
+            checked={isRememberedUser}
+            value={isRememberedUser || ""}
+            id="remember-me"
+          />
           <Link
             className="text-indigo-400 font-bold text-sm"
             href="/auth/forgot-password"
@@ -187,18 +179,22 @@ const LoginPage = () => {
         </div>
 
         <div className="flex flex-col text-center gap-5">
-          <button
-            className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
+          <Button
+            className="bg-indigo-600 hover:bg-indigo-700 py-4"
             type="submit"
             onClick={handleLogin}
           >
-            <Translate>{loading ? "Loading..." : "Login"}</Translate>
-          </button>
+            {loading ? (
+              <Spinner color="green" className="mx-auto" />
+            ) : (
+              <Translate>Log In</Translate>
+            )}
+          </Button>
 
           {/* <p className="text-xl">OR</p>
 
-          <button
-            className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
+          <Button
+            className=" translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
             type="button"
             onClick={signInWithGoogle}
           >
@@ -215,7 +211,7 @@ const LoginPage = () => {
               className="w-7 object-contain"
               alt="google logo"
             />
-          </button> */}
+          </Button> */}
         </div>
       </form>
       <p className="text-gray-400 relative bottom-0 text-center">

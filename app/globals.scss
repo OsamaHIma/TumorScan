@@ -36,7 +36,7 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
 }
 // Button Styles
 .btn {
-  @apply py-3 px-5 rounded-lg text-white hover:text-stone-200 hover:scale-110 font-semibold;
+  @apply py-3 px-5 rounded-lg text-white hover:text-gray-200 hover:scale-110 font-semibold;
   transition: 0.3s all ease-in-out;
 }
 
@@ -102,7 +102,7 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
 }
 
 .custom-shape-divider-bottom-1690286822 .shape-fill {
-  @apply fill-stone-50 dark:fill-[#201d1b];
+  @apply fill-gray-50 dark:fill-[#201d1b];
 }
 
 // Accordion Styles

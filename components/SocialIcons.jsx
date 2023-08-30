@@ -32,7 +32,7 @@ const SocialIcons = () => {
           </li>
         ))}
         <li title="WhatsApp" className="flexCenter">
-          <button
+          <Button
             className="dark:text-stone-50 focus:-translate-y-1 hover:-translate-y-1 text-indigo-600 p-3 focus:outline-dashed outline-2 outline-theme-color transition-all ease-in rounded-full bg-stone-200 dark:bg-indigo-600 shadow-xl"
             onClick={openWhatsapp}
           >
@@ -55,7 +55,7 @@ const SocialIcons = () => {
                 </g>
               </svg>
             </div>
-          </button>
+          </Button>
         </li>
       </ul>
     </motion.div>

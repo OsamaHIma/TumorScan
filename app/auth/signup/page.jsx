@@ -13,6 +13,7 @@ import {
 } from "@/lib/firebase";
 import TermsModal from "@/components/TermsModal";
 import { signIn } from "next-auth/react";
+import { Button, Checkbox, Spinner, Input } from "@material-tailwind/react";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -74,6 +75,7 @@ const SignUpPage = () => {
       toast.error(error.message || error);
     }
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
@@ -132,100 +134,91 @@ const SignUpPage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-        <div className="flex flex-col">
-          <label htmlFor="name" className="mb-4 text-md font-bold">
-            <Translate>Name</Translate>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Your Name"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-              error && "border-red-500"
-            }`}
-          />
-        </div>
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Name</Translate>
+            </div>
+          }
+          size="lg"
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+        />
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Email</Translate>
+            </div>
+          }
+          size="lg"
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+        />
 
-        <div className="flex flex-col">
-          <label htmlFor="email" className="mb-4 text-md font-bold">
-            <Translate>Email</Translate>
-          </label>
-          <input
-            type="email"
-            placeholder="Enter Your Email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-              error && "border-red-500"
-            }`}
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="password" className="mb-4 text-md font-bold">
-            <Translate>Password</Translate>
-          </label>
-          <div className="relative w-full">
-            <input
-              type={passwordIcon ? "text" : "password"}
-              placeholder="Enter Your Password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-                error && "border-red-500"
-              }`}
-            />
-            {passwordIcon ? (
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Password</Translate>
+            </div>
+          }
+          icon={
+            passwordIcon ? (
               <EyeIcon
-                className="cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-400"
                 onClick={togglePasswordIcon}
+                className="rounded-md cursor-pointer "
               />
             ) : (
               <EyeOffIcon
-                className="cursor-pointer top-[50%] translate-y-[-50%] absolute right-2 text-gray-400"
                 onClick={togglePasswordIcon}
+                className="rounded-md cursor-pointer "
               />
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <label
-            htmlFor="password_confirmation"
-            className="mb-4 text-md font-bold"
-          >
-            <Translate>Confirm Password</Translate>
-          </label>
-          <div className="relative w-full">
-            <input
-              type={passwordIcon ? "text" : "password"}
-              placeholder="Confirm Your Password"
-              id="password_confirmation"
-              name="password_confirmation"
-              value={formData.password_confirmation}
-              onChange={handleInputChange}
-              className={`px-4 w-full rounded-md bg-indigo-300/70 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2 ${
-                error && "border-red-500"
-              }`}
-            />
-          </div>
-        </div>
-        <div className="flex items-center relative rtl:flex-row-reverse">
-          <input
-            type="checkbox"
+            )
+          }
+          size="lg"
+          type={passwordIcon ? "text" : "password"}
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+        />
+        <Input
+          label={
+            <div className="dark:text-gray-300">
+              <Translate>Confirm Password</Translate>
+            </div>
+          }
+          size="lg"
+          type={passwordIcon ? "text" : "password"}
+          id="password_confirmation"
+          name="password_confirmation"
+          value={formData.password_confirmation}
+          onChange={handleInputChange}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
+            error && "border-red-500"
+          }`}
+        />
+        <div className="flex rtl:flex-row-reverse gap-3 items-center">
+          <Checkbox
             id="termsCheckbox"
             value={termsChecked}
-            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
             onChange={handleCheckboxChange}
           />
-          <label className="ltr:ml-2 rtl:mr-2">
+          <p className="dark:text-gray-300 rtl:text-right">
             <Translate>I agree to the</Translate>{" "}
             <span
               className="text-blue-500 font-semibold cursor-pointer hover:underline"
@@ -233,9 +226,12 @@ const SignUpPage = () => {
             >
               <Translate>Terms and Conditions</Translate>
             </span>
-          </label>
-          {showTermsModal && <TermsModal closeTermsModal={closeTermsModal} />}
+          </p>
         </div>
+
+        {showTermsModal && (
+          <TermsModal open={showTermsModal} handleOpen={closeTermsModal} />
+        )}
         {error && (
           <ol className="flex list-decimal flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
             {error.map((err, key) => {
@@ -249,17 +245,21 @@ const SignUpPage = () => {
         )}
 
         <div className="flex flex-col text-center gap-5">
-          <button
-            className="btn translation-all bg-indigo-600 ease-in-out hover:bg-indigo-700"
+          <Button
+            className="bg-indigo-600 hover:bg-indigo-700 py-4"
             type="submit"
           >
-            <Translate>{loading ? "Loading..." : "Sign Up"}</Translate>
-          </button>
+            {loading ? (
+              <Spinner color="green" className="mx-auto" />
+            ) : (
+              <Translate>Register</Translate>
+            )}
+          </Button>
 
           {/* <p className="text-xl">OR</p>
 
-          <button
-            className="btn translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
+          <Button
+            className=" translation-all flex items-center justify-center gap-3 bg-indigo-600 ease-in-out hover:bg-indigo-700"
             type="button"
             onClick={signInWithGoogle}
           >
@@ -275,7 +275,7 @@ const SignUpPage = () => {
               className="w-7 object-contain"
               alt="google logo"
             />
-          </button> */}
+          </Button> */}
         </div>
       </form>
       <p className="text-gray-400 relative bottom-4 text-center">

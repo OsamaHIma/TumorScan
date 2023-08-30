@@ -7,6 +7,8 @@ import {
   TrashIcon,
   Send,
   Loader2Icon,
+  Image,
+  ImageIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUser } from "@/context/UserContext";
@@ -14,6 +16,7 @@ import { Translate, useLanguage } from "translate-easy";
 import { toast } from "react-toastify";
 import { slideIn, staggerContainer } from "@/utils/motion";
 import { TitleText, TypingText } from "@/components/TypingText";
+import { Button, IconButton, Textarea, Tooltip } from "@material-tailwind/react";
 
 const Comments = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -67,37 +70,55 @@ const Comments = () => {
 
   return (
     <motion.section
-    variants={staggerContainer}
-    initial="hidden"
-    whileInView="show"
-  //   viewport={{ once: true }}
-    className="innerWidth paddings"
-  >
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="show"
+      //   viewport={{ once: true }}
+      className="innerWidth paddings"
+    >
       <TypingText title="| Your Opinion Matters" textStyles="text-center" />
       <TitleText title="Tell Us What You Think" textStyles="text-center" />
 
       <form onSubmit={handleSubmit} className="flex items-center my-4">
-        <textarea
-          placeholder="Write a comment, feedback or suggestions:"
-          value={comment}
-          // cols={4}
-          rows={1}
-          onChange={(e) => setComment(e.target.value)}
-          className="px-4 w-full rounded-md bg-indigo-300/70 mx-3 dark:bg-slate-800 placeholder:text-slate-50 focus:outline-gray-200 py-2"
-        />
-        <button
-          type="submit"
-          className="text-white bg-indigo-500 transition-all ease-in-out duration-500 hover:bg-indigo-600 px-4 py-2 rounded-md w-24"
-        >
-          {isLoading ? (
-            <Loader2Icon className="inline-block mx-2 animate-spin text-slate-50" />
-          ) : (
-            <Send size={23} className="inline-block mx-2" />
-          )}
-        </button>
+        <div className="flex w-full flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 dark:border-gray-100/10 bg-gray-900/5 dark:bg-stone-800 p-2">
+          <div className="flex">
+            <Tooltip content="Working on it">
+              <IconButton variant="text" className="rounded-full">
+                <ImageIcon className="dark:text-stone-300" />
+              </IconButton>
+            </Tooltip>
+          </div>
+
+          <Textarea
+            rows={1}
+            resize={true}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Your Message"
+            className="min-h-full dark:placeholder:text-gray-400 dark:text-gray-300 !border-0 focus:border-transparent bg"
+            containerProps={{
+              className: "grid h-full",
+            }}
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+          />
+          <div>
+            <IconButton variant="text" className="rounded-full" type="submit">
+              {isLoading ? (
+                <Loader2Icon className="inline-block mx-2 animate-spin text-green-400" />
+              ) : (
+                <Send
+                  size={23}
+                  className="inline-block mx-2 dark:text-slate-50"
+                />
+              )}
+            </IconButton>
+          </div>
+        </div>
       </form>
 
-      <div className="bg-stone-100 dark:bg-zinc-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
+      <div className="bg-stone-100 dark:bg-stone-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
         <h2 className="text-2xl font-bold mb-4">
           <Translate translations={{ ar: "التعليقات" }}>Comments</Translate>
         </h2>
@@ -119,7 +140,7 @@ const Comments = () => {
               initial="hidden"
               whileInView="show"
               // viewport={{ once: false }}
-              className="bg-white dark:bg-neutral-900 rounded-lg p-4 mb-4 shadow-md flex items-start"
+              className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 mb-4 shadow-md flex items-start"
             >
               <div className="ml-3 flex-grow">
                 <div className="flex flex-col mt-2">
@@ -141,7 +162,7 @@ const Comments = () => {
                     </div>
                   </div>
                 </div>
-                <p className=" !w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
+                <p className="!w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
                   {comment.text}
                 </p>
               </div>

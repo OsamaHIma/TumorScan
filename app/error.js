@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Translate } from "translate-easy";
+import { Button } from "@material-tailwind/react";
+import { ArrowLeft } from "lucide-react";
 
 function Error({ errorMessage }) {
   // "use server";
@@ -29,35 +31,22 @@ function Error({ errorMessage }) {
           </p>
 
           <div className="mt-6 flex items-center gap-x-3">
-            <button
+            <Button
               onClick={handleGoBack}
-              className="bg-transaprent flex w-1/2 items-center justify-center gap-x-2 rounded-lg border px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+              variant="outline"
+              className="flex w-1/2 items-center justify-center gap-x-2 text-sm dark:border-gray-700 text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="h-5 w-5 rtl:rotate-180"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                />
-              </svg>
+              <ArrowLeft />
 
               <span>Go back</span>
-            </button>
+            </Button>
 
-            <Link
-              href="/"
-              className="bg-blue-gradient w-1/2 shrink-0 rounded-lg px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:opacity-80 sm:w-auto"
-            >
-              <Translate translations={{ ar: "عد للصفحة الرئيسية" }}>
-                Take me home
-              </Translate>
+            <Link href="/">
+              <Button className="bg-indigo-400 w-1/2 shrink-0 py-4 text-sm tracking-wide text-white sm:w-auto">
+                <Translate translations={{ ar: "عد للصفحة الرئيسية" }}>
+                  Take me home
+                </Translate>
+              </Button>
             </Link>
           </div>
         </div>
