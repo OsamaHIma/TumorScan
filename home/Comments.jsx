@@ -139,7 +139,7 @@ const Comments = () => {
               )}
               initial="hidden"
               whileInView="show"
-              // viewport={{ once: false }}
+              viewport={{ once: true }}
               className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 mb-4 shadow-md flex items-start"
             >
               <div className="ml-3 flex-grow">
