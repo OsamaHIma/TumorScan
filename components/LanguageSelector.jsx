@@ -43,7 +43,7 @@ const LanguageSelector = () => {
           languages.map((language, index) => (
             <MenuItem
               key={index}
-              className={`block w-full cursor-pointer z-50 px-4 py-2 text-left text-stone-800 dark:text-stone-100 transition-all hover:bg-indigo-500/60 ${
+              className={`block w-full cursor-pointer z-50 px-4 py-2 text-left text-stone-800 dark:text-stone-100 transition-all hover:!bg-indigo-500/60 ${
                 selectedLanguage.code === language.code
                   ? "border border-dashed border-gray-100 dark:border-gray-300 rounded-md bg-indigo-500 text-slate-50"
                   : ""
