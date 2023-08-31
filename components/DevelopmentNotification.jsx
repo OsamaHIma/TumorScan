@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { Translate } from "translate-easy";
 
@@ -48,38 +49,6 @@ const DevelopmentNotification = () => {
   return (
     <>
       {showNotification && (
-        // <div className="fixed inset-x-0 top-12 md:top-20 z-20 p-4 bg-yellow-500">
-        //   <div className="max-w-screen-lg mx-auto">
-        //     <div className="flex flex-wrap gap-3 md:gap-0 justify-between items-center">
-        //       <div className="text-white">
-        //         <p className="font-semibold">
-        //           <Translate>Website under development</Translate>
-        //         </p>
-        //         <p className="text-sm">
-        //           <Translate>There may be some issues and bugs</Translate>.
-        //         </p>
-        //       </div>
-        //       <div className="flex items-center space-x-2">
-        //         <input
-        //           type="checkbox"
-        //           checked={hideFutureNotifications}
-        //           onChange={() =>
-        //             setHideFutureNotifications(!hideFutureNotifications)
-        //           }
-        //         />
-        //         <label htmlFor="hide" className="text-white text-sm">
-        //           <Translate>Don&apos;t show this next time</Translate>
-        //         </label>
-        //         <Button
-        //           onClick={handleClose}
-        //           className="bg-white px-3 py-1 rounded shadow text-yellow-500 font-semibold hover:bg-gray-100"
-        //         >
-        //           <Translate>Close</Translate>
-        //         </Button>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
         <div
           id="sticky-banner"
           tabIndex="-1"

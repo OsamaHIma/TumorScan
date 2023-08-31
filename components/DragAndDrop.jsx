@@ -1,5 +1,6 @@
 "use client";
 import { usePhoto } from "@/context/PhotoContext";
+import { Button } from "@material-tailwind/react";
 import Image from "next/image";
 import { useEffect, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
@@ -86,7 +87,7 @@ const DragAndDrop = () => {
             <ul>{files}</ul>
             <Button
               onClick={handleRemoveFiles}
-              className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+              className="mt-2 bg-red-500 text-white py-4 rounded"
             >
               Remove Files
             </Button>
