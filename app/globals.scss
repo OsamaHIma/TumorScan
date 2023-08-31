@@ -73,18 +73,6 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   transform: rotate(180deg);
 }
 
-// Form Validation Styles
-.validated .needs-validation,
-.validated textarea {
-  outline: #22c55e !important;
-  @apply border border-green-500;
-}
-
-.not-validated .needs-validation,
-.not-validated textarea {
-  outline: #ce0000 !important;
-  @apply border border-red-500;
-}
 
 // Swiper Wrapper Styles
 .swiper-wrapper {

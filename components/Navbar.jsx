@@ -50,7 +50,6 @@ const Navbar = () => {
     }
   };
 
-
   return (
     <nav
       className={` ${
@@ -62,7 +61,7 @@ const Navbar = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="h-container flexCenter paddings innerWidth relative !justify-between border-b-[3px] border-stone-300 !py-2 dark:border-stone-700"
+        className="h-container flex items-center justify-between flex-nowrap md:paddings p-3 innerWidth relative border-b-[3px] border-stone-300 dark:border-stone-700"
       >
         <div className="flex items-center gap-3">
           <Link href="/">
@@ -76,13 +75,13 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <section className="flexCenter relative">
+        <section className="flex items-center">
           {/* Theme menu */}
           <ThemeSelector />
+          <LanguageSelector />
           {/* Menu for large screens */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block mx-2">
             <ul className="h-menu flexCenter !gap-8">
-              <LanguageSelector />
               {navLinks.map((link, index) => (
                 <li key={index}>
                   <Link href={`${link.id}`} className="text-stone-50">
@@ -113,10 +112,12 @@ const Navbar = () => {
               mount: { y: 0 },
               unmount: { y: 25 },
             }}
-            
           >
             <MenuHandler>
-              <IconButton  variant="text" className="mx-4 block rounded-full lg:hidden">
+              <IconButton
+                variant="text"
+                className="mx-1.5 md:mx-4 block rounded-full lg:hidden"
+              >
                 <MenuIcon className="hover:text-slate-400 transition ease-in-out  rtl:text-indigo-500 ltr:text-stone-300 dark:hover:text-slate-100" />
                 <span className="sr-only">
                   <Translate>Toggle menu</Translate>
@@ -124,10 +125,12 @@ const Navbar = () => {
               </IconButton>
             </MenuHandler>
 
-            <MenuList className="dark:bg-stone-900 border-0 w-[13rem] lg:hidden rtl:!right-[57%] ltr:!left-[57%]">
-              <LanguageSelector />
+            <MenuList className="dark:bg-stone-900 border-0 w-[13rem] text-center lg:hidden">
               {navLinks.map((link, index) => (
-                <MenuItem key={index} className=" dark:hover:bg-stone-700 my-3">
+                <MenuItem
+                  key={index}
+                  className=" dark:hover:bg-stone-700 my-3 text-center"
+                >
                   <Link
                     href={`${link.id}`}
                     className="text-stone-900 dark:text-stone-400"
@@ -137,7 +140,7 @@ const Navbar = () => {
                 </MenuItem>
               ))}
               {token && (
-                <MenuItem className=" dark:hover:bg-stone-700 my-3">
+                <MenuItem className=" dark:hover:bg-stone-700 my-3 text-center">
                   <Link
                     href="/upload"
                     className="text-stone-900 dark:text-stone-400"

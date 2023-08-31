@@ -22,7 +22,7 @@ const ThemeSelector = () => {
       
     >
       <MenuHandler>
-        <IconButton className="ltr:mr-5 rtl:ml-5 rounded-full" variant="text">
+        <IconButton className="rounded-full" variant="text">
           <MoonIcon className="hidden rotate-90 transition-all outline-none dark:block dark:rotate-0  dark:saturate-100 text-blue-300/70" />
           <SunIcon className="block rotate-0 transition-all outline-none text-orange-300 dark:hidden dark:rotate-90 " />
           <span className="sr-only">Toggle theme menu</span>

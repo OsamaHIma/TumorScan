@@ -20,7 +20,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <Menu className={`relative inline-block mx-2`}>
+    <Menu className={`relative inline-block`}>
       <MenuHandler>
         <Button
           className={`rounded-full flex items-center gap-3 text-slate-50 bg-indigo-500 px-3 py-2`}
@@ -38,7 +38,7 @@ const LanguageSelector = () => {
           </div>
         </Button>
       </MenuHandler>
-      <MenuList dir="ltr" className="overflow-y-auto max-h-44 bg-stone-200 dark:bg-stone-900 border-0">
+      <MenuList dir="ltr" className="overflow-y-auto max-h-80 bg-stone-200 dark:bg-stone-900 border-0">
         {languages.length &&
           languages.map((language, index) => (
             <MenuItem
