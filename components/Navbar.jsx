@@ -117,7 +117,7 @@ const Navbar = () => {
           >
             <MenuHandler>
               <IconButton  variant="text" className="mx-4 block rounded-full lg:hidden">
-                <MenuIcon className="hover:text-slate-400 transition ease-in-out  dark:text-slate-400 dark:hover:text-slate-100" />
+                <MenuIcon className="hover:text-slate-400 transition ease-in-out  text-slate-300 dark:hover:text-slate-100" />
                 <span className="sr-only">
                   <Translate>Toggle menu</Translate>
                 </span>

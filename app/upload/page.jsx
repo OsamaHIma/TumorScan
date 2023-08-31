@@ -9,6 +9,7 @@ import { Translate } from "translate-easy";
 
 import axios from "axios";
 import Breadcrumb from "@/components/Breadcrumb";
+import { Button } from "@material-tailwind/react";
 
 // Function to send an image for prediction
 const sendImageForPrediction = async (imageFile) => {
@@ -16,18 +17,17 @@ const sendImageForPrediction = async (imageFile) => {
   formData.append("file", imageFile);
 
   try {
-    const response = await axios.post(
-      "https://tumor-ai.onrender.com/predict",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await fetch("/api/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: formData,
+    });
 
     // Handle the response containing the predictions
-    console.log(response.data);
+    console.log(response.json());
+    const { classResult, probResult } = await response.json();
   } catch (error) {
     console.error(error);
   }
