@@ -117,14 +117,14 @@ const Navbar = () => {
           >
             <MenuHandler>
               <IconButton  variant="text" className="mx-4 block rounded-full lg:hidden">
-                <MenuIcon className="hover:text-slate-400 transition ease-in-out  text-slate-300 dark:hover:text-slate-100" />
+                <MenuIcon className="hover:text-slate-400 transition ease-in-out  rtl:text-indigo-500 ltr:text-stone-300 dark:hover:text-slate-100" />
                 <span className="sr-only">
                   <Translate>Toggle menu</Translate>
                 </span>
               </IconButton>
             </MenuHandler>
 
-            <MenuList className="dark:bg-stone-900 border-0 lg:hidden mx-5">
+            <MenuList className="dark:bg-stone-900 border-0 w-[13rem] lg:hidden rtl:!right-[57%] ltr:!left-[57%]">
               <LanguageSelector />
               {navLinks.map((link, index) => (
                 <MenuItem key={index} className=" dark:hover:bg-stone-700 my-3">

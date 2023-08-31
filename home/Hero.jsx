@@ -153,7 +153,7 @@ const Hero = () => {
             </div>
           </div>
           <motion.div
-            className="hero-right min-h-[21rem] z-[5] order-first h-full w-full md:order-last"
+            className="hero-right min-h-[21rem] hidden md:block z-[5] order-first h-full w-full md:order-last"
             initial={{ x: "3rem", opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, type: "tween", delay: 0.5 }}
