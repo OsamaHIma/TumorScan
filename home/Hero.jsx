@@ -63,9 +63,9 @@ const Hero = () => {
                 initial={{ y: "2rem", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.7, type: "spring", delay: 0.7 }}
-                className="text-[4.8rem] rtl:text-stone-50 font-semibold leading-[4rem] mt-2"
+                className="text-[4.8rem] text-white font-semibold leading-[4rem] mt-2"
               >
-                <span className="md:text-indigo-500 rtl:text-indigo-50">
+                <span className="md:text-indigo-500 rtl:text-indigo-50 text-indigo-50">
                   <Translate>Cancer</Translate>
                 </span>{" "}
                 <Translate>and</Translate>{" "}

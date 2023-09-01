@@ -146,9 +146,8 @@ const SignUpPage = () => {
           name="name"
           value={formData.name}
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
         />
         <Input
           label={
@@ -162,9 +161,8 @@ const SignUpPage = () => {
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
         />
 
         <Input
@@ -192,9 +190,8 @@ const SignUpPage = () => {
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
         />
         <Input
           label={
@@ -208,9 +205,8 @@ const SignUpPage = () => {
           name="password_confirmation"
           value={formData.password_confirmation}
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
+          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
         />
         <div className="flex rtl:flex-row-reverse gap-3 items-center">
           <Checkbox

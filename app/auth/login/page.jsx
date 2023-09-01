@@ -113,10 +113,10 @@ const LoginPage = () => {
           size="lg"
           type="email"
           value={email}
-          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
           onChange={(e) => setEmail(e.target.value)}
+          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
+          autoComplete="email"
         />
 
         <Input
@@ -142,9 +142,9 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           type={isShowPassword ? "text" : "password"}
           value={password}
-          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-            error && "border-red-500"
-          }`}
+          className={`bg-indigo-300/70 border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          error={error && true}
+          autoComplete="current-password"
         />
 
         {error && (

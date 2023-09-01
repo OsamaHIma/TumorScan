@@ -75,12 +75,12 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <section className="flex items-center">
+        <section className="flex items-center gap-2 md:gap-4">
           {/* Theme menu */}
           <ThemeSelector />
           <LanguageSelector />
           {/* Menu for large screens */}
-          <div className="hidden lg:block mx-2">
+          <div className="hidden lg:block">
             <ul className="h-menu flexCenter !gap-8">
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -125,29 +125,23 @@ const Navbar = () => {
               </IconButton>
             </MenuHandler>
 
-            <MenuList className="dark:bg-stone-900 border-0 w-[13rem] text-center lg:hidden">
+            <MenuList className="dark:bg-stone-900 border-0 w-[13rem] text-center lg:hidden text-stone-950 dark:text-stone-50">
               {navLinks.map((link, index) => (
-                <MenuItem
+                <Link
                   key={index}
-                  className=" dark:hover:bg-stone-700 my-3 text-center"
+                  href={`${link.id}`}
                 >
-                  <Link
-                    href={`${link.id}`}
-                    className="text-stone-900 dark:text-stone-400"
-                  >
+                  <MenuItem className="hover:!border-0 dark:hover:!bg-gray-100 my-3 text-center">
                     <Translate>{link.name}</Translate>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               ))}
               {token && (
-                <MenuItem className=" dark:hover:bg-stone-700 my-3 text-center">
-                  <Link
-                    href="/upload"
-                    className="text-stone-900 dark:text-stone-400"
-                  >
+                <Link href="/upload">
+                  <MenuItem className="hover:!border-0 dark:hover:!bg-gray-100 my-3 text-center">
                     <Translate>Upload</Translate>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               )}
               <Button
                 onClick={handelSignButton}

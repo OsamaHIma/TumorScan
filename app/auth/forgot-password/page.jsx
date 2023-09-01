@@ -1,5 +1,6 @@
 "use client";
 import { sendPasswordResetEmailToUser } from "@/lib/firebase";
+import { forgotPasswordSchema } from "@/schema/userSchema";
 import { Button, Input } from "@material-tailwind/react";
 import { useState } from "react";
 import { Translate } from "translate-easy";
@@ -13,6 +14,18 @@ const ForgotPasswordPage = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     setError(null);
+    try {
+      forgotPasswordSchema.validateSync(
+        {
+          email: email,
+        },
+
+        { abortEarly: false }
+      );
+    } catch (error) {
+      setError(error.errors);
+      return;
+    }
     setIsLoading(true);
     try {
       const res = await sendPasswordResetEmailToUser(email);
@@ -48,9 +61,9 @@ const ForgotPasswordPage = () => {
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-              error && "border-red-500"
-            }`}
+            className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+            error={error && true}
+            autoComplete="email"
           />
           {error && (
             <div className="text-red-500 text-sm">

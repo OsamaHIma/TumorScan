@@ -67,8 +67,8 @@ const HowItWorks = () => {
           <TypingText title="| How it works" />
           <TitleText title="Get started with a few clicks" />
           <div className="flex flex-col max-w-[371px] mt-[31px] gap-6 ">
-            {startingFeatures.map((feature, indx) => (
-              <StartSteps key={feature} number={indx + 1} feature={feature} />
+            {startingFeatures.map((feature, index) => (
+              <StartSteps key={index} number={index + 1} feature={feature} />
             ))}
           </div>
         </motion.div>

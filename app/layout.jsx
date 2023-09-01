@@ -1,15 +1,6 @@
 import "./globals.scss";
-import { Cairo, Poppins, Tajawal } from "next/font/google";
 import Providers from "@/components/Providers";
 
-const tajawal = Tajawal({
-  subsets: ["latin", "arabic"],
-  weight: ["400", "500", "700"],
-});
-const cairo = Cairo({
-  subsets: ["latin", "arabic"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata = {
   title: "Tumor Scan | Tumor and cancer AI scanner",
@@ -27,6 +18,7 @@ Description: Tumor Scan is a state-of-the-art platform that leverages advanced i
   twitterDescription: `Tumor Scan - Advanced Cancer Detection and Tumor Analysis
 Description: Tumor Scan is a state-of-the-art platform that leverages advanced imaging technology and artificial intelligence algorithms to provide accurate and efficient diagnosis of various types of cancer. Our innovative solutions enable early detection, personalized treatment plans, and enhanced patient care. Experience the future of cancer detection and sign up now for personalized tumor analysis.`,
   twitterImage: "./opengraph-image.png",
+  
 };
 const RootLayout = ({ children }) => {
   return (
@@ -35,7 +27,7 @@ const RootLayout = ({ children }) => {
         <link rel="icon" type="image/x-icon" href="/logoTab.svg" />
       </head>
       <body
-        className={`${cairo.className}  bg-stone-200 dark:bg-primary-black text-stone-800 dark:text-stone-200 transition-all ease-in-out`}
+        className={`ltr:!font-poppins rtl:!font-cairo bg-stone-200 dark:bg-primary-black text-stone-800 dark:text-stone-200 transition-all ease-in-out`}
       >
         <Providers>{children}</Providers>
       </body>

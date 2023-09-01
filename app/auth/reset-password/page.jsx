@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 import { resetPassword } from "@/lib/firebase";
-import { CheckCircle2, CheckIcon, EyeIcon, EyeOffIcon } from "lucide-react";
+import { CheckCircle2, EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";
 import { loginUserSchema } from "@/schema/userSchema";
 import { Button, Input, Spinner } from "@material-tailwind/react";
@@ -83,9 +83,8 @@ const ResetPasswordPage = () => {
             value={password}
             minLength={8}
             onChange={(e) => setPassword(e.target.value)}
-            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-              error && "border-red-500"
-            }`}
+            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+            error={error && true}
             icon={
               passwordIcon ? (
                 <EyeIcon
@@ -111,9 +110,8 @@ const ResetPasswordPage = () => {
             id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200 ${
-              error && "border-red-500"
-            }`}
+            className={`bg-indigo-300/70 outline-none dark:!border-0 rtl:text-right dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+            error={error && true}
           />
           {error && <div className="text-red-500 text-sm">{error}</div>}
           <Button type="submit" className=" bg-orange-400">
@@ -128,14 +126,12 @@ const ResetPasswordPage = () => {
         <div className="flex flex-col items-center gap-3">
           <CheckCircle2 className="text-green-500" size={75} />
           <h1 className="text-lg rtl:text-right font-semibold dark:text-slate-50">
-          <Translate>
-            Your password has been reset successfully, 
-          </Translate>{" "}
-          <Link href="/auth/login" className="text-indigo-500 font-semibold">
-            <Translate>Sign in</Translate>
-          </Link>
-          .
-        </h1>
+            <Translate>Your password has been reset successfully,</Translate>{" "}
+            <Link href="/auth/login" className="text-indigo-500 font-semibold">
+              <Translate>Sign in</Translate>
+            </Link>
+            .
+          </h1>
         </div>
       )}
     </div>

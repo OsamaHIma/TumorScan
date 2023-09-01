@@ -118,7 +118,7 @@ const Comments = () => {
         </div>
       </form>
 
-      <div className="bg-stone-100 dark:bg-stone-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
+      <div className="bg-stone-100 shadow-inner dark:bg-stone-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
         <h2 className="text-2xl font-bold mb-4">
           <Translate translations={{ ar: "التعليقات" }}>Comments</Translate>
         </h2>

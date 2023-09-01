@@ -17,6 +17,15 @@ export const loginUserSchema = object().shape({
     ),
 });
 
+export const forgotPasswordSchema = object().shape({
+  email: string()
+    .email("Please enter a valid email address.")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address."
+    ),
+});
+
 export const contactSchema = object().shape({
   name: string().matches(
     /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,

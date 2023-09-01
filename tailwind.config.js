@@ -1,7 +1,3 @@
-const { colors } = require("tailwindcss/colors");
-const { backgroundColor } = require("tailwindcss/defaultTheme");
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
 /** @type {import('tailwindcss').Config} */
 
 const withMT = require("@material-tailwind/react/utils/withMT");
@@ -10,7 +6,6 @@ module.exports = withMT({
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./home/**/*.{js,ts,jsx,tsx}",
 
@@ -19,8 +14,10 @@ module.exports = withMT({
   ],
   theme: {
     fontFamily: {
-      sans: ['Poppins', 'Arial', 'sans-serif'],
-      cairo: ['Cairo', 'Arial', 'sans-serif'],
+      sans: ["Poppins", "Cairo", "serif"],
+      cairo: ["Cairo", "sans-serif"],
+      poppins: ["Poppins", "Cairo", "serif"],
+      body: ["Cairo", "Poppins", "sans-serif"],
     },
     container: {
       center: true,

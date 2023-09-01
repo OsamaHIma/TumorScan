@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@200;300;500;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +21,17 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth !important;
+  // font-family: "Poppins", sans-serif;
+
 }
+
+// body {
+//   font-family: "Poppins", sans-serif;
+// }
+
+// *[dir="rtl"] {
+//   font-family: "Cairo", sans-serif;
+// }
 
 // Scrollbar Styles
 ::-webkit-scrollbar {
@@ -31,7 +44,7 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   @apply bg-indigo-600;
   border-radius: 10px;
 }
-.hide-scroll-bar::-webkit-scrollbar{
+.hide-scroll-bar::-webkit-scrollbar {
   width: 0 !important;
 }
 // Button Styles
@@ -51,7 +64,11 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
 
 // Swiper Card Styles
 .swiper-card:hover {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(136, 160, 255, 0.46) 217.91%) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(136, 160, 255, 0.46) 217.91%
+  ) !important;
   box-shadow: 0px 72px 49px -51px rgba(136, 160, 255, 0.21);
 }
 
@@ -72,7 +89,6 @@ $shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
   z-index: 1;
   transform: rotate(180deg);
 }
-
 
 // Swiper Wrapper Styles
 .swiper-wrapper {

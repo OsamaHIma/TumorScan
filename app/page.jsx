@@ -8,6 +8,7 @@ import GetStarted from "@/home/GetStarted";
 import OurTeam from "@/home/OurTeam";
 import Comments from "@/home/Comments";
 import Footer from "@/components/Footer";
+import FAQ from "@/home/FAQ";
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
         <GetStarted />
         <div className="gradient absolute top-[40%] -z-[2] left-[40%] h-96 w-96 bg-orange-400/30 blur-[100px]" />
         <OurTeam />
+        <FAQ/>
         <Comments />
         <Footer />
       </section>
