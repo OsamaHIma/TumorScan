@@ -11,6 +11,11 @@ import { Translate } from "translate-easy";
 import { motion } from "framer-motion";
 import { TitleText, TypingText } from "@/components/TypingText";
 const FAQ = () => {
+  const CUSTOM_ANIMATION = {
+    mount: { scale: 1 },
+    unmount: { scale: 0.9 },
+  };
+
   const [open, setOpen] = useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
@@ -30,6 +35,7 @@ const FAQ = () => {
       <TitleText title="FAQ" textStyles="text-center" />
       <div className="py-10">
         <Accordion
+         animate={CUSTOM_ANIMATION}
           open={open === 1}
           icon={
             <ChevronDownIcon
@@ -58,6 +64,7 @@ const FAQ = () => {
         </Accordion>
 
         <Accordion
+         animate={CUSTOM_ANIMATION}
           open={open === 2}
           icon={
             <ChevronDownIcon
@@ -121,6 +128,7 @@ const FAQ = () => {
         </Accordion>
 
         <Accordion
+         animate={CUSTOM_ANIMATION}
           open={open === 3}
           icon={
             <ChevronDownIcon

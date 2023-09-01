@@ -16,7 +16,7 @@ const HowItWorks = () => {
   const { selectedLanguage } = useLanguage();
   const StartSteps = ({ number, feature }) => (
     <motion.div
-      variants={slideIn("right", "spring", 0.5 * number, 1.3, selectedLanguage)}
+      variants={slideIn("right", "spring", 0.3 * number, 1.3, selectedLanguage)}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
@@ -47,8 +47,7 @@ const HowItWorks = () => {
         className={` mx-auto flex lg:flex-row flex-col gap-8`}
       >
         <motion.div
-          variants={imageVariants("left",selectedLanguage)}
-          
+          variants={imageVariants("left", selectedLanguage)}
           className={`flex-1 flex items-center justify-center`}
         >
           <Image
