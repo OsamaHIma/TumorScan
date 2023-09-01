@@ -44,9 +44,9 @@ const FAQ = () => {
             className="dark:text-stone-100 dark:hover:text-gray-300"
             onClick={() => handleOpen(1)}
           >
-            <Translate>What is Tumor Scan?</Translate>
+            <Translate>What is</Translate> Tumor Scan?
           </AccordionHeader>
-          <AccordionBody className="dark:text-gray-300">
+          <AccordionBody className="text-gray-600 dark:text-gray-300">
             <Translate>
               &quot;Tumor Scan&quot; is a cutting-edge platform that combines
               advanced imaging technology and artificial intelligence algorithms
@@ -72,7 +72,7 @@ const FAQ = () => {
             className="dark:text-stone-100 dark:hover:text-gray-300"
             onClick={() => handleOpen(2)}
           >
-            <Translate>What are the features of Tumor Scan?</Translate>
+            <Translate>What are the features of </Translate>Tumor Scan?
           </AccordionHeader>
           <AccordionBody>
             <h1 className="dark:text-stone-100">
@@ -81,22 +81,22 @@ const FAQ = () => {
               </Translate>
             </h1>
             <ol className="list-decimal pl-8">
-              <li className="text-orange-400">
+              <li className="text-orange-400 my-3">
                 <h3 className="font-semibold dark:text-stone-200">
                   <Translate>Advanced Imaging Technology:</Translate>
                 </h3>
-                <p className="dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-300">
                   <Translate>
                     Utilizes X-ray, MRI, and CT scans to capture detailed
                     medical images for precise tumor analysis.
                   </Translate>
                 </p>
               </li>
-              <li className="text-orange-400">
+              <li className="text-orange-400 my-3">
                 <h3 className="font-semibold dark:text-stone-200">
                   <Translate>AI-Powered Tumor Detection:</Translate>
                 </h3>
-                <p className="dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-300">
                   <Translate>
                     Intelligent algorithms and machine learning models analyze
                     medical images to accurately identify cancerous regions and
@@ -104,11 +104,11 @@ const FAQ = () => {
                   </Translate>
                 </p>
               </li>
-              <li className="text-orange-400">
+              <li className="text-orange-400 my-3">
                 <h3 className="font-semibold dark:text-stone-200">
                   <Translate>Interactive 3D Visualization:</Translate>
                 </h3>
-                <p className="dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-300">
                   <Translate>
                     Provides an immersive 3D representation of affected areas
                     for a comprehensive understanding of tumor location and
@@ -144,8 +144,8 @@ const FAQ = () => {
               </Translate>
             </h1>
             <ol className="list-decimal pl-8">
-              <li className="text-orange-400">
-                <p className="dark:text-gray-300">
+              <li className="text-orange-400 my-3">
+                <p className="text-gray-600 text-gray-600 dark:text-gray-300">
                   <Translate>
                     &quot;I was amazed by the accuracy and speed of the tumor
                     detection service. It provided me with crucial information
@@ -153,8 +153,8 @@ const FAQ = () => {
                   </Translate>
                 </p>
               </li>
-              <li className="text-orange-400">
-                <p className="dark:text-gray-300">
+              <li className="text-orange-400 my-3">
+                <p className="text-gray-600 text-gray-600 dark:text-gray-300">
                   <Translate>
                     &quot;The interactive 3D visualization helped me understand
                     my diagnosis better. It made the complex information more
