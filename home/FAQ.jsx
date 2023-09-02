@@ -29,7 +29,7 @@ const FAQ = () => {
       className="innerWidth paddings"
     >
       <TypingText
-        title="| Stupid Questions We Get All The Time"
+        title="| Frequently Asked Questions"
         textStyles="text-center"
       />
       <TitleText title="FAQ" textStyles="text-center" />
