@@ -40,7 +40,7 @@ const modelPath = "./model.json";
 
 export async function POST(req, res) {
   const model = await loadLayersModel(
-    "https://firebasestorage.googleapis.com/v0/b/tumor-scan.appspot.com/o/model.json?alt=media&token=39aacb5b-8fa3-44ad-a705-85cd47c88c83",
+    "https://tumor-scan.vercel.app/AI_models/model.json",
     "/AI models/group1-shard1of19.bin"
   );
   // const { classResult, probResult } = await predict(x_rayImage, model);
