@@ -40,7 +40,26 @@ const modelPath = "./model.json";
 
 export async function POST(req, res) {
   const model = await loadLayersModel(
-    "https://tumor-scan.vercel.app/model.json"
+    "https://tumor-scan.vercel.app/model.json",
+    // "/AI models/group1-shard1of19.bin",
+    // "/AI models/group1-shard2of19.bin",
+    // "/AI models/group1-shard3of19.bin",
+    // "/AI models/group1-shard4of19.bin",
+    // "/AI models/group1-shard5of19.bin",
+    // "/AI models/group1-shard6of19.bin",
+    // "/AI models/group1-shard7of19.bin",
+    // "/AI models/group1-shard8of19.bin",
+    // "/AI models/group1-shard9of19.bin",
+    // "/AI models/group1-shard10of19.bin",
+    // "/AI models/group1-shard11of19.bin",
+    // "/AI models/group1-shard12of19.bin",
+    // "/AI models/group1-shard13of19.bin",
+    // "/AI models/group1-shard14of19.bin",
+    // "/AI models/group1-shard15of19.bin",
+    // "/AI models/group1-shard16of19.bin",
+    // "/AI models/group1-shard17of19.bin",
+    // "/AI models/group1-shard18of19.bin",
+    // "/AI models/group1-shard19of19.bin"
   );
   // const { classResult, probResult } = await predict(x_rayImage, model);
 

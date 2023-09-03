@@ -8,11 +8,9 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { ChevronDownIcon } from "lucide-react";
-import { useState } from "react";
 import { Translate, useLanguage } from "translate-easy";
 
 const LanguageSelector = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { selectedLanguage, handleChangeLanguage, languages } = useLanguage();
 
   const handleLanguageClick = (languageCode) => {
@@ -24,7 +22,6 @@ const LanguageSelector = () => {
       <MenuHandler>
         <Button
           className={`rounded-full flex items-center gap-3 text-slate-50 bg-indigo-500 px-3 py-2`}
-          onClick={() => setIsOpen(!isOpen)}
           type="button"
         >
           <span className="ltr:mr-2 rtl:ml-2">
