@@ -118,7 +118,7 @@ const ResetPasswordPage = () => {
             {isLoading ? (
               <Spinner color="green" className="mx-auto" />
             ) : (
-              <Translate>Reset Password</Translate>
+              <Translate>Update Password</Translate>
             )}
           </Button>
         </form>
