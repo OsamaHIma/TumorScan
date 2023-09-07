@@ -164,7 +164,7 @@ const SignUpPage = () => {
           className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
           error={error && true}
         />
-
+<div>
         <Input
           label={
             <div className="dark:text-gray-300">
@@ -196,7 +196,7 @@ const SignUpPage = () => {
 <Typography
         variant="small"
         color="gray"
-        className="flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
+        className="mt-2 flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -212,6 +212,7 @@ const SignUpPage = () => {
         </svg>
         Use at least 8 characters, one uppercase, one lowercase and one number.
       </Typography>
+</div>
         <Input
           label={
             <div className="dark:text-gray-300">
