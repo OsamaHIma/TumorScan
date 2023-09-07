@@ -196,7 +196,7 @@ const SignUpPage = () => {
 <Typography
         variant="small"
         color="gray"
-        className="mt-2 flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
+        className="flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
