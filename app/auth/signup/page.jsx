@@ -196,13 +196,13 @@ const SignUpPage = () => {
 <Typography
         variant="small"
         color="gray"
-        className="mt-2 flex items-center gap-1 font-normal"
+        className="mt-2 flex items-center gap-1 font-normal text-sm dark:text-gray-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="-mt-px h-4 w-4"
+          className="-mt-px h-6 w-6"
         >
           <path
             fillRule="evenodd"
