@@ -54,7 +54,7 @@ const ResetPasswordPage = () => {
     setPasswordIcon(!passwordIcon);
   };
   return (
-    <div className="flex flex-col items-center justify-center mt-10 md:mt-20">
+    <section className="flex flex-col items-center justify-center mt-10 md:mt-20 paddings innerWidth">
       <h1 className="text-3xl font-bold mb-4">
         <Translate>Reset your password</Translate>
       </h1>
@@ -118,7 +118,7 @@ const ResetPasswordPage = () => {
             {isLoading ? (
               <Spinner color="green" className="mx-auto" />
             ) : (
-              <Translate>Reset Password</Translate>
+              <Translate>Update Password</Translate>
             )}
           </Button>
         </form>
@@ -134,7 +134,7 @@ const ResetPasswordPage = () => {
           </h1>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

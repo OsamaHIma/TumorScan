@@ -13,7 +13,7 @@ import {
 } from "@/lib/firebase";
 import TermsModal from "@/components/TermsModal";
 import { signIn } from "next-auth/react";
-import { Button, Checkbox, Spinner, Input } from "@material-tailwind/react";
+import { Button, Checkbox, Spinner, Input,Typography } from "@material-tailwind/react";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -164,7 +164,7 @@ const SignUpPage = () => {
           className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
           error={error && true}
         />
-
+<div>
         <Input
           label={
             <div className="dark:text-gray-300">
@@ -193,6 +193,26 @@ const SignUpPage = () => {
           className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
           error={error && true}
         />
+<Typography
+        variant="small"
+        color="gray"
+        className="mt-2 flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="-mt-px h-6 w-6 text-yellow-500"
+        >
+          <path
+            fillRule="evenodd"
+            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+            clipRule="evenodd"
+          />
+        </svg>
+        Use at least 8 characters, one uppercase, one lowercase and one number.
+      </Typography>
+</div>
         <Input
           label={
             <div className="dark:text-gray-300">

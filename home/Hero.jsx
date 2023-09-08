@@ -55,7 +55,7 @@ const Hero = () => {
                 initial={{ y: "2rem", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.7, type: "spring", delay: 0.1 }}
-                className="text-3xl md:text-5xl whitespace-nowrap text-white md:dark:text-gray-300 font-semibold leading-[3rem]"
+                className="text-2xl md:text-5xl whitespace-nowrap text-white md:dark:text-gray-300 font-semibold leading-[3rem]"
               >
                 <Translate>Empowering Detection of</Translate>
               </motion.h1>

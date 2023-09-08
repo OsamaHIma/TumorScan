@@ -1,7 +1,7 @@
 "use client";
 import { sendPasswordResetEmailToUser } from "@/lib/firebase";
 import { forgotPasswordSchema } from "@/schema/userSchema";
-import { Button, Input } from "@material-tailwind/react";
+import { Button, Input,Spinner } from "@material-tailwind/react";
 import { useState } from "react";
 import { Translate } from "translate-easy";
 
@@ -70,9 +70,13 @@ const ForgotPasswordPage = () => {
               <Translate>{error}</Translate>
             </div>
           )}
-          <Button type="submit" className=" bg-orange-400">
-            <Translate>{isLoading ? "Loading..." : "Reset password"}</Translate>
-          </Button>
+                    <Button type="submit" className=" bg-orange-400"> 
+             {isLoading ? ( 
+               <Spinner color="green" className="mx-auto" /> 
+             ) : ( 
+               <Translate>Reset Password</Translate> 
+             )} 
+           </Button>
         </form>
       ) : (
         <div className="text-lg w-full max-w-lg mt-3 font-semibold dark:text-slate-50">
