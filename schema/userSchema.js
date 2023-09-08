@@ -1,14 +1,12 @@
 import { object, string, bool } from "yup";
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const loginUserSchema = object().shape({
   email: string()
-    .email("Please enter a valid email address.")
-    .matches(
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Please enter a valid email address."
-    ),
+    .email("Please enter a Email address.")
+    .matches(emailRegex, "Email address is not valid."),
   password: string()
     .required("No password provided.")
     .matches(
@@ -19,39 +17,24 @@ export const loginUserSchema = object().shape({
 
 export const forgotPasswordSchema = object().shape({
   email: string()
-    .email("Please enter a valid email address.")
-    .matches(
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Please enter a valid email address."
-    ),
+    .email("Please enter a Email address.")
+    .matches(emailRegex, "Email address is not valid."),
 });
 
 export const contactSchema = object().shape({
-  name: string().matches(
-    /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
-    "Please enter a valid name."
-  ),
+  name: string().required("Please enter your Name."),
   email: string()
-    .email("Please enter a valid email address.")
-    .matches(
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Please enter a valid email address."
-    ),
+    .email("Please enter a Email address.")
+    .matches(emailRegex, "Email address is not valid."),
   message: string().required("Please enter a message."),
   // phone: string().matches(/^\d{10}$/, "Please enter a valid phone number.").optional(),
 });
 
 export const signUpSchema = object().shape({
-  name: string().matches(
-    /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
-    "Please enter a valid name."
-  ),
+  name: string().required("Please enter your Name."),
   email: string()
-    .email("Please enter a valid email address.")
-    .matches(
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Please enter a valid email address."
-    ),
+    .email("Please enter a Email address.")
+    .matches(emailRegex, "Email address is not valid."),
   password: string()
     .required("Please enter a password.")
     .matches(

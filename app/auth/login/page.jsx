@@ -103,7 +103,7 @@ const LoginPage = () => {
         </h3>
       </div>
 
-      <form className="flex flex-col gap-8" autoComplete="on">
+      <form className="flex flex-col gap-8" autoComplete="on" noValidate>
         <Input
           label={
             <div className="dark:text-gray-300">

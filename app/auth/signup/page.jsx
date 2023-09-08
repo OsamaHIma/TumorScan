@@ -13,7 +13,13 @@ import {
 } from "@/lib/firebase";
 import TermsModal from "@/components/TermsModal";
 import { signIn } from "next-auth/react";
-import { Button, Checkbox, Spinner, Input,Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Checkbox,
+  Spinner,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import { InfoIcon } from "lucide-react";
 
 const SignUpPage = () => {
@@ -45,12 +51,9 @@ const SignUpPage = () => {
     setPasswordIcon(!passwordIcon);
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const signInWithGoogle = async () => {
@@ -134,7 +137,7 @@ const SignUpPage = () => {
         </h3>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-8" noValidate>
         <Input
           label={
             <div className="dark:text-gray-300">
@@ -145,64 +148,68 @@ const SignUpPage = () => {
           type="text"
           id="name"
           name="name"
-          value={formData.name}
+          autoComplete="on"
+          required
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          className="text-stone-800 dark:text-gray-300"
+          color="indigo"
           error={error && true}
         />
         <Input
-          label={
-            <div className="dark:text-gray-300">
-              <Translate>Email</Translate>
-            </div>
-          }
-          size="lg"
+          label={<Translate>Email</Translate>}
           type="email"
-          id="email"
           name="email"
-          value={formData.email}
+          autoComplete="on"
+          required
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
-          error={error && true}
-        />
-<div>
-        <Input
-          label={
-            <div className="dark:text-gray-300">
-              <Translate>Password</Translate>
-            </div>
-          }
-          icon={
-            passwordIcon ? (
-              <EyeIcon
-                onClick={togglePasswordIcon}
-                className="rounded-md cursor-pointer "
-              />
-            ) : (
-              <EyeOffIcon
-                onClick={togglePasswordIcon}
-                className="rounded-md cursor-pointer "
-              />
-            )
-          }
+          className="text-stone-800 dark:text-gray-300"
           size="lg"
-          type={passwordIcon ? "text" : "password"}
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
-          error={error && true}
+          color="indigo"
+          error={error}
         />
-<Typography
-        variant="small"
-        color="gray"
-        className="mt-2 flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
-      >
-        <InfoIcon className="-mt-px h-6 w-6 text-yellow-800 dark:text-yellow-500" /> 
-        Use at least 8 characters, one uppercase, one lowercase and one number.
-      </Typography>
-</div>
+        <div>
+          <Input
+            label={
+              <div className="dark:text-gray-300">
+                <Translate>Password</Translate>
+              </div>
+            }
+            icon={
+              passwordIcon ? (
+                <EyeIcon
+                  onClick={togglePasswordIcon}
+                  className="rounded-md cursor-pointer "
+                />
+              ) : (
+                <EyeOffIcon
+                  onClick={togglePasswordIcon}
+                  className="rounded-md cursor-pointer "
+                />
+              )
+            }
+            size="lg"
+            type={passwordIcon ? "text" : "password"}
+            id="password"
+            name="password"
+            autoComplete="on"
+            required
+            onChange={handleInputChange}
+            className="text-stone-800 dark:text-gray-300"
+            color="indigo"
+            error={error && true}
+          />
+          <Typography
+            variant="small"
+            color="gray"
+            className="mt-2 flex items-center gap-1 font-normal text-xs md:text-sm dark:text-gray-300"
+          >
+            <InfoIcon className="-mt-px h-6 w-6 text-yellow-800 dark:text-yellow-500" />
+            <Translate>
+              Use at least 8 characters, one uppercase, one lowercase and one
+              number.
+            </Translate>
+          </Typography>
+        </div>
         <Input
           label={
             <div className="dark:text-gray-300">
@@ -213,9 +220,11 @@ const SignUpPage = () => {
           type={passwordIcon ? "text" : "password"}
           id="password_confirmation"
           name="password_confirmation"
-          value={formData.password_confirmation}
+          autoComplete="on"
+          required
           onChange={handleInputChange}
-          className={`bg-indigo-300/70 outline-none dark:!border-0 dark:bg-slate-800 dark:text-stone-300 placeholder:text-slate-50 focus:outline-gray-200`}
+          className="text-stone-800 dark:text-gray-300"
+          color="indigo"
           error={error && true}
         />
         <div className="flex rtl:flex-row-reverse gap-3 items-center">
