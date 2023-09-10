@@ -183,6 +183,7 @@ const LoginPage = () => {
             className="bg-indigo-600 hover:bg-indigo-700 py-4"
             type="submit"
             onClick={handleLogin}
+            disabled={loading}
           >
             {loading ? (
               <Spinner color="green" className="mx-auto" />

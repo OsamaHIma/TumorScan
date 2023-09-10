@@ -263,6 +263,7 @@ const SignUpPage = () => {
           <Button
             className="bg-indigo-600 hover:bg-indigo-700 py-4"
             type="submit"
+            disabled={loading}
           >
             {loading ? (
               <Spinner color="green" className="mx-auto" />

@@ -114,7 +114,7 @@ const ResetPasswordPage = () => {
             error={error && true}
           />
           {error && <div className="text-red-500 text-sm">{error}</div>}
-          <Button type="submit" className=" bg-orange-400">
+          <Button type="submit" className=" bg-orange-400" disabled={isLoading}>
             {isLoading ? (
               <Spinner color="green" className="mx-auto" />
             ) : (

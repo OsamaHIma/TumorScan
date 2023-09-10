@@ -9,12 +9,6 @@ export async function middleware(req) {
   const mode = searchParams.get("mode");
   const oobCode = searchParams.get("oobCode");
 
-  // if (pathname === "/verify-email" || pathname === "/auth/reset-password") {
-  //   if (mode !== "verifyEmail" && mode !== "resetPassword") {
-  //     return NextResponse.redirect(new URL("/", req.url));
-  //   }
-  // }
-
   if (mode === "verifyEmail") {
     return NextResponse.redirect(
       new URL(`/verify-email?oobCode=${oobCode}`, req.url)
@@ -28,32 +22,30 @@ export async function middleware(req) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!session) {
-    if (pathname === "/upload" || pathname.includes("/dashboard")) {
+    if (pathname === "/upload" ) {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   }
-  if (session) {
-    if (session.user.user.emailVerified === false) {
-      if (pathname === "/upload" ) {
-        toast.error(
-          "Your email is not verified, please verify it to upload images"
-        );
-        return NextResponse.redirect(new URL("/", req.url));
-      }
-    } else {
-    return NextResponse.next();
-    }
+  // if (session) {
+  //   if (session.user.user.emailVerified === false) {
+  //     if (pathname === "/upload" ) {
+  //       toast.error(
+  //         "Your email is not verified, please verify it to upload images"
+  //       );
+  //       return NextResponse.redirect(new URL("/", req.url));
+  //     }
+  //   } else {
+  //   return NextResponse.next();
+  //   }
 
-    return NextResponse.next();
-  }
+  //   return NextResponse.next();
+  // }
 }
 export const config = {
   matcher: [
     "/",
     "/verify-email",
-    "/dashboard/:path*",
     "/auth/login",
-    "/dashboard",
     "/upload",
   ],
 };
