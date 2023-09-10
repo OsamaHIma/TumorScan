@@ -6,32 +6,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
-
-import axios from "axios";
-import Breadcrumb from "@/components/Breadcrumb";
-import { Button } from "@material-tailwind/react";
-
-// Function to send an image for prediction
-const sendImageForPrediction = async (imageFile) => {
-  const formData = new FormData();
-  formData.append("file", imageFile);
-
-  try {
-    const response = await fetch("/api/predict", {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formData,
-    });
-
-    // Handle the response containing the predictions
-    console.log(response.json());
-    const { classResult, probResult } = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
+import { Button, Spinner } from "@material-tailwind/react";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/utils/motion";
 
 const styles = {
   focused: {
@@ -48,10 +25,10 @@ const styles = {
 };
 
 const UploadPage = () => {
-  useEffect(() => {
-    sendImageForPrediction("/chest.jpeg");
-  });
   const [uploadedPhoto, setUploadedPhoto] = useState();
+  const [prediction, setPrediction] = useState(null);
+  const [loading, setIsLoading] = useState(false);
+
   const {
     acceptedFiles,
     getRootProps,
@@ -98,6 +75,34 @@ const UploadPage = () => {
     setUploadedPhoto(null);
     acceptedFiles.splice(0, acceptedFiles.length);
   };
+  // Function to send an image for prediction
+  const sendImageForPrediction = async () => {
+    // setPrediction(null)
+    const formData = new FormData();
+    formData.append("file", uploadedPhoto);
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://tumor-scan-api.onrender.com/predict",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+        }
+      );
+
+      // Handle the response containing the predictions
+      console.log(response.json());
+      const { class1, prob1 } = await response.json();
+      console.log(class1, prob1);
+      setPrediction({ class1, prob1 });
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <section className="min-h-screen relative flex flex-col justify-between pt-16">
       <Link
@@ -142,14 +147,41 @@ const UploadPage = () => {
               <h4>Files</h4>
               <ul>{files}</ul>
               <Button
+                disabled={loading}
                 onClick={handleRemoveFiles}
-                className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                className="m-2 bg-red-500 text-white px-4 py-2 rounded"
               >
-                <Translate>Remove Files</Translate>
+                <Translate>Cancel</Translate>
+              </Button>
+              <Button
+                disabled={loading}
+                onClick={sendImageForPrediction}
+                className="m-2 bg-green-400 text-white px-4 py-2 rounded"
+              >
+                {loading ? (
+                  <Spinner color="green" className="mx-auto" />
+                ) : (
+                  <Translate>Send</Translate>
+                )}
               </Button>
             </>
           )}
         </aside>
+        {prediction && (
+          <motion.div
+            className="py-8"
+            variants={fadeIn("up", "spring", 0.3, 1)}
+          >
+            <h4 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">
+              <Translate>Results</Translate>
+            </h4>
+            <p>
+              There is a <span className="font-bold">{prediction.prob1}</span>{" "}
+              Probability That the patient has{" "}
+              <span className="font-bold">{prediction.class1}</span>{" "}
+            </p>
+          </motion.div>
+        )}
       </div>
       <Footer />
     </section>
