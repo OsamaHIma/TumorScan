@@ -111,8 +111,8 @@ const UploadPage = () => {
   useEffect(() => {
     if (acceptedFiles.length > 0) {
       const fileUrl = acceptedFiles[0];
-      setUploadedPhoto(fileUrl);
       setPrediction(null);
+      setUploadedPhoto(fileUrl);
     }
   }, [acceptedFiles, setUploadedPhoto]);
 
@@ -132,7 +132,7 @@ const UploadPage = () => {
       toast.error("Please select an image");
       return;
     }
-
+    
     const formData = new FormData();
     formData.append("file", uploadedPhoto);
 
@@ -231,9 +231,8 @@ const UploadPage = () => {
             )}
           </aside>
           {prediction && (
-            <motion.div
+            <div
               className="py-8"
-              variants={fadeIn("up", "spring", 0.3, 1)}
             >
               <h4 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">
                 <Translate>Results</Translate>
@@ -263,14 +262,16 @@ const UploadPage = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
           {loading && (
             <div className="py-10">
               <h1 className="dark:text-white text-stone-500 md:text-[20px] my-4 text-center">
                 <Translate>Some Quick Facts</Translate>
               </h1>
-              <p className="text-gray-300 dark:text-gray-400">Read some facts while waiting for the results</p>
+              <p className="text-gray-400">
+                Read some facts while waiting for the results
+              </p>
               <FactTag key={index} fact={facts[index]} />
             </div>
           )}
