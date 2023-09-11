@@ -4,7 +4,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { signUpSchema } from "@/schema/userSchema";
 import { useRouter } from "next/navigation";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, InfoIcon } from "lucide-react";
 import { Translate } from "translate-easy";
 import {
   addUserWithEmailAndPassword,
@@ -20,7 +20,6 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
-import { InfoIcon } from "lucide-react";
 
 const SignUpPage = () => {
   const router = useRouter();
