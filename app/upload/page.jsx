@@ -12,10 +12,11 @@ import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
 import { Button, Spinner } from "@material-tailwind/react";
 import { motion } from "framer-motion";
-import { fadeIn } from "@/utils/motion";
+import { fadeIn, staggerContainer } from "@/utils/motion";
 import { toast } from "react-toastify";
 import { InfoIcon } from "lucide-react";
 import { facts } from "@/constants";
+import { TitleText, TypingText } from "@/components/TypingText";
 
 const styles = {
   focused: {
@@ -53,12 +54,12 @@ const UploadPage = () => {
   const FactTag = ({ fact }) => {
     return (
       <motion.div
-        className="fact-tag bg-gray-200 flex items-center gap-2 hover:text-slate-700 text-sm max-w-fit transition-all ease-in-out duration-300 rounded-lg p-4 m-2 shadow-lg" // add these classes
+        className="fact-tag bg-stone-800 text-gray-100 flex items-center gap-2 text-sm max-w-fit transition-all ease-in-out duration-300 rounded-lg p-4 m-2 shadow-lg" // add these classes
         initial="hidden"
         animate="visible"
         exit="hidden"
         variants={variants}
-        transition={{ duration: 0.7 ,delay:0.2}}
+        transition={{ duration: 0.7, delay: 0.2 }}
         layoutId="fact-tag"
       >
         <InfoIcon className="text-blue-500" size={47} />
@@ -163,16 +164,20 @@ const UploadPage = () => {
   };
   return (
     <>
-      <section className="min-h-screen relative paddings innerWidth pt-16">
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        className="min-h-screen relative paddings innerWidth pt-16"
+      >
         <Link
           href="/"
           className="p-3 absolute top-10 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
         >
           <ArrowLeftCircleIcon size={32} />
         </Link>
-        <h1 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">
-          <Translate>Upload an image</Translate>
-        </h1>
+        <TypingText title="| Get The Results" textStyles="text-center" />
+        <TitleText title="Upload An Image" textStyles="text-center" />
         <div className="text-center max-w-sm min-h-44 mx-auto pt-16">
           <div
             {...getRootProps({ className: "dropzone", style })}
@@ -262,12 +267,15 @@ const UploadPage = () => {
           )}
           {loading && (
             <div className="py-10">
-              <h3><Translate>Some Facts</Translate></h3>
+              <h1 className="dark:text-white text-stone-500 md:text-[20px] my-4 text-center">
+                <Translate>Some Quick Facts</Translate>
+              </h1>
+              <p className="text-gray-300 dark:text-gray-400">Read some facts while waiting for the results</p>
               <FactTag key={index} fact={facts[index]} />
             </div>
           )}
         </div>
-      </section>
+      </motion.section>
       <Footer />
     </>
   );
