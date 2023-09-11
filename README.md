@@ -46,8 +46,8 @@ Experience an immersive 3D representation of affected areas, enabling a comprehe
 
 ## Contributors
 
-- Omar Abdelhamid - AI development and Back-end development - [LinkedIn Profile](https://www.linkedin.com/in/omar-abdelhamid-204b0618a) - [GitHub Profile](https://github.com/OmarAbdelhamidAly?tab=repositories)
 - Osama Ibrahim - Front-end and Back-end development - [Portfolio](https://osama-ibrahim-portfolio.vercel.app) - [LinkedIn Profile](https://www.linkedin.com/in/osama-ibrahim2002/) - [GitHub Profile](https://github.com/OsamaHIma/)
+- Omar Abdelhamid - AI development - [LinkedIn Profile](https://www.linkedin.com/in/omar-abdelhamid-204b0618a) - [GitHub Profile](https://github.com/OmarAbdelhamidAly?tab=repositories)
 
 ## License
 

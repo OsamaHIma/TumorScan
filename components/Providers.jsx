@@ -1,18 +1,16 @@
 "use client";
 import { ThemeProvider } from "next-themes";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
 import { UserProvider } from "@/context/UserContext";
-import { ProSidebarProvider } from "react-pro-sidebar";
 import { LanguageProvider } from "translate-easy";
 import { BreadcrumbProvider } from "@/context/BreadcrumbContext";
+import "react-toastify/dist/ReactToastify.css";
 
 const Providers = ({ children }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <BreadcrumbProvider>
-        <ProSidebarProvider>
           <SessionProvider>
             <UserProvider>
               <LanguageProvider>
@@ -29,7 +27,6 @@ const Providers = ({ children }) => {
               </LanguageProvider>
             </UserProvider>
           </SessionProvider>
-        </ProSidebarProvider>
       </BreadcrumbProvider>
     </ThemeProvider>
   );

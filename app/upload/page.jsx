@@ -9,6 +9,7 @@ import { Translate } from "translate-easy";
 import { Button, Spinner } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
+import { toast } from "react-toastify";
 
 const styles = {
   focused: {
@@ -63,7 +64,8 @@ const UploadPage = () => {
 
   useEffect(() => {
     if (acceptedFiles.length > 0) {
-      const fileUrl = URL.createObjectURL(acceptedFiles[0]);
+      // const fileUrl = URL.createObjectURL(acceptedFiles[0]);
+      const fileUrl = acceptedFiles[0];
       setUploadedPhoto(fileUrl);
     }
   }, [acceptedFiles, setUploadedPhoto]);
@@ -79,8 +81,9 @@ const UploadPage = () => {
   const sendImageForPrediction = async () => {
     // setPrediction(null)
     const formData = new FormData();
-    formData.append("file", uploadedPhoto);
+    formData.append("file", uploadedPhoto.path);
     setIsLoading(true);
+    console.log(uploadedPhoto.path)
     try {
       const response = await fetch(
         "https://tumor-scan-api.onrender.com/predict",
@@ -94,13 +97,16 @@ const UploadPage = () => {
       );
 
       // Handle the response containing the predictions
-      console.log(response.json());
-      const { class1, prob1 } = await response.json();
-      console.log(class1, prob1);
-      setPrediction({ class1, prob1 });
+      const responseData = await response.json();
+      // const { class1, prob1 } = responseData;
+
+      console.log(responseData);
+      // setPrediction({ class1, prob1 });
       setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
+      toast.error("Something went wrong");
     }
   };
   return (
