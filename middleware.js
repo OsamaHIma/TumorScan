@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-// import { toast } from "react-toastify";
 
 export async function middleware(req) {
   const url = new URL(req.url);

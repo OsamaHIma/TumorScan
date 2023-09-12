@@ -10,9 +10,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
-import { Button, Spinner } from "@material-tailwind/react";
+import { Button, Option, Select, Spinner } from "@material-tailwind/react";
 import { motion } from "framer-motion";
-import { fadeIn, staggerContainer } from "@/utils/motion";
+import { staggerContainer } from "@/utils/motion";
 import { toast } from "react-toastify";
 import { InfoIcon } from "lucide-react";
 import { facts } from "@/constants";
@@ -36,7 +36,9 @@ const UploadPage = () => {
   const [uploadedPhoto, setUploadedPhoto] = useState();
   const [prediction, setPrediction] = useState(null);
   const [loading, setIsLoading] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("");
   const [index, setIndex] = useState(0);
+
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const UploadPage = () => {
       "image/png": [],
     },
     maxFiles: 1,
+    disabled: loading,
   });
 
   const style = useMemo(
@@ -132,7 +135,7 @@ const UploadPage = () => {
       toast.error("Please select an image");
       return;
     }
-    
+
     const formData = new FormData();
     formData.append("file", uploadedPhoto);
 
@@ -179,11 +182,29 @@ const UploadPage = () => {
         <TypingText title="| Get The Results" textStyles="text-center" />
         <TitleText title="Upload An Image" textStyles="text-center" />
         <div className="text-center max-w-sm min-h-44 mx-auto pt-16">
+          {/* <div className="py-5">
+            <Select
+              label="Which type is the x-ray?"
+              selected={(element) => {
+                if (element) {
+                  const selectedValue = element;
+                  if (selectedModel !== selectedValue.props.children) {
+                    setSelectedModel(selectedValue.props.children);
+                  }
+                  return element;
+                }
+              }}
+            >
+              <Option>Brain</Option>
+              <Option>Chest</Option>
+              <Option>Marrow</Option>
+            </Select>
+          </div> */}
           <div
             {...getRootProps({ className: "dropzone", style })}
             className="py-5 px-4  border border-dashed border-gray-400 rounded-tr-lg rounded-tl-lg transition-all"
           >
-            <input {...getInputProps()} />
+            <input {...getInputProps()} disabled={loading} />
             <Image
               src="/image icon.svg"
               className="inline"
@@ -198,6 +219,7 @@ const UploadPage = () => {
                 <Translate>click to browse</Translate>
               </span>
             </p>
+            {loading && <Spinner color="green" className="mx-auto mt-3" />}
           </div>
           <p className="text-gray-400 mt-2">
             <Translate>
@@ -231,9 +253,7 @@ const UploadPage = () => {
             )}
           </aside>
           {prediction && (
-            <div
-              className="py-8"
-            >
+            <div className="py-8">
               <h4 className="dark:text-white text-stone-500 font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[20px] my-8 text-center">
                 <Translate>Results</Translate>
               </h4>
