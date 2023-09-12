@@ -29,7 +29,7 @@ import { motion } from "framer-motion";
 import { staggerContainer } from "@/utils/motion";
 import { toast } from "react-toastify";
 import { InfoIcon } from "lucide-react";
-import { facts } from "@/constants";
+import { facts, modelUrls } from "@/constants";
 import { TitleText, TypingText } from "@/components/TypingText";
 import { PlusIcon } from "lucide-react";
 
@@ -155,33 +155,18 @@ const UploadPage = () => {
       toast.error("Please select an x-rey type");
       return;
     }
-    let url = "";
-    switch (selectedModel) {
-      case "brain":
-        url = "https://tumor-scan-api.onrender.com/predict";
-        break;
-      case "colon":
-        url = "https://tumor-scan-colon.onrender.com/predict";
-        break;
-      case "lung":
-        url = "https://tumor-scan-colon.onrender.com/predict";
-        break;
-      case "marrow":
-        url = "https://tumor-scan-marrow.onrender.com/predict";
-        break;
-      case "chest":
-        url = "https://tumor-scan-chest.onrender.com/predict";
-        break;
-
-      default:
-        break;
-    }
-
+    const modelUrls = {
+      brain: "https://tumor-scan-api.onrender.com/predict",
+      colon: "https://tumor-scan-colon.onrender.com/predict",
+      lung: "https://tumor-scan-colon.onrender.com/predict",
+      marrow: "https://tumor-scan-marrow.onrender.com/predict",
+      chest: "https://tumor-scan-chest.onrender.com/predict",
+    };
     const formData = new FormData();
     formData.append("file", uploadedPhoto);
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(modelUrls[selectedModel], {
         method: "POST",
         body: formData,
       });
@@ -206,8 +191,7 @@ const UploadPage = () => {
   const labelProps = {
     variant: "small",
     color: "blue-gray",
-    className:
-      "font-normal text-xs",
+    className: "font-normal text-xs",
   };
   return (
     <>
