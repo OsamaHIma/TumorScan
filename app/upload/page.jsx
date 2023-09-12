@@ -207,7 +207,7 @@ const UploadPage = () => {
     variant: "small",
     color: "blue-gray",
     className:
-      "font-normal text-xs dark:text-gray-300",
+      "font-normal text-xs",
   };
   return (
     <>
@@ -219,7 +219,7 @@ const UploadPage = () => {
       >
         <Link
           href="/"
-          className="p-3 absolute top-10 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
+          className="p-3 absolute top-2 md:top-10 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
         >
           <ArrowLeftCircleIcon size={32} />
         </Link>
