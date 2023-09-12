@@ -16,7 +16,12 @@ import { Translate, useLanguage } from "translate-easy";
 import { toast } from "react-toastify";
 import { slideIn, staggerContainer } from "@/utils/motion";
 import { TitleText, TypingText } from "@/components/TypingText";
-import { Button, IconButton, Textarea, Tooltip } from "@material-tailwind/react";
+import {
+  Button,
+  IconButton,
+  Textarea,
+  Tooltip,
+} from "@material-tailwind/react";
 
 const Comments = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -167,22 +172,24 @@ const Comments = () => {
                 </p>
               </div>
               <div className="flex-shrink-0 ml-3">
-                {user.email === comment.email && (
-                  <>
-                    {isDeleting ? (
-                      <Loader2Icon
-                        size={23}
-                        className="animate-spin text-red-400"
-                      />
-                    ) : (
-                      <TrashIcon
-                        size={25}
-                        className="text-red-400 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
-                        onClick={() => deleteThisComment(comment.id)}
-                      />
-                    )}
-                  </>
-                )}
+                <IconButton variant="text" className="rounded-full">
+                  {user.email === comment.email && (
+                    <>
+                      {isDeleting ? (
+                        <Loader2Icon
+                          size={23}
+                          className="animate-spin text-red-400"
+                        />
+                      ) : (
+                        <TrashIcon
+                          size={25}
+                          className="text-red-400 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
+                          onClick={() => deleteThisComment(comment.id)}
+                        />
+                      )}
+                    </>
+                  )}
+                </IconButton>
               </div>
             </motion.div>
           ))}

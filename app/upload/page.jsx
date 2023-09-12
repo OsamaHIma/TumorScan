@@ -229,26 +229,30 @@ const UploadPage = () => {
           <aside>
             {files.length > 0 && (
               <>
-                <h4>Selected Image:</h4>
+                <h4 className="mt-3">
+                  <Translate>Selected Image:</Translate>
+                </h4>
                 <ul>{files}</ul>
-                <Button
-                  disabled={loading}
-                  onClick={handleRemoveFiles}
-                  className="mx-2 mt-6 md:text-lg bg-red-500 text-white px-4"
-                >
-                  <Translate>Cancel</Translate>
-                </Button>
-                <Button
-                  disabled={loading}
-                  onClick={sendImageForPrediction}
-                  className="mx-2 mt-6 md:text-lg px-6 bg-green-400 text-white"
-                >
-                  {loading ? (
-                    <Spinner color="green" className="mx-auto" />
-                  ) : (
-                    <Translate>Send</Translate>
-                  )}
-                </Button>
+                <div className="" dir="ltr">
+                  <Button
+                    disabled={loading}
+                    onClick={handleRemoveFiles}
+                    className="mx-2 mt-6 md:text-lg bg-red-500 text-white px-4"
+                  >
+                    <Translate translations={{ ar: "إلغاء" }}>Cancel</Translate>
+                  </Button>
+                  <Button
+                    disabled={loading}
+                    onClick={sendImageForPrediction}
+                    className="mx-2 mt-6 md:text-lg px-6 bg-green-400 text-white"
+                  >
+                    {loading ? (
+                      <Spinner color="green" className="mx-auto" />
+                    ) : (
+                      <Translate translations={{ ar: "أرسل" }}>Send</Translate>
+                    )}
+                  </Button>
+                </div>
               </>
             )}
           </aside>
@@ -271,7 +275,7 @@ const UploadPage = () => {
                     </span>{" "}
                     <Translate>probability that the patient has</Translate>{" "}
                     <span className="font-bold text-red-300">
-                      {prediction.class1}
+                      <Translate>{prediction.class1}</Translate>
                     </span>
                     .
                   </p>
@@ -290,7 +294,9 @@ const UploadPage = () => {
                 <Translate>Some Quick Facts</Translate>
               </h1>
               <p className="text-gray-400">
-                Read some facts while waiting for the results
+                <Translate>
+                  Read some facts while waiting for the results
+                </Translate>
               </p>
               <FactTag key={index} fact={facts[index]} />
             </div>

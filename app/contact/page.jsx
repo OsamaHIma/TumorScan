@@ -9,7 +9,7 @@ import Tilt from "react-parallax-tilt";
 import { Translate } from "translate-easy";
 import { contactSchema } from "@/schema/userSchema";
 import Link from "next/link";
-import { Button } from "@material-tailwind/react";
+import { Button, Spinner } from "@material-tailwind/react";
 
 const ContactForm = () => {
   const formRef = useRef();
@@ -28,7 +28,6 @@ const ContactForm = () => {
     setForm({ ...Form, [name]: value });
   };
   const handelSubmit = (e) => {
-
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -60,7 +59,9 @@ const ContactForm = () => {
           to_name: "Osama",
           user_name: Form.name,
           user_email: Form.email,
-          user_phone: Form.phone ? Form.phone : "User didn't provide a phone number",
+          user_phone: Form.phone
+            ? Form.phone
+            : "User didn't provide a phone number",
           website_name: "Tumor Scan",
           message: Form.message,
         },
@@ -73,8 +74,11 @@ const ContactForm = () => {
             <p>
               <Translate>Thank you</Translate>{" "}
               <span className="font-bold text-green-500">{Form.name}</span>
-              !,{" "}<Translate>we&apos;ve got your message and we&apos;ll reach out to you
-                soon</Translate>.
+              !,{" "}
+              <Translate>
+                we&apos;ve got your message and we&apos;ll reach out to you soon
+              </Translate>
+              .
             </p>,
             {
               position: "top-right",
@@ -82,7 +86,7 @@ const ContactForm = () => {
             }
           );
           setValidated("");
-          setForm({ name: "", email: "", message: "", phone: "" });;
+          setForm({ name: "", email: "", message: "", phone: "" });
         },
         (err) => {
           setLoading(false);
@@ -90,7 +94,11 @@ const ContactForm = () => {
             <p>
               <Translate>Sorry</Translate>{" "}
               <span className="font-extrabold text-[#ee524d]">{Form.name}</span>
-              <Translate> something went wrong while submitting the form error:{err}</Translate>.
+              <Translate>
+                {" "}
+                something went wrong while submitting the form error:{err}
+              </Translate>
+              .
             </p>
           );
           console.error(err);
@@ -101,7 +109,10 @@ const ContactForm = () => {
   return (
     <>
       <div className="container  relative mx-auto my-24 md:px-6">
-        <Link href="/" className="p-3 absolute -top-14 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100">
+        <Link
+          href="/"
+          className="p-3 absolute -top-14 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
+        >
           <ArrowLeftCircleIcon size={32} />
         </Link>
         <motion.div
@@ -133,7 +144,9 @@ const ContactForm = () => {
                     >
                       <label className="flex flex-col">
                         <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span><Translate>Name</Translate>:</span>
+                          <span>
+                            <Translate>Name</Translate>:
+                          </span>
                         </div>
                         <div className="relative">
                           <input
@@ -152,7 +165,9 @@ const ContactForm = () => {
                       </label>
                       <label className="flex flex-col">
                         <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span><Translate>Email</Translate>:</span>
+                          <span>
+                            <Translate>Email</Translate>:
+                          </span>
                         </div>
                         <div className="relative">
                           <input
@@ -170,7 +185,9 @@ const ContactForm = () => {
                       </label>
                       <label className="flex flex-col">
                         <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span><Translate >Phone (optional)</Translate>:</span>
+                          <span>
+                            <Translate>Phone (optional)</Translate>:
+                          </span>
                         </div>
                         <div className="relative">
                           <input
@@ -187,7 +204,12 @@ const ContactForm = () => {
                       </label>
                       <label className="flex flex-col justify-start">
                         <div className="mb-4 rtl:text-right ltr:text-left font-medium text-stone-400 dark:text-stone-100">
-                          <span><Translate translations={{ ar: "الرسالة" }}>Message</Translate>:</span>{" "}
+                          <span>
+                            <Translate translations={{ ar: "الرسالة" }}>
+                              Message
+                            </Translate>
+                            :
+                          </span>{" "}
                         </div>
                         <div className="relative">
                           <textarea
@@ -206,7 +228,11 @@ const ContactForm = () => {
                       {error && (
                         <div className="flex flex-col gap-1 text-red-500 mx-4 ltr:text-left rtl:text-right">
                           {error.map((err, key) => {
-                            return <p key={key}>*<Translate>{err}</Translate></p>;
+                            return (
+                              <p key={key}>
+                                *<Translate>{err}</Translate>
+                              </p>
+                            );
                           })}
                         </div>
                       )}
@@ -216,8 +242,13 @@ const ContactForm = () => {
                         data-te-ripple-color="light"
                         className="inline-block w-full rounded bg-indigo-800 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-stone-100 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-indigo-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:mb-0"
                       >
-                        {/* <Translate>{loading ? "Sending..." : "Send"}</Translate> */}
-                        {loading ? (<Translate translations={{ar:"...جاري الإرسال"}}>Sending...</Translate>) : (<Translate translations={{ ar: "أرسل" }} >Send</Translate>)}
+                        {loading ? (
+                          <Spinner className="mx-auto" />
+                        ) : (
+                          <Translate translations={{ ar: "أرسل" }}>
+                            Send
+                          </Translate>
+                        )}
                       </Button>
                     </form>
                   </motion.div>
@@ -239,13 +270,13 @@ const ContactForm = () => {
                   </div>
                 </motion.div>
               </div>
-              <div className="flex w-full items-center gap-5 pt-8 flex-wrap" >
+              <div className="flex w-full items-center gap-5 pt-8 flex-wrap">
                 <motion.div
                   initial={{ opacity: 0, y: -50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.7, type: "tween" }}
                   viewport={{ once: true }}
-                // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
+                  // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
                 >
                   <Tilt
                     className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
@@ -257,8 +288,13 @@ const ContactForm = () => {
                       <MailIcon />
                     </div>
                     <div>
-                      <h3 className="text left text-stone-100"><Translate>Mail</Translate></h3>
-                      <a href="mailto:tumorscan@gmail.com" className="text-gray-300">
+                      <h3 className="text left text-stone-100">
+                        <Translate>Mail</Translate>
+                      </h3>
+                      <a
+                        href="mailto:tumorscan@gmail.com"
+                        className="text-gray-300"
+                      >
                         tumorscan@gmail.com
                       </a>
                     </div>
