@@ -35,7 +35,6 @@ const Sponsors = () => {
         <Swiper
           className="pt-8"
           {...companiesSliderSittings}
-          // slidesPerView={4}
           autoplay={{ delay: 2000, disableOnInteraction: false }}
         >
           {images.map((image, index) => (
@@ -43,14 +42,13 @@ const Sponsors = () => {
               <Image
                 src={image}
                 alt="company"
-                className="scale-75 opacity-50 grayscale transition-all duration-500 ease-in-out hover:scale-100 hover:cursor-pointer hover:opacity-100 hover:grayscale-0"
+                className="scale-75 object-contain aspect-[3/2] opacity-50 grayscale transition-all duration-500 ease-in-out hover:scale-100 hover:cursor-pointer hover:opacity-100 hover:grayscale-0"
                 width={137}
                 height={137}
               />
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* <SwiperButtons /> */}
       </div>
     </motion.section>
   );

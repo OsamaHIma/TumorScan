@@ -2,7 +2,10 @@
 import Footer from "@/components/Footer";
 import {
   ArrowLeftCircleIcon,
+  ArrowRight,
+  Brain,
   CheckCircleIcon,
+  DownloadIcon,
   XCircleIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -10,13 +13,25 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Translate } from "translate-easy";
-import { Button, Option, Select, Spinner } from "@material-tailwind/react";
+import {
+  Button,
+  Option,
+  Select,
+  Spinner,
+  IconButton,
+  SpeedDial,
+  SpeedDialHandler,
+  SpeedDialContent,
+  SpeedDialAction,
+  Typography,
+} from "@material-tailwind/react";
 import { motion } from "framer-motion";
 import { staggerContainer } from "@/utils/motion";
 import { toast } from "react-toastify";
 import { InfoIcon } from "lucide-react";
 import { facts } from "@/constants";
 import { TitleText, TypingText } from "@/components/TypingText";
+import { PlusIcon } from "lucide-react";
 
 const styles = {
   focused: {
@@ -69,7 +84,6 @@ const UploadPage = () => {
           <Translate>{fact}</Translate>
         </p>
       </motion.div>
-      // toast(fact)
     );
   };
 
@@ -135,18 +149,42 @@ const UploadPage = () => {
       toast.error("Please select an image");
       return;
     }
+    if (!selectedModel) {
+      // Handle case where no file is selected
+      setIsLoading(false);
+      toast.error("Please select an x-rey type");
+      return;
+    }
+    let url = "";
+    switch (selectedModel) {
+      case "brain":
+        url = "https://tumor-scan-api.onrender.com/predict";
+        break;
+      case "colon":
+        url = "https://tumor-scan-colon.onrender.com/predict";
+        break;
+      case "lung":
+        url = "https://tumor-scan-colon.onrender.com/predict";
+        break;
+      case "marrow":
+        url = "https://tumor-scan-marrow.onrender.com/predict";
+        break;
+      case "chest":
+        url = "https://tumor-scan-chest.onrender.com/predict";
+        break;
+
+      default:
+        break;
+    }
 
     const formData = new FormData();
     formData.append("file", uploadedPhoto);
 
     try {
-      const response = await fetch(
-        "https://tumor-scan-api.onrender.com/predict",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const { class1, prob1 } = await response.json();
@@ -165,6 +203,12 @@ const UploadPage = () => {
       toast.error("Something went wrong");
     }
   };
+  const labelProps = {
+    variant: "small",
+    color: "blue-gray",
+    className:
+      "font-normal text-xs dark:text-gray-300",
+  };
   return (
     <>
       <motion.section
@@ -182,9 +226,11 @@ const UploadPage = () => {
         <TypingText title="| Get The Results" textStyles="text-center" />
         <TitleText title="Upload An Image" textStyles="text-center" />
         <div className="text-center max-w-sm min-h-44 mx-auto pt-16">
-          {/* <div className="py-5">
+          <div className="py-5 flex flex-col gap-3">
             <Select
               label="Which type is the x-ray?"
+              className="dark:text-gray-300"
+              color="indigo"
               selected={(element) => {
                 if (element) {
                   const selectedValue = element;
@@ -195,11 +241,103 @@ const UploadPage = () => {
                 }
               }}
             >
-              <Option>Brain</Option>
-              <Option>Chest</Option>
-              <Option>Marrow</Option>
+              <Option className="capitalize">brain</Option>
+              <Option className="capitalize">chest</Option>
+              <Option className="capitalize">lung</Option>
+              <Option className="capitalize">colon</Option>
+              <Option className="capitalize">marrow</Option>
             </Select>
-          </div> */}
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col gap-2 justify-center">
+                <p className="text-[10px] text-gray-400 whitespace-nowrap">
+                  Don&apos;t have Images to test the models?
+                </p>
+                <h5 className="text-left whitespace-nowrap">
+                  Download some now!{"   "}
+                  <ArrowRight className="inline" />
+                </h5>
+              </div>
+              <div className="relative h-14 w-full">
+                <div className="absolute bottom-0 -right-0">
+                  <SpeedDial placement="right">
+                    <SpeedDialHandler>
+                      <IconButton size="lg" className="rounded-full">
+                        <DownloadIcon className="h-5 w-5" />
+                      </IconButton>
+                    </SpeedDialHandler>
+                    <SpeedDialContent>
+                      <Link
+                        target="_blank"
+                        href="https://tumor-scan.vercel.app/brain.png"
+                        download="brain.png"
+                      >
+                        <SpeedDialAction className="h-16 w-16">
+                          <Brain className="h-5 w-5 text-stone-950" />
+                          <Typography {...labelProps}>Brain</Typography>
+                        </SpeedDialAction>
+                      </Link>
+                      <Link
+                        target="_blank"
+                        href="https://tumor-scan.vercel.app/lung.jpg"
+                        download="lung.jpg"
+                      >
+                        <SpeedDialAction className="h-16 w-16">
+                          <img
+                            className="h-5 w-5"
+                            src="https://img.icons8.com/ios/50/lungs.png"
+                            alt="lungs"
+                          />
+                          <Typography {...labelProps}>Lung</Typography>
+                        </SpeedDialAction>
+                      </Link>
+                      <Link
+                        target="_blank"
+                        href="https://tumor-scan.vercel.app/chest.jpg"
+                        download="chest.jpg"
+                      >
+                        <SpeedDialAction className="h-16 w-16">
+                          <img
+                            className="h-5 w-5"
+                            src="https://img.icons8.com/ios/50/chest.png"
+                            alt="chest"
+                          />
+                          <Typography {...labelProps}>Chest</Typography>
+                        </SpeedDialAction>
+                      </Link>
+                      <Link
+                        target="_blank"
+                        href="https://tumor-scan.vercel.app/colon.jpg"
+                        download="colon.jpg"
+                      >
+                        <SpeedDialAction className="h-16 w-16">
+                          <img
+                            className="h-5 w-5"
+                            src="https://img.icons8.com/quill/50/large-intestine.png"
+                            alt="large-intestine"
+                          />
+                          <Typography {...labelProps}>Colon</Typography>
+                        </SpeedDialAction>
+                      </Link>
+                      <Link
+                        target="_blank"
+                        href="https://tumor-scan.vercel.app/marrow.jpg"
+                        download="marrow.jpg"
+                      >
+                        <SpeedDialAction className="h-16 w-16">
+                          <img
+                            className="h-5 w-5"
+                            src="https://img.icons8.com/external-others-pike-picture/50/external-Marrow-immune-others-pike-picture.png"
+                            alt="external-Marrow-immune-others-pike-picture"
+                          />
+                          <Typography {...labelProps}>Marrow</Typography>
+                        </SpeedDialAction>
+                      </Link>
+                    </SpeedDialContent>
+                  </SpeedDial>
+                </div>
+              </div>
+            </div>
+          </div>
           <div
             {...getRootProps({ className: "dropzone", style })}
             className="py-5 px-4  border border-dashed border-gray-400 rounded-tr-lg rounded-tl-lg transition-all"
@@ -275,7 +413,7 @@ const UploadPage = () => {
                     </span>{" "}
                     <Translate>probability that the patient has</Translate>{" "}
                     <span className="font-bold text-red-300">
-                      <Translate>{prediction.class1}</Translate>
+                      {prediction.class1}
                     </span>
                     .
                   </p>
