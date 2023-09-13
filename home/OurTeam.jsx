@@ -39,13 +39,13 @@ const TeamMember = ({ index, name, role, image, linkedin, facebook }) => {
 
 const JoinTeamCard = () => {
   return (
-    <Link href="/contact">
+    <Link href="/contact" className="mx-auto md:mx-0">
       <motion.div
         variants={slideIn("up", "tween", 0.5 * teamMembers.length, 1.3)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] mx-auto md:mx-0 px-4"
+        className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] px-4"
       >
         <div className="flex flex-col items-center">
           <PlusIcon size={80} />
