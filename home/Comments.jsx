@@ -1,6 +1,6 @@
 "use client";
 import { addComment, deleteComment, getComments } from "@/lib/firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   UserIcon,
   ClockIcon,
@@ -17,7 +17,6 @@ import { toast } from "react-toastify";
 import { slideIn, staggerContainer } from "@/utils/motion";
 import { TitleText, TypingText } from "@/components/TypingText";
 import {
-  Button,
   IconButton,
   Textarea,
   Tooltip,
@@ -30,11 +29,13 @@ const Comments = () => {
   const [comments, setComments] = useState([]);
   const { user } = useUser();
   const { selectedLanguage } = useLanguage();
+  const fileInputRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const getAllComments = async () => {
     const res = await getComments();
     setComments(res);
   };
-
   useEffect(() => {
     getAllComments();
   }, []);
@@ -46,33 +47,48 @@ const Comments = () => {
 
   const deleteThisComment = async (id) => {
     setIsDeleting(true);
-    await deleteComment(id);
-    const res = await getComments();
-    setComments(res);
-    setIsDeleting(false);
+    try {
+      await deleteComment(id);
+      const res = await getComments();
+      setComments(res);
+      setIsDeleting(false);
+    } catch (error) {
+      setIsDeleting(false);
+      console.error("Error deleting the comment" + error)
+      toast.error("Sorry someting went wrong while deleting the comment")
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) return toast.error("Please Sing up or login to add a comment");
+    if (!user) return toast.error("Please Sign up or login to add a comment");
 
     if (comment.trim() === "") {
       toast.error("Comment cannot be empty");
       return; // Don't submit empty comments
     }
     setIsLoading(true);
-    await addComment({
-      text: comment,
-      author: user.displayName || user.email,
-      email: user.email,
-      timestamp: new Date(),
-    });
-    const res = await getComments();
-    setComments(res);
-    setIsLoading(false);
-    setComment("");
-  };
 
+    try {
+      await addComment({
+        text: comment,
+        author: user.displayName || user.email,
+        email: user.email,
+        timestamp: new Date(),
+        imageURL: selectedImage,
+      });
+
+      const res = await getComments();
+      setComments(res);
+      setIsLoading(false);
+      setComment("");
+      setSelectedImage(null);
+    } catch (error) {
+      setIsLoading(false)
+      console.error("Error adding the comment" + error)
+      toast.error("Sorry someting went wrong while adding the comment")
+    }
+  };
   return (
     <motion.section
       variants={staggerContainer}
@@ -87,11 +103,20 @@ const Comments = () => {
       <form onSubmit={handleSubmit} className="flex items-center my-4">
         <div className="flex w-full flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 dark:border-gray-100/10 bg-gray-900/5 dark:bg-stone-800 p-2">
           <div className="flex">
-            <Tooltip content="Working on it">
-              <IconButton variant="text" className="rounded-full">
-                <ImageIcon className="dark:text-stone-300" />
-              </IconButton>
-            </Tooltip>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={(e) => setSelectedImage(URL.createObjectURL(e.target.files[0]))}
+            />
+            <IconButton
+              variant="text"
+              className="rounded-full"
+              onClick={() => fileInputRef.current.click()}
+            >
+              <ImageIcon className="dark:text-stone-300" />
+            </IconButton>
           </div>
 
           <Textarea
@@ -109,6 +134,7 @@ const Comments = () => {
             }}
           />
           <div>
+
             <IconButton variant="text" className="rounded-full" type="submit">
               {isLoading ? (
                 <Loader2Icon className="inline-block mx-2 animate-spin text-green-400" />
@@ -170,6 +196,11 @@ const Comments = () => {
                 <p className="!w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
                   {comment.text}
                 </p>
+                {comment.imageURL && (
+                  <div className="flex justify-center mt-3">
+                    <img src={comment.imageURL} alt="Comment Image" className="max-w-full h-auto" />
+                  </div>
+                )}
               </div>
               <div className="flex-shrink-0 ml-3">
                 <IconButton variant="text" className="rounded-full">
