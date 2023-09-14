@@ -276,8 +276,8 @@ const UploadPage = () => {
                       </Link>
                       <Link
                         target="_blank"
-                        href="https://tumor-scan.vercel.app/chest.jpg"
-                        download="chest.jpg"
+                        href="https://tumor-scan.vercel.app/chest.jpeg"
+                        download="chest.jpeg"
                       >
                         <SpeedDialAction className="h-16 w-16">
                           <img
