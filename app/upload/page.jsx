@@ -222,6 +222,7 @@ const UploadPage = () => {
                 }}
 
               >
+                
                 <Option className="capitalize">brain</Option>
                 <Option className="capitalize">lung</Option>
                 <Option className="capitalize">colon</Option>

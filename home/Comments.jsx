@@ -187,7 +187,8 @@ const Comments = () => {
             >
               <div className="ml-3 flex-grow">
                 <div className="flex flex-col mt-2">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
                     <UserIcon size={24} className="text-orange-500" />
                     <div className="flex flex-col gap-1">
                       <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
@@ -204,17 +205,7 @@ const Comments = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <p className="!w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
-                  {comment.text}
-                </p>
-                {comment.imageURL && (
-                  <div className="flex justify-center mt-3">
-                    <img src={comment.imageURL} alt="Comment Image" className="max-w-[20rem] rounded-md h-auto" />
-                  </div>
-                )}
-              </div>
-              <div className="flex-shrink-0 ml-3">
+                
                 <IconButton variant="text" className="rounded-full">
                   {user.email === comment.email && (
                     <>
@@ -233,7 +224,19 @@ const Comments = () => {
                     </>
                   )}
                 </IconButton>
+                </div>
+              
+                </div>
+                <p className="!w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
+                  {comment.text}
+                </p>
+                {comment.imageURL && (
+                  <div className="flex justify-center mt-3">
+                    <img src={comment.imageURL} alt="Comment Image" className="max-w-[20rem] rounded-md h-auto" />
+                  </div>
+                )}
               </div>
+              
             </motion.div>
           ))}
         </motion.div>
