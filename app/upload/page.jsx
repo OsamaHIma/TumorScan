@@ -159,7 +159,7 @@ const UploadPage = () => {
       colon: "https://tumor-scan-colon.onrender.com/predict",
       lung: "https://tumor-scan-colon.onrender.com/predict",
       marrow: "https://tumor-scan-marrow.onrender.com/predict",
-      chest: "https://tumor-scan-chest.onrender.com/predict",
+      // chest: "https://tumor-scan-chest.onrender.com/predict",
     };
     const formData = new FormData();
     formData.append("file", uploadedPhoto);
@@ -222,11 +222,10 @@ const UploadPage = () => {
                 }}
 
               >
-                <Option className="capitalize"><Translate>brain</Translate></Option>
-                <Option className="capitalize"><Translate>chest</Translate></Option>
-                <Option className="capitalize"><Translate>lung</Translate></Option>
-                <Option className="capitalize"><Translate>colon</Translate></Option>
-                <Option className="capitalize"><Translate>marrow</Translate></Option>
+                <Option className="capitalize">brain</Option>
+                <Option className="capitalize">lung</Option>
+                <Option className="capitalize">colon</Option>
+                <Option className="capitalize">marrow</Option>
               </Select>
             </div>
             <div className="flex items-center gap-3">
@@ -272,7 +271,7 @@ const UploadPage = () => {
                           <Typography {...labelProps}><Translate>Lung</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
-                      <Link
+                      {/* <Link
                         target="_blank"
                         href="https://tumor-scan.vercel.app/chest.jpeg"
                         download="chest.jpeg"
@@ -285,7 +284,7 @@ const UploadPage = () => {
                           />
                           <Typography {...labelProps}><Translate>Chest</Translate></Typography>
                         </SpeedDialAction>
-                      </Link>
+                      </Link> */}
                       <Link
                         target="_blank"
                         href="https://tumor-scan.vercel.app/colon.jpg"
