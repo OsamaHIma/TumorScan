@@ -1,7 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
 import {
-  ArrowLeftCircleIcon,
   ArrowRight,
   Brain,
   CheckCircleIcon,
@@ -29,9 +28,9 @@ import { motion } from "framer-motion";
 import { staggerContainer } from "@/utils/motion";
 import { toast } from "react-toastify";
 import { InfoIcon } from "lucide-react";
-import { facts, modelUrls } from "@/constants";
+import { facts } from "@/constants";
 import { TitleText, TypingText } from "@/components/TypingText";
-import { PlusIcon } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 const styles = {
   focused: {
@@ -195,18 +194,13 @@ const UploadPage = () => {
   };
   return (
     <>
+      <Navbar />
       <motion.section
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
-        className="min-h-screen relative paddings innerWidth pt-16"
+        className="min-h-screen relative paddings innerWidth pt-20 md:pt-32"
       >
-        <Link
-          href="/"
-          className="p-3 absolute top-2 md:top-10 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
-        >
-          <ArrowLeftCircleIcon size={32} />
-        </Link>
         <TypingText title="| Get The Results" textStyles="text-center" />
         <TitleText title="Upload An Image" textStyles="text-center" />
         <div className="text-center max-w-sm min-h-44 mx-auto pt-16">

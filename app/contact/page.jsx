@@ -1,15 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import { MailIcon, ArrowLeftCircleIcon } from "lucide-react";
+import { MailIcon } from "lucide-react";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Footer from "@/components/Footer";
 import Tilt from "react-parallax-tilt";
 import { Translate } from "translate-easy";
 import { contactSchema } from "@/schema/userSchema";
-import Link from "next/link";
 import { Button, Spinner } from "@material-tailwind/react";
+import Navbar from "@/components/Navbar";
 
 const ContactForm = () => {
   const formRef = useRef();
@@ -108,13 +108,8 @@ const ContactForm = () => {
 
   return (
     <>
-      <div className="container  relative mx-auto my-24 md:px-6">
-        <Link
-          href="/"
-          className="p-3 absolute -top-14 z-20 left-8 md:left-10 rounded-full bg-indigo-500 text-slate-100"
-        >
-          <ArrowLeftCircleIcon size={32} />
-        </Link>
+      <Navbar />
+      <section className="container  relative mx-auto my-24 md:px-6">
         <motion.div
           className="absolute left-[50%] top-[40%] h-16 w-16 md:w-32 md:h-32 rounded-full border-8 border-indigo-500/10"
           initial={{ opacity: 0, scale: 0 }}
@@ -276,7 +271,7 @@ const ContactForm = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.7, type: "tween" }}
                   viewport={{ once: true }}
-                  // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
+                // className={`my-5 flex flex-col items-center border-b-2 border-gray-300 dark:border-gray-500 px-3 gap-8 py-2 md:items-start shadow-xl rounded-md`}
                 >
                   <Tilt
                     className={`flex w-full items-center gap-2 rounded-[20px] bg-indigo-600 px-3 py-4 transition-all`}
@@ -304,7 +299,7 @@ const ContactForm = () => {
             </div>
           </div>
         </section>
-      </div>
+      </section>
       <Footer />
     </>
   );
