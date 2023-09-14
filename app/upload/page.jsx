@@ -211,38 +211,42 @@ const UploadPage = () => {
         <TitleText title="Upload An Image" textStyles="text-center" />
         <div className="text-center max-w-sm min-h-44 mx-auto pt-16">
           <div className="py-5 flex flex-col gap-3">
-            <Select
-              label="Which type is the x-ray?"
-              className="dark:text-gray-300"
-              color="indigo"
-              selected={(element) => {
-                if (element) {
-                  const selectedValue = element;
-                  if (selectedModel !== selectedValue.props.children) {
-                    setSelectedModel(selectedValue.props.children);
+            <div className="" dir="ltr">
+              <Select
+
+                label={<Translate>Which type is the x-ray?</Translate>}
+                className="dark:text-gray-300"
+                color="indigo"
+                selected={(element) => {
+                  if (element) {
+                    const selectedValue = element;
+                    if (selectedModel !== selectedValue.props.children) {
+                      setSelectedModel(selectedValue.props.children);
+                    }
+                    return element;
                   }
-                  return element;
-                }
-              }}
-            >
-              <Option className="capitalize">brain</Option>
-              <Option className="capitalize">chest</Option>
-              <Option className="capitalize">lung</Option>
-              <Option className="capitalize">colon</Option>
-              <Option className="capitalize">marrow</Option>
-            </Select>
+                }}
+
+              >
+                <Option className="capitalize"><Translate>brain</Translate></Option>
+                <Option className="capitalize"><Translate>chest</Translate></Option>
+                <Option className="capitalize"><Translate>lung</Translate></Option>
+                <Option className="capitalize"><Translate>colon</Translate></Option>
+                <Option className="capitalize"><Translate>marrow</Translate></Option>
+              </Select>
+            </div>
             <div className="flex items-center gap-3">
               <div className="flex flex-col gap-2 justify-center">
-                <p className="text-[10px] text-gray-400 whitespace-nowrap">
-                  Don&apos;t have Images to test the models?
+                <p className="text-[10px] text-gray-400 whitespace-nowrap rtl:text-right">
+                  <Translate>Don&apos;t have Images to test the models?</Translate>
                 </p>
                 <h5 className="text-left whitespace-nowrap">
-                  Download some now!{"   "}
-                  <ArrowRight className="inline" />
+                  <Translate>Download some now!</Translate>{"   "}
+                  <ArrowRight className="inline transition-transform rtl:rotate-180" />
                 </h5>
               </div>
               <div className="relative h-14 w-full">
-                <div className="absolute bottom-0 -right-0">
+                <div className="absolute bottom-0 ltr:-right-0 rtl:-left-0">
                   <SpeedDial placement="right">
                     <SpeedDialHandler>
                       <IconButton size="lg" className="rounded-full">
@@ -257,7 +261,7 @@ const UploadPage = () => {
                       >
                         <SpeedDialAction className="h-16 w-16">
                           <Brain className="h-5 w-5 text-stone-950" />
-                          <Typography {...labelProps}>Brain</Typography>
+                          <Typography {...labelProps}><Translate>Brain</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -271,7 +275,7 @@ const UploadPage = () => {
                             src="https://img.icons8.com/ios/50/lungs.png"
                             alt="lungs"
                           />
-                          <Typography {...labelProps}>Lung</Typography>
+                          <Typography {...labelProps}><Translate>Lung</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -285,7 +289,7 @@ const UploadPage = () => {
                             src="https://img.icons8.com/ios/50/chest.png"
                             alt="chest"
                           />
-                          <Typography {...labelProps}>Chest</Typography>
+                          <Typography {...labelProps}><Translate>Chest</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -299,7 +303,7 @@ const UploadPage = () => {
                             src="https://img.icons8.com/quill/50/large-intestine.png"
                             alt="large-intestine"
                           />
-                          <Typography {...labelProps}>Colon</Typography>
+                          <Typography {...labelProps}><Translate>Colon</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -313,7 +317,7 @@ const UploadPage = () => {
                             src="https://img.icons8.com/external-others-pike-picture/50/external-Marrow-immune-others-pike-picture.png"
                             alt="external-Marrow-immune-others-pike-picture"
                           />
-                          <Typography {...labelProps}>Marrow</Typography>
+                          <Typography {...labelProps}><Translate>Marrow</Translate></Typography>
                         </SpeedDialAction>
                       </Link>
                     </SpeedDialContent>
