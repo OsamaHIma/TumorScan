@@ -1,6 +1,7 @@
 "use client";
 import { addComment, deleteComment, getComments } from "@/lib/firebase";
 import { useEffect, useState, useRef } from "react";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
   UserIcon,
   ClockIcon,
@@ -17,6 +18,7 @@ import { toast } from "react-toastify";
 import { slideIn, staggerContainer } from "@/utils/motion";
 import { TitleText, TypingText } from "@/components/TypingText";
 import {
+  Badge,
   IconButton,
   Textarea,
   Tooltip,
@@ -70,12 +72,20 @@ const Comments = () => {
     setIsLoading(true);
 
     try {
+      const storage = getStorage();
+
+      let imageURL = null;
+      if (selectedImage) {
+        const fileRef = ref(storage, selectedImage.name);
+        await uploadBytes(fileRef, selectedImage);
+        imageURL = await getDownloadURL(fileRef);
+      }
       await addComment({
         text: comment,
         author: user.displayName || user.email,
         email: user.email,
         timestamp: new Date(),
-        imageURL: selectedImage,
+        imageURL: imageURL,
       });
 
       const res = await getComments();
@@ -108,15 +118,17 @@ const Comments = () => {
               accept="image/*"
               ref={fileInputRef}
               style={{ display: "none" }}
-              onChange={(e) => setSelectedImage(URL.createObjectURL(e.target.files[0]))}
+              onChange={(e) => setSelectedImage(e.target.files[0])}
             />
+
             <IconButton
               variant="text"
-              className="rounded-full"
+              className="rounded-full relative"
               onClick={() => fileInputRef.current.click()}
-            >
+            >{selectedImage && <div className="absolute inset-0 -top-1 w-3 h-3 bg-green-600 rounded-full"></div>}
               <ImageIcon className="dark:text-stone-300" />
             </IconButton>
+
           </div>
 
           <Textarea
@@ -149,7 +161,7 @@ const Comments = () => {
         </div>
       </form>
 
-      <div className="bg-stone-100 shadow-inner dark:bg-stone-900 p-4 rounded-lg h-80 overflow-y-scroll hide-scroll-bar">
+      <div className="bg-stone-100 shadow-inner dark:bg-stone-900 p-4 rounded-lg max-h-[120rem] overflow-y-scroll hide-scroll-bar">
         <h2 className="text-2xl font-bold mb-4">
           <Translate translations={{ ar: "التعليقات" }}>Comments</Translate>
         </h2>
@@ -198,7 +210,7 @@ const Comments = () => {
                 </p>
                 {comment.imageURL && (
                   <div className="flex justify-center mt-3">
-                    <img src={comment.imageURL} alt="Comment Image" className="max-w-full h-auto" />
+                    <img src={comment.imageURL} alt="Comment Image" className="max-w-[20rem] rounded-md h-auto" />
                   </div>
                 )}
               </div>
