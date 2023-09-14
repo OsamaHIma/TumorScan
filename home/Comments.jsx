@@ -187,45 +187,45 @@ const Comments = () => {
             >
               <div className="ml-3 flex-grow">
                 <div className="flex flex-col mt-2">
-                <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <UserIcon size={24} className="text-orange-500" />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
-                        {comment.author}
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <ClockIcon
-                          size={16}
-                          className="text-gray-600 dark:text-gray-300"
-                        />
-                        <p className="text-gray-600 dark:text-gray-300/50 text-sm \">
-                          {formatDate(comment.timestamp)}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <UserIcon size={24} className="text-orange-500" />
+                      <div className="flex flex-col gap-1">
+                        <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
+                          {comment.author}
                         </p>
+                        <div className="flex items-center gap-2">
+                          <ClockIcon
+                            size={16}
+                            className="text-gray-600 dark:text-gray-300"
+                          />
+                          <p className="text-gray-600 dark:text-gray-300/50 text-sm \">
+                            {formatDate(comment.timestamp)}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                
-                <IconButton variant="text" className="rounded-full">
-                  {user.email === comment.email && (
-                    <>
-                      {isDeleting ? (
-                        <Loader2Icon
-                          size={23}
-                          className="animate-spin text-red-400"
-                        />
-                      ) : (
-                        <TrashIcon
-                          size={25}
-                          className="text-red-400 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
-                          onClick={() => deleteThisComment(comment.id)}
-                        />
+
+                    <IconButton variant="text" className="rounded-full">
+                      {user.email === comment.email && (
+                        <>
+                          {isDeleting ? (
+                            <Loader2Icon
+                              size={23}
+                              className="animate-spin text-red-400"
+                            />
+                          ) : (
+                            <TrashIcon
+                              size={25}
+                              className="text-red-400 hover:text-red-600 hover:font-semibold transition-all ease-in-out cursor-pointer"
+                              onClick={() => deleteThisComment(comment.id)}
+                            />
+                          )}
+                        </>
                       )}
-                    </>
-                  )}
-                </IconButton>
-                </div>
-              
+                    </IconButton>
+                  </div>
+
                 </div>
                 <p className="!w-fit my-2 bg-gray-600/10 dark:bg-gray-50/30 px-4 py-2 rounded-md">
                   {comment.text}
@@ -236,7 +236,7 @@ const Comments = () => {
                   </div>
                 )}
               </div>
-              
+
             </motion.div>
           ))}
         </motion.div>

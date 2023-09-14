@@ -39,7 +39,7 @@ const EmailVerificationPage = () => {
           {!isVerified && (
             <div className="text-center">
               <Mail className="text-indigo-500 w-12 h-12 mx-auto" />
-              <h2 className="text-2xl font-bold">Verify Email</h2>
+              <h2 className="text-2xl font-bold text-stone-800">Verify Email</h2>
               <p className="text-gray-600 ">
                 Click the button below to verify your email address.
               </p>
