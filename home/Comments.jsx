@@ -232,11 +232,10 @@ const Comments = () => {
                 </p>
                 {comment.imageURL && (
                   <div className="flex justify-center mt-3">
-                    <img src={comment.imageURL} alt="Comment Image" className="max-w-[20rem] rounded-md h-auto" />
+                    <img src={comment.imageURL} alt="Comment Image" className="max-w-[15rem] md:max-w-[20rem] rounded-md h-auto" />
                   </div>
                 )}
               </div>
-
             </motion.div>
           ))}
         </motion.div>
