@@ -1,10 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { User, LinkedinIcon, FacebookIcon, PlusSquareIcon } from "lucide-react";
+import { LinkedinIcon, FacebookIcon, PlusIcon } from "lucide-react";
 import { TitleText, TypingText } from "@/components/TypingText";
-import { fadeIn, slideIn, staggerContainer } from "@/utils/motion";
+import { slideIn, staggerContainer } from "@/utils/motion";
 import Link from "next/link";
-import { PlusIcon } from "lucide-react";
+import Tilt from "react-parallax-tilt";
 import { teamMembers } from "@/constants";
 import { Translate } from "translate-easy";
 
@@ -21,7 +21,13 @@ const TeamMember = ({ index, name, role, image, linkedin, facebook }) => {
         <div className="overlay absolute z-10 w-full h-72 bg-indigo-600/40 hover:bg-transparent transition-all duration-700"></div>
         <motion.img src={image} alt={name} className="h-72 rounded-lg" />
       </div>
-      <div className="flex flex-col items-center mt-4">
+      <Tilt
+        glareEnable={true}
+        glareBorderRadius="20px"
+        glareColor="#5d56e0"
+        className="flex flex-col items-center mt-4 p-2 whitespace-nowrap"
+      >
+
         <h3 className="text-lg font-bold">{name}</h3>
         <p className="text-sm text-gray-500">{role}</p>
         <div className="flex gap-2 mt-2">
@@ -32,32 +38,39 @@ const TeamMember = ({ index, name, role, image, linkedin, facebook }) => {
             <FacebookIcon className="w-6 h-6 text-gray-400 hover:text-indigo-500 transition-colors duration-300" />
           </a>
         </div>
-      </div>
+
+      </Tilt>
     </motion.div>
   );
 };
 
 const JoinTeamCard = () => {
   return (
-    <Link href="/contact" className="mx-auto md:mx-0">
-      <motion.div
-        variants={slideIn("up", "tween", 0.5 * teamMembers.length, 1.3)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] px-4"
-      >
-        <div className="flex flex-col items-center">
-          <PlusIcon size={80} />
+    <Tilt
+      glareEnable={true}
+      glareBorderRadius="20px"
+      glareColor="#5d56e0"
+    >
+      <Link href="/contact" className="mx-auto md:mx-0">
+        <motion.div
+          variants={slideIn("up", "tween", 0.5 * teamMembers.length, 1.3)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="flex flex-col items-center m-4 border-2 h-96 hover:bg-indigo-500/20 transition-all ease-out duration-500 border-dashed rounded-lg border-gray-400 dark:border-gray-300 justify-center w-[17rem] px-4"
+        >
+          <div className="flex flex-col items-center">
+            <PlusIcon size={80} />
 
-          <div className="flex flex-col items-center mt-4">
-            <h3 className="text-lg font-bold">
-              <Translate>Contribute with us!</Translate>
-            </h3>
+            <div className="flex flex-col items-center mt-4">
+              <h3 className="text-lg font-bold">
+                <Translate>Contribute with us!</Translate>
+              </h3>
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </Link>
+        </motion.div>
+      </Link>
+    </Tilt>
   );
 };
 

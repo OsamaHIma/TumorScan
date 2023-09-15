@@ -100,7 +100,7 @@ const Hero = () => {
                   <CountUp
                     start={2}
                     end={600}
-                    duration={4}
+                    duration={7}
                     className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
                   <span className="ml-2 text-3xl font-bold text-[orange]">
@@ -118,7 +118,7 @@ const Hero = () => {
                   <CountUp
                     start={0}
                     end={97}
-                    duration={4}
+                    duration={7}
                     className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
                   <span className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100">
@@ -139,7 +139,7 @@ const Hero = () => {
                   <CountUp
                     start={0}
                     end={340}
-                    duration={4}
+                    duration={7}
                     className="text-4xl font-semibold rtl:text-stone-200 text-stone-200 md:text-stone-700 dark:text-gray-100"
                   />
                   <span className="ml-2 text-3xl font-bold text-orange-500">

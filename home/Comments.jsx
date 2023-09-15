@@ -8,7 +8,6 @@ import {
   TrashIcon,
   Send,
   Loader2Icon,
-  Image,
   ImageIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -21,7 +20,6 @@ import {
   Badge,
   IconButton,
   Textarea,
-  Tooltip,
 } from "@material-tailwind/react";
 
 const Comments = () => {
