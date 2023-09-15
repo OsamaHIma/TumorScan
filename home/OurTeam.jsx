@@ -50,8 +50,9 @@ const JoinTeamCard = () => {
       glareEnable={true}
       glareBorderRadius="20px"
       glareColor="#5d56e0"
+      className="mx-auto md:mx-0"
     >
-      <Link href="/contact" className="mx-auto md:mx-0">
+      <Link href="/contact" >
         <motion.div
           variants={slideIn("up", "tween", 0.5 * teamMembers.length, 1.3)}
           initial="hidden"
