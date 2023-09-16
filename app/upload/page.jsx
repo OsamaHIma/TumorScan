@@ -2,6 +2,7 @@
 import Footer from "@/components/Footer";
 import {
   ArrowRight,
+  BellIcon,
   Brain,
   CheckCircleIcon,
   DownloadIcon,
@@ -49,6 +50,7 @@ const styles = {
 const UploadPage = () => {
   const [uploadedPhoto, setUploadedPhoto] = useState();
   const [prediction, setPrediction] = useState(null);
+  const [NotifyUser, setNotifyUser] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState("");
   const [index, setIndex] = useState(0);
@@ -174,6 +176,18 @@ const UploadPage = () => {
         const { class1, prob1 } = await response.json();
         // Handle the response containing the predictions
         setPrediction({ class1, prob1 });
+        if (NotifyUser) {
+          const notificationOptions = {
+            body: `There is ${prediction.prob1.toFixed(
+              1
+            )}% that the patient has ${class1}`,
+            icon: "/logoTab.svg",
+            vibrate: [200, 100, 200],
+            sound: "notification_sound.ogg",
+          };
+
+          new Notification("The results are here", notificationOptions);
+        }
         handleRemoveFiles();
       } else {
         // Handle the error response
@@ -192,6 +206,15 @@ const UploadPage = () => {
     color: "blue-gray",
     className: "font-normal text-xs",
   };
+  const handelNotifyMe = () => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      setNotifyUser(true);
+
+      toast.info("You will be notified please keep this tap open");
+    } else {
+      toast.error("Please give the website Notification permission");
+    }
+  };
   return (
     <>
       <Navbar />
@@ -207,7 +230,6 @@ const UploadPage = () => {
           <div className="py-5 flex flex-col gap-3">
             <div className="" dir="ltr">
               <Select
-
                 label={<Translate>Which type is the x-ray?</Translate>}
                 className="dark:text-gray-300"
                 color="indigo"
@@ -220,9 +242,7 @@ const UploadPage = () => {
                     return element;
                   }
                 }}
-
               >
-                
                 <Option className="capitalize">brain</Option>
                 <Option className="capitalize">lung</Option>
                 <Option className="capitalize">colon</Option>
@@ -232,10 +252,13 @@ const UploadPage = () => {
             <div className="flex items-center gap-3">
               <div className="flex flex-col gap-2 justify-center">
                 <p className="text-[10px] text-gray-400 whitespace-nowrap rtl:text-right">
-                  <Translate>Don&apos;t have Images to test the models?</Translate>
+                  <Translate>
+                    Don&apos;t have Images to test the models?
+                  </Translate>
                 </p>
                 <h5 className="text-left whitespace-nowrap">
-                  <Translate>Download some now!</Translate>{"   "}
+                  <Translate>Download some now!</Translate>
+                  {"   "}
                   <ArrowRight className="inline transition-transform rtl:rotate-180" />
                 </h5>
               </div>
@@ -255,7 +278,9 @@ const UploadPage = () => {
                       >
                         <SpeedDialAction className="h-16 w-16">
                           <Brain className="h-5 w-5 text-stone-950" />
-                          <Typography {...labelProps}><Translate>Brain</Translate></Typography>
+                          <Typography {...labelProps}>
+                            <Translate>Brain</Translate>
+                          </Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -269,7 +294,9 @@ const UploadPage = () => {
                             src="https://img.icons8.com/ios/50/lungs.png"
                             alt="lungs"
                           />
-                          <Typography {...labelProps}><Translate>Lung</Translate></Typography>
+                          <Typography {...labelProps}>
+                            <Translate>Lung</Translate>
+                          </Typography>
                         </SpeedDialAction>
                       </Link>
                       {/* <Link
@@ -297,7 +324,9 @@ const UploadPage = () => {
                             src="https://img.icons8.com/quill/50/large-intestine.png"
                             alt="large-intestine"
                           />
-                          <Typography {...labelProps}><Translate>Colon</Translate></Typography>
+                          <Typography {...labelProps}>
+                            <Translate>Colon</Translate>
+                          </Typography>
                         </SpeedDialAction>
                       </Link>
                       <Link
@@ -311,7 +340,9 @@ const UploadPage = () => {
                             src="https://img.icons8.com/external-others-pike-picture/50/external-Marrow-immune-others-pike-picture.png"
                             alt="external-Marrow-immune-others-pike-picture"
                           />
-                          <Typography {...labelProps}><Translate>Marrow</Translate></Typography>
+                          <Typography {...labelProps}>
+                            <Translate>Marrow</Translate>
+                          </Typography>
                         </SpeedDialAction>
                       </Link>
                     </SpeedDialContent>
@@ -346,6 +377,7 @@ const UploadPage = () => {
               (Only *.jpeg, *.jpg, *.jfif and *.png images will be accepted)
             </Translate>
           </p>
+
           <aside>
             {files.length > 0 && (
               <>
@@ -356,15 +388,17 @@ const UploadPage = () => {
                 <div className="" dir="ltr">
                   <Button
                     disabled={loading}
+                    color="red"
                     onClick={handleRemoveFiles}
-                    className="mx-2 mt-6 md:text-lg bg-red-500 text-white px-4"
+                    className="mx-2 mt-6 md:text-lg text-white px-4"
                   >
                     <Translate translations={{ ar: "إلغاء" }}>Cancel</Translate>
                   </Button>
                   <Button
                     disabled={loading}
                     onClick={sendImageForPrediction}
-                    className="mx-2 mt-6 md:text-lg px-6 bg-green-400 text-white"
+                    color="green"
+                    className="mx-2 mt-6 md:text-lg px-6 text-white"
                   >
                     {loading ? (
                       <Spinner color="green" className="mx-auto" />
@@ -410,6 +444,14 @@ const UploadPage = () => {
           )}
           {loading && (
             <div className="py-10">
+              <Button
+                color="green"
+                onClick={handelNotifyMe}
+                className="mb-3 whitespace-nowrap"
+              >
+                Send Me The results in a Notification{"    "}
+                <BellIcon className="inline ltr:ml-3 rtl:mr-3" size={28} />{" "}
+              </Button>
               <h1 className="dark:text-white text-stone-500 md:text-[20px] my-4 text-center">
                 <Translate>Some Quick Facts</Translate>
               </h1>
