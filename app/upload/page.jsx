@@ -206,13 +206,16 @@ const UploadPage = () => {
     color: "blue-gray",
     className: "font-normal text-xs",
   };
-  const handelNotifyMe = () => {
-    if ("Notification" in window && Notification.permission === "granted") {
-      setNotifyUser(true);
+  const handelNotifyMe = async () => {
+    if ("Notification" in window) {
+      const permissionResult = await Notification.requestPermission();
+      if (permissionResult === "granted") {
+        setNotifyUser(true);
 
-      toast.info("You will be notified please keep this tap open");
-    } else {
-      toast.error("Please give the website Notification permission");
+        toast.info("You will be notified please keep this tap open");
+      } else {
+        toast.error("Please give the website Notification permission");
+      }
     }
   };
   return (
