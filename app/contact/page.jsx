@@ -10,9 +10,7 @@ import { Translate } from "translate-easy";
 import { contactSchema } from "@/schema/userSchema";
 import { Button, Spinner } from "@material-tailwind/react";
 import Navbar from "@/components/Navbar";
-export const metadata = {
-  title: "Tumor Scan | Contact Us",
-};
+
 const ContactForm = () => {
   const formRef = useRef();
   const [Form, setForm] = useState({
