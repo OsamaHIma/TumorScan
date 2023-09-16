@@ -31,9 +31,7 @@ import { InfoIcon } from "lucide-react";
 import { facts } from "@/constants";
 import { TitleText, TypingText } from "@/components/TypingText";
 import Navbar from "@/components/Navbar";
-export const metadata = {
-  title: "Tumor Scan | Upload page",
-};
+
 const styles = {
   focused: {
     borderColor: "#2196f3",
