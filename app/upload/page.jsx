@@ -225,7 +225,7 @@ const UploadPage = () => {
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
-        className="min-h-screen relative paddings innerWidth pt-20 md:pt-32"
+        className="min-h-screen relative paddings innerWidth  !pt-32"
       >
         <TypingText title="| Get The Results" textStyles="text-center" />
         <TitleText title="Upload An Image" textStyles="text-center" />
