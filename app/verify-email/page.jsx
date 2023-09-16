@@ -9,7 +9,9 @@ import { toast } from "react-toastify";
 import { playFireWorks } from "@/lib/fireWorks";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
-
+export const metadata = {
+  title: "Tumor Scan | verifiy email",
+};
 const EmailVerificationPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
