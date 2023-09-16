@@ -176,18 +176,17 @@ const UploadPage = () => {
         const { class1, prob1 } = await response.json();
         // Handle the response containing the predictions
         setPrediction({ class1, prob1 });
-        if (NotifyUser) {
-          const notificationOptions = {
-            body: `There is ${prediction.prob1.toFixed(
+
+        NotifyUser &&
+          new Notification("The results are here", {
+            body: `There is ${prob1.toFixed(
               1
             )}% that the patient has ${class1}`,
             icon: "/logoTab.svg",
             vibrate: [200, 100, 200],
             sound: "notification_sound.ogg",
-          };
+          });
 
-          new Notification("The results are here", notificationOptions);
-        }
         handleRemoveFiles();
       } else {
         // Handle the error response
@@ -207,11 +206,10 @@ const UploadPage = () => {
     className: "font-normal text-xs",
   };
   const handelNotifyMe = async () => {
+    setNotifyUser(true);
     if ("Notification" in window) {
       const permissionResult = await Notification.requestPermission();
       if (permissionResult === "granted") {
-        setNotifyUser(true);
-
         toast.info("You will be notified please keep this tap open");
       } else {
         toast.error("Please give the website Notification permission");
@@ -225,7 +223,7 @@ const UploadPage = () => {
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
-        className="min-h-screen relative paddings innerWidth  !pt-32"
+        className="min-h-screen relative paddings innerWidth !pt-32"
       >
         <TypingText title="| Get The Results" textStyles="text-center" />
         <TitleText title="Upload An Image" textStyles="text-center" />
