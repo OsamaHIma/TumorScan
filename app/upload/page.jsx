@@ -184,7 +184,7 @@ const UploadPage = () => {
             )}% that the patient has ${class1}`,
             icon: "/logoTab.svg",
             vibrate: [200, 100, 200],
-            sound: "notification_sound.ogg",
+            sound: "/notification_sound.mp3",
           });
 
         handleRemoveFiles();
